@@ -15,4 +15,4 @@
 **/*.swp
 
 #My test
-./tindergames/test/
+**/test

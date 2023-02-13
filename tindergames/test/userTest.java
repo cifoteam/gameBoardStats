@@ -1,5 +1,5 @@
 package org.teamcifo.logic;
-package org.teamcifo.domain;
+import org.teamcifo.domain;
 
 import com.github.javafaker.Faker;
 import org.junit.Test;

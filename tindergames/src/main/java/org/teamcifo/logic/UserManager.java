@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import org.teamcifo.utils.Helpers;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.teamcifo.domain.*;;
 
 
 @Data
@@ -16,11 +16,11 @@ import java.util.Map;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserMAnager{
+public class UserManager{
 
   private Map<String, User> users;
   
-  public UserManager() {
+  public void UserManager() {
     users = new HashMap<>();
   }
   

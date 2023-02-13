@@ -19,7 +19,7 @@ import java.util.Map;
 public class User {
 
     private String name, lastName, password, email;
-    private String userID;
+    private String userId;
     private GameCollection userGameCollection;
     private List<GamePlay> gamePlays;
    

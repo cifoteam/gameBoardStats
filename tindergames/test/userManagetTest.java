@@ -1,7 +1,7 @@
 import com.github.javafaker.Faker;
 import org.junit.Test;
-package org.teamcifo.logic;
-package org.teamcifo.domain;
+import org.teamcifo.logic;
+import org.teamcifo.domain;
 
 
 import static org.junit.Assert.*;
