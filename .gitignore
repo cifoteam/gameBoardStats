@@ -14,5 +14,7 @@
 # Vim
 **/*.swp
 
-#My test
-**/test
+#My test David
+.tindergames/test/
+**/.iml
+
