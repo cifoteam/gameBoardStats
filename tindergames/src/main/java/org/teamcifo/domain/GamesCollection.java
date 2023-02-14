@@ -2,7 +2,6 @@ package org.teamcifo.domain;
 
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.teamcifo.utils.Helpers;
 
@@ -14,7 +13,7 @@ import java.util.Map;
 @Setter
 public class GamesCollection {
     private String collectionId;
-    private Map<String, Game> gamesCollection;
+    private Map<String, BoardGame> gamesCollection;
 
     public GamesCollection() {
         this.collectionId = Helpers.generateUUID();
