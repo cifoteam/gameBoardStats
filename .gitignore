@@ -1,6 +1,7 @@
 # IntelliJ
 **/.idea
 **/target
+**/.iml
 
 # VSCode
 **/.vscode
@@ -14,7 +15,5 @@
 # Vim
 **/*.swp
 
-#My test David
-.tindergames/test/
-**/.iml
+
 
