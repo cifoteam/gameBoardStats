@@ -36,10 +36,10 @@ flowchart LR
 
 
 
-![Singleton Pattern](/docs/imagenes_umls_cifo_team/Sprint_1_Victor_mockup.png)
+![Singleton Pattern](imagenes_cifo/all_steps.png)
 
 
-![IMAGEN 1](c/Users/AdministradorCIFO/Desktop/projects/projectsCifo/projectsTeam/gameBoardStats/docs/imagenes_umls_cifo_team/Sprint_1_Victor_mockup.PNG)
+![IMAGEN 1](imagenes_umls_cifo_team/Sprint_1_Victor_mockup.PNG)
 
 ![Caption](elephant.png)
 
