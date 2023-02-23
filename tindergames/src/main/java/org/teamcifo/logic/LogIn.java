@@ -4,10 +4,10 @@ import org.teamcifo.domain.User;
 import java.util.Scanner;
 
 public class LogIn {
-    public static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void demo() {
-        // TODO:
+        // TODO: Initialize some fake users and collections
         start();
     }
     public static void start() {
@@ -20,18 +20,13 @@ public class LogIn {
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1":
-                    login();
-                    break;
-                case "2":
-                    register();
-                    break;
-                case "3":
+                case "1" -> login();
+                case "2" -> register();
+                case "3" -> {
                     System.out.println("Goodbye!");
                     return;
-                default:
-                    System.out.println("Invalid choice.");
-                    break;
+                }
+                default -> System.out.println("Invalid choice.");
             }
         }
     }
@@ -46,7 +41,7 @@ public class LogIn {
             System.out.println("Login successful.");
             showMenu(username);
         } else {
-            System.out.println("Invalid user ID or password.");
+            System.out.println("Invalid username or password.");
         }
     }
 
@@ -77,7 +72,7 @@ public class LogIn {
         }
     }
     //private void
-    public static boolean showMenu(String username) {
+    public static void showMenu(String username) {
         while (true) {
             System.out.println("Welcome " + username + " to the game collection app.");
             System.out.println("1. View my games");
@@ -88,21 +83,14 @@ public class LogIn {
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1":
-                    viewGames(username);
-                    break;
-                case "2":
-                    addGame(username);
-                    break;
-                case "3":
-                    removeGame(username);
-                    break;
-                case "4":
+                case "1" -> viewGames(username);
+                case "2" -> addGame(username);
+                case "3" -> removeGame(username);
+                case "4" -> {
                     System.out.println("Logging out...");
-                    return false;
-                default:
-                    System.out.println("Invalid choice.");
-                    break;
+                    return;
+                }
+                default -> System.out.println("Invalid choice.");
             }
         }
     }
@@ -125,6 +113,10 @@ public class LogIn {
 
     public static void setScanner(Scanner scanner) {
         LogIn.scanner = scanner;
+    }
+
+    public static Scanner getScanner() {
+        return scanner;
     }
 }
 

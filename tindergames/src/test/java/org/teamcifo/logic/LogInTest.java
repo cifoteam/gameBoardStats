@@ -5,18 +5,30 @@ import org.junit.jupiter.api.*;
 import java.util.Scanner;
 import com.github.javafaker.Faker;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 public class LogInTest {
         private static Faker faker;
-        private static Scanner scanner;
+        private static Scanner defaultScanner;
 
         @BeforeAll
         public static void setUp() {
             faker = new Faker();
-            scanner = new Scanner(System.in);
+            defaultScanner = LogIn.getScanner();
+            // TODO: Create or access fake databases for test
         }
-        public static void setScanner(Scanner scanner) {
-            LogIn.scanner = scanner;
+
+        @AfterEach
+        public void tearDown() {
+            // Remember to restore the default scanner in the static class Login after each test
+            LogIn.setScanner(defaultScanner);
+        }
+
+        @AfterAll
+        public static void cleanUp() {
+            // Clear Manager's hashmaps before the next set of tests
+            UserManager.clear();
         }
 
         @Test
@@ -30,9 +42,7 @@ public class LogInTest {
             LogIn.setScanner(testScanner);
 
             // Call the login method and check if it returns successfully
-            Assertions.assertDoesNotThrow(() -> {
-                LogIn.login();
-            });
+            Assertions.assertDoesNotThrow(LogIn::login);
         }
 
         @Test
@@ -49,9 +59,10 @@ public class LogInTest {
             LogIn.setScanner(testScanner);
 
             // Call the register method and check if it returns successfully
-            Assertions.assertDoesNotThrow(() -> {
-                LogIn.register();
-            });
+            Assertions.assertDoesNotThrow(LogIn::register);
+
+            // Check that the user has been properly inserted into the database
+            assertNotNull(UserManager.getUserByUsername(username));
         }
     }
 
