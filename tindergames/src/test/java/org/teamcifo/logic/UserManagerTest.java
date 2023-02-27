@@ -20,6 +20,7 @@ public class UserManagerTest {
         User user = new User();
         String fakeId = faker.number().digits(10);
         user.setUserId(fakeId);
+        user.setUsername(faker.funnyName().name());
         user.setName(faker.name().firstName());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
@@ -43,6 +44,7 @@ public class UserManagerTest {
         User user = new User();
         String fakeId = faker.number().digits(10);
         user.setUserId(fakeId);
+        user.setUsername(faker.funnyName().name());
         user.setName(faker.name().firstName());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
@@ -54,12 +56,12 @@ public class UserManagerTest {
         //userManager.addUser(user);
         UserManager.addUser(user);
         // Authenticate the user and check that the result is true
-        boolean result = userManager.authenticate(fakeId, fakePassword);
+        boolean result = userManager.authenticate(user.getUsername(), fakePassword);
         assertTrue(result);
 
         //
-        Assertions.assertTrue(userManager.authenticate(user.getUserId(), user.getPassword()));
-        Assertions.assertFalse(userManager.authenticate(user.getUserId(), "wrong password"));
+        Assertions.assertTrue(userManager.authenticate(user.getUsername(), user.getPassword()));
+        Assertions.assertFalse(userManager.authenticate(user.getUsername(), "wrong password"));
         Assertions.assertFalse(userManager.authenticate("non-existent user ID", "password"));
     }
 
@@ -75,6 +77,7 @@ public class UserManagerTest {
             User user = new User();
             user.setUserId(faker.number().digits(10));
             user.setName(faker.name().firstName());
+            user.setUsername(faker.funnyName().name());
             user.setLastName(faker.name().lastName());
             user.setEmail(faker.internet().emailAddress());
             user.setPassword(faker.internet().password());
@@ -102,6 +105,7 @@ public class UserManagerTest {
         User user = new User();
         user.setUserId(faker.number().digits(10));
         user.setName(faker.name().firstName());
+        user.setUsername(faker.funnyName().name());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
         user.setPassword(faker.internet().password());
@@ -125,6 +129,7 @@ public class UserManagerTest {
         User user = new User();
         user.setUserId(faker.number().digits(10));
         user.setName(faker.name().firstName());
+        user.setUsername(faker.funnyName().name());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
         user.setPassword(faker.internet().password());
@@ -142,6 +147,7 @@ public class UserManagerTest {
         User user = new User();
         user.setUserId(faker.number().digits(10));
         user.setName(faker.name().firstName());
+        user.setUsername(faker.funnyName().name());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
         user.setPassword(faker.internet().password());
@@ -152,6 +158,7 @@ public class UserManagerTest {
         User updatedUser = new User();
         updatedUser.setUserId(user.getUserId());
         updatedUser.setName(faker.name().firstName());
+        updatedUser.setUsername(faker.funnyName().name());
         updatedUser.setLastName(faker.name().lastName());
         updatedUser.setEmail(faker.internet().emailAddress());
         updatedUser.setPassword(faker.internet().password());
@@ -168,6 +175,7 @@ public class UserManagerTest {
         User user = new User();
         user.setUserId(faker.number().digits(10));
         user.setName(faker.name().firstName());
+        user.setUsername(faker.funnyName().name());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
         user.setPassword(faker.internet().password());

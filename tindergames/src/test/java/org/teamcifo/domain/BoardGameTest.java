@@ -15,11 +15,17 @@ public class BoardGameTest {
     public  void createBoardGameObjectTest(){
         Faker faker = new Faker();
         String gameTitle = faker.backToTheFuture().character();
-        BoardGame game = new BoardGame(gameTitle);
-        assertEquals(gameTitle, game.getGameTitle());
+        BoardGame fakeGame = new BoardGame(gameTitle);
+        assertEquals(gameTitle, fakeGame.getGameTitle());
     }
-
-    public  void createMultipleBoardgames(int number){
+    @Test
+    public void createMultipleBoardGamesTest(){
+        List<BoardGame> boardGameList = createMultipleBoardgames(100);
+        for(BoardGame game : boardGameList){
+            assertNotNull(game);
+        }
+    }
+    public List<BoardGame> createMultipleBoardgames(int number){
 
         List<BoardGame> boardGamesList = new ArrayList<>();
         BoardGame gameForTesting = new BoardGame();
@@ -28,11 +34,6 @@ public class BoardGameTest {
             gameForTesting = FakeDataGenerator.createFakeGame();
             boardGamesList.add(gameForTesting);
         }
-        //System.out.println(boardGamesList);
+        return boardGamesList;
     }
-
-    public void createFakeBoardGames(){
-        createMultipleBoardgames(10);
-    }
-
 }
