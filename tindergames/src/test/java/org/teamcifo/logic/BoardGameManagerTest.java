@@ -46,6 +46,7 @@ class BoardGameManagerTest {
         BoardGameManager.addBoardGameToDataBase(fakeGame);
         BoardGameManager.addBoardGameToDataBase(fakeGame2);
         BoardGameDataBase.listAllBoardGamesOnDataBase();
+        // TODO: Add assertions to this test
     }
 
     @Test

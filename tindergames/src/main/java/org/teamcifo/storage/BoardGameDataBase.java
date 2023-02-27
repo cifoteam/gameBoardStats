@@ -8,13 +8,9 @@ import java.util.Map;
 
 @Data
 public class BoardGameDataBase {
-    public static HashMap<String, BoardGame> games = new HashMap<String, BoardGame>();
+    public static HashMap<String, BoardGame> games = new HashMap<>();
 
     // TODO: Discuss about storage manager.
-
-    public BoardGameDataBase(){
-        this.games =  new HashMap<>();
-    }
 
     public static void addBoardGame(String gameID, BoardGame game){
         games.put(gameID, game);
