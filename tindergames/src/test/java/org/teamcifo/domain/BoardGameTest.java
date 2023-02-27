@@ -22,7 +22,7 @@ public class BoardGameTest {
     public void createMultipleBoardGamesTest(){
         List<BoardGame> boardGameList = createMultipleBoardgames(100);
         for(BoardGame game : boardGameList){
-            System.out.println(game.toString());
+            assertNotNull(game);
         }
     }
     public List<BoardGame> createMultipleBoardgames(int number){
