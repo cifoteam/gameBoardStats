@@ -99,7 +99,7 @@ class BoardGameManagerTest {
         int initialMinPlayTime = game.getMaxPlayers();
         int newMinPlayTime = fake.number().numberBetween(1, 6);
         BoardGameManager.updateMinPlayTime(game, newMinPlayTime);
-        assertNotEquals(game.getMinPlayTime(), game.getMaxPlayers());
+        assertNotEquals(initialMinPlayTime, game.getMinPlayTime());
     }
     @Test
     public void updateMaxPlayTimeTest(){

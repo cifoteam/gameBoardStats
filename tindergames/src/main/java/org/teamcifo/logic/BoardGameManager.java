@@ -46,7 +46,7 @@ public class BoardGameManager {
     public static void updateMaxPlayTime(BoardGame game, int maxPlayTime){
         game.setMaxPlayTime(maxPlayTime);
     }
-<<<<<<< HEAD
+
     // TODO:
     public static void searchBoardGame(String gameTitle){
         // will search the desired boardgame and shows it to user.
@@ -64,6 +64,3 @@ public class BoardGameManager {
         // Depends on the DB implementation
     }
 }
-=======
-}
->>>>>>> task/56-create-game-class
