@@ -1,4 +1,4 @@
-package org.teamcifo.logic;
+package org.teamcifo.tindergames.logic;
 
 import lombok.Data;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.teamcifo.domain.*;;
-import org.teamcifo.domain.GamesCollection;
+import org.teamcifo.tindergames.domain.GamesCollection;
+import org.teamcifo.tindergames.domain.User;
 
 @Data
 @AllArgsConstructor

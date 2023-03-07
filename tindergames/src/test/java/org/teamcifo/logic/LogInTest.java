@@ -4,6 +4,8 @@ package org.teamcifo.logic;
 import org.junit.jupiter.api.*;
 import java.util.Scanner;
 import com.github.javafaker.Faker;
+import org.teamcifo.tindergames.logic.LogIn;
+import org.teamcifo.tindergames.logic.UserManager;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

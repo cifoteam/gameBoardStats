@@ -1,11 +1,11 @@
-package org.teamcifo.domain;
+package org.teamcifo.tindergames.domain;
 
 
 import java.util.List;
 
 import lombok.Data;
 @Data
-class GamePlay {
+public class GamePlay {
     private String gameId;
     private long time;
     private String winner;
