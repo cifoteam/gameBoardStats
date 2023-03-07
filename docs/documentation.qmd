@@ -14,6 +14,7 @@ Our team will follow the SCRUM methodology to create this project. So, our team 
 
 This documentation web .qmd is designed to keep everyone informed about the project's progress and to ensure that everyone is on the same page. It will include information on our sprints, user stories, and any important updates or changes to the project.
 -- Aqui link de sprints, user stories, etc.--
+[Our_organization](<https://openproject.cifoweb.dev/projects/tindergames/work_packages/>)
 
 Thank you for taking the time to read this introduction, and we look forward to sharing our progress with you.
 
@@ -36,11 +37,12 @@ flowchart LR
 
 
 
-![Singleton Pattern](imagenes_cifo/all_steps.png)
+![Step 1](imagenes_cifo/Sprint_1_Victor_mockup_step1.png)
 
+![Step 2](imagenes_cifo/Sprint_1_Victor_mockup_step2.png)
 
-![IMAGEN 1](imagenes_umls_cifo_team/Sprint_1_Victor_mockup.PNG)
+![Step 3a](imagenes_cifo/Sprint_1_Victor_mockup_step3a.png)
 
-![Caption](elephant.png)
+![Step 3b](imagenes_cifo/Sprint_1_Victor_mockup_step3b.png)
 
-![Elephant](Sprint_1_Victor_mockup.png)
+![all Steps](imagenes_cifo/Sprint_1_Victor_mockup.png)

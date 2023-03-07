@@ -1,0 +1,5 @@
+---
+title: "Scrum metodology"
+---
+
+<!-- Aqui habra un esquema de roles, los procesos de cada sprint, y los resultados, ademas de un resumen de las reviews y los sprint planning. -->
