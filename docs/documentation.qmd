@@ -1,5 +1,5 @@
 ---
-title: "gameBoardStats"
+title: "Game Board Stats"
 ---
 
 Welcome to the documentation web for our school project on "Matching Table Games between Users and a Library of Table Games.
@@ -17,3 +17,30 @@ This documentation web .qmd is designed to keep everyone informed about the proj
 
 Thank you for taking the time to read this introduction, and we look forward to sharing our progress with you.
 
+
+
+```{mermaid}
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  A --> B[Manage Collection]
+  A --> C[Log play]
+```
+
+```{mermaid}
+flowchart LR
+  A[Once logged in]
+  A --> B[Manage Collection]
+  A --> C[Log play]
+```
+
+
+
+![Singleton Pattern](imagenes_cifo/all_steps.png)
+
+
+![IMAGEN 1](imagenes_umls_cifo_team/Sprint_1_Victor_mockup.PNG)
+
+![Caption](elephant.png)
+
+![Elephant](Sprint_1_Victor_mockup.png)
