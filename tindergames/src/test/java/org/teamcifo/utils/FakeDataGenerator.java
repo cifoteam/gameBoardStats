@@ -1,10 +1,10 @@
 package org.teamcifo.utils;
 
 import com.github.javafaker.Faker;
-import org.teamcifo.domain.BoardGame;
-import org.teamcifo.domain.GameStats;
-import org.teamcifo.domain.GamesCollection;
-import org.teamcifo.domain.User;
+import org.teamcifo.tindergames.domain.BoardGame;
+import org.teamcifo.tindergames.domain.GameStats;
+import org.teamcifo.tindergames.domain.GamesCollection;
+import org.teamcifo.tindergames.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;

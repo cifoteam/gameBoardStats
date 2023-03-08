@@ -1,4 +1,4 @@
-package org.teamcifo.utils;
+package org.teamcifo.tindergames.utils;
 
 import java.util.UUID;
 

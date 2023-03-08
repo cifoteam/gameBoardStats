@@ -2,8 +2,9 @@ package org.teamcifo.logic;
 
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
-import org.teamcifo.domain.BoardGame;
-import org.teamcifo.storage.BoardGameDataBase;
+import org.teamcifo.tindergames.domain.BoardGame;
+import org.teamcifo.tindergames.logic.BoardGameManager;
+import org.teamcifo.tindergames.storage.BoardGameDataBase;
 import org.teamcifo.utils.FakeDataGenerator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

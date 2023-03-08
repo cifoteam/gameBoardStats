@@ -1,11 +1,10 @@
-package org.teamcifo.domain;
+package org.teamcifo.tindergames.domain;
 
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
-import org.teamcifo.utils.Helpers;
+import org.teamcifo.tindergames.utils.Helpers;
 
 import java.util.ArrayList;
 import java.util.List;

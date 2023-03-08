@@ -1,7 +1,7 @@
-package org.teamcifo.logic;
+package org.teamcifo.tindergames.logic;
 
 import lombok.Data;
-import org.teamcifo.domain.GamesCollection;
+import org.teamcifo.tindergames.domain.GamesCollection;
 
 import java.util.HashMap;
 

@@ -1,6 +1,7 @@
 package org.teamcifo.domain;
 
 import org.junit.jupiter.api.Test;
+import org.teamcifo.tindergames.domain.BoardGame;
 import org.teamcifo.utils.FakeDataGenerator;
 import com.github.javafaker.Faker;
 

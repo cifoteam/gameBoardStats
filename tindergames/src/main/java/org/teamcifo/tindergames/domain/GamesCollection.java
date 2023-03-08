@@ -1,8 +1,8 @@
-package org.teamcifo.domain;
+package org.teamcifo.tindergames.domain;
 
 import lombok.Data;
 import lombok.Getter;
-import org.teamcifo.utils.Helpers;
+import org.teamcifo.tindergames.utils.Helpers;
 
 import java.util.HashMap;
 import java.util.Map;

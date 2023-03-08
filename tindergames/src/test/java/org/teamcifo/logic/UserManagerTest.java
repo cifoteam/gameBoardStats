@@ -5,7 +5,9 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.teamcifo.domain.User;
+import org.teamcifo.tindergames.domain.User;
+import org.teamcifo.tindergames.logic.UserManager;
+
 import java.util.HashMap;
 import java.util.Map;
 

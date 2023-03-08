@@ -1,8 +1,9 @@
-package org.teamcifo.logic;
+package org.teamcifo.tindergames.logic;
 
 import lombok.Data;
-import org.teamcifo.domain.BoardGame;
-import org.teamcifo.storage.BoardGameDataBase;
+import org.teamcifo.tindergames.domain.BoardGame;
+import org.teamcifo.tindergames.storage.BoardGameDataBase;
+
 @Data
 public class BoardGameManager {
 

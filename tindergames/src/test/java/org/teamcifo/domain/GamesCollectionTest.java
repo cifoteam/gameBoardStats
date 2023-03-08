@@ -2,6 +2,9 @@ package org.teamcifo.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.teamcifo.tindergames.domain.BoardGame;
+import org.teamcifo.tindergames.domain.GameStats;
+import org.teamcifo.tindergames.domain.GamesCollection;
 import org.teamcifo.utils.FakeDataGenerator;
 
 import java.util.List;
