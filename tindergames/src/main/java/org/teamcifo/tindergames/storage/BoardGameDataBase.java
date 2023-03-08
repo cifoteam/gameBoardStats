@@ -1,6 +1,6 @@
-package org.teamcifo.storage;
+package org.teamcifo.tindergames.storage;
 import lombok.Data;
-import org.teamcifo.domain.BoardGame;
+import org.teamcifo.tindergames.domain.BoardGame;
 
 
 import java.util.HashMap;

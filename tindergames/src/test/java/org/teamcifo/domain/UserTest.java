@@ -3,8 +3,11 @@ package org.teamcifo.domain;
 import com.github.javafaker.Faker;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.teamcifo.tindergames.domain.GamePlay;
+import org.teamcifo.tindergames.domain.GamesCollection;
+import org.teamcifo.tindergames.domain.User;
+
 import java.util.ArrayList;
 
 public class UserTest {

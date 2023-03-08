@@ -1,4 +1,4 @@
-package org.teamcifo.domain;
+package org.teamcifo.tindergames.domain;
 
 import lombok.Data;
 import lombok.Getter;

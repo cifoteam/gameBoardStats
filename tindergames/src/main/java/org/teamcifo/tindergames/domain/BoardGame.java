@@ -1,9 +1,9 @@
-package org.teamcifo.domain;
+package org.teamcifo.tindergames.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.teamcifo.utils.Helpers;
+import org.teamcifo.tindergames.utils.Helpers;
 
 @Data
 @AllArgsConstructor

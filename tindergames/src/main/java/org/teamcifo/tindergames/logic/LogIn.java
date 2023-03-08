@@ -1,6 +1,6 @@
-package org.teamcifo.logic;
+package org.teamcifo.tindergames.logic;
 
-import org.teamcifo.domain.User;
+import org.teamcifo.tindergames.domain.User;
 import java.util.Scanner;
 
 public class LogIn {
@@ -31,7 +31,7 @@ public class LogIn {
         }
     }
 
-    static void login() {
+    public static void login() {
         System.out.print("Enter your username: ");
         String username = scanner.nextLine();
         System.out.print("Enter your password: ");
@@ -45,7 +45,7 @@ public class LogIn {
         }
     }
 
-    static void register() {
+    public static void register() {
         System.out.print("Enter a username: ");
         String username = scanner.nextLine();
 

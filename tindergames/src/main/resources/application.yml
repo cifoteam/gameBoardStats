@@ -1,0 +1,36 @@
+server:
+  port: 9091
+
+# Spring properties
+spring:
+  main:
+    banner-mode: off
+
+  application:
+    name: tindergames
+
+  h2:
+    console:
+      enabled: 'true'
+
+  datasource:
+    url: jdbc:h2:file:./tindergames;DB_CLOSE_ON_EXIT=TRUE;FILE_LOCK=NO
+    username: cifoweb
+    password: cifotest
+    driverClassName: org.h2.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: update
+    # Some deprecated default values must be overridden
+    properties:
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
