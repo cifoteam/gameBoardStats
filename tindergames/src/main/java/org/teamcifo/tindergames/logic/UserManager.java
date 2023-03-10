@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 import org.teamcifo.tindergames.domain.GamesCollection;
-import org.teamcifo.tindergames.domain.User;
+import org.teamcifo.tindergames.userEntity.User;
 
 @Data
 @AllArgsConstructor
@@ -25,7 +25,7 @@ public class UserManager{
     public static void addUser(User user) {
 
         users.put(user.getUserId(), user);
-        GamesCollectionManager.addGamesCollection(user.getUserId(), user.getUserGameCollection());
+        //GamesCollectionManager.addGamesCollection(user.getUserId(), user.getUserGameCollection());
     }
 
     public static User getUser(String userId) {
@@ -65,6 +65,7 @@ public class UserManager{
         return null;
     }
 
+    /*
     public static void getGamesCollectionByUsername(String username) {
         for (User user : users.values()
         ) {
@@ -74,6 +75,7 @@ public class UserManager{
             }
         }
     }
+     */
 }
 
 
