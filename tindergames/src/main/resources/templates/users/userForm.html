@@ -4,19 +4,26 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Create user</title>
+    <title>User form</title>
 </head>
 <body>
 
 <h1>User form</h1>
 <div class="w3-card-40" style="width:50%">
     <header class="w3-container w3-light-grey">
-        <p>Create new user</p>
+        <p th:text="${operation == 'createUser'} ? 'Create user form' : 'Update user form'" />
+        <p th:text="${operation}" />
     </header>
+    <!-- Print the response message -->
+    <p th:if="${responseMessage != null}" th:text="${responseMessage}" />
     <!-- Show a User form -->
     <div class="w3-container">
-        <form th:action="@{/users/createUser/{id}(id=${newUser.userId})}" th:object="${newUser}" method="post">
+        <form th:action="@{/users/{operation}/{id}(operation=${operation}, id=${user.userId})}" th:object="${user}" method="post">
             <!-- User fields -->
+            <p>
+                <label for="userID">User ID</label>
+                <input th:field="*{userId}" type="text" name="firstName" class="w3-input" id="userId" readonly />
+            </p>
             <p>
                 <label for="firstName">First name</label>
                 <input th:field="*{firstName}" type="text" name="firstName" class="w3-input" id="firstName" required />
@@ -44,11 +51,7 @@
             </p>
         </form>
     </div>
-
-    <!-- Print the response message -->
-    <p th:if="${responseMessage != null}" th:text="${responseMessage}" />
-
-    <!-- Create a button to go to the User Form creation -->
+    <!-- Create a button to go to the User management page -->
     <p>
         <a th:href="@{/users}" class="w3-button w3-red">Return to users management</a>
     </p>
