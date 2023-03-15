@@ -25,6 +25,7 @@ public class User {
     @Id
     @GenericGenerator(name="system-uuid", strategy="uuid")
     private String userId;
+    // TODO: Create GamesCollection and GamePlay Entities and tables to re-enable these attributes
     //private GamesCollection userGameCollection;
     //private List<GamePlay> gamePlays;
 
@@ -34,6 +35,7 @@ public class User {
         // Then use the collection ID as the user ID
         //this.userId = this.userGameCollection.getCollectionId();
         //this.gamePlays = new ArrayList<>();
+        // TODO: Create GamesCollection and GamePlay Entities and tables to re-enable these attributes
         this.userId = Helpers.generateUUID();
     }
 
@@ -45,7 +47,4 @@ public class User {
         this.email = email;
         this.username = username;
     }
-
-
-
 }
