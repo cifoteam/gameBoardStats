@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Users main page</title>
+</head>
+<body>
+
+
+<!-- Available users -->
+<h2>Available Board Games</h2>
+<!-- Response message for any of the user operations -->
+<p th:if="${responseMessage != null}" th:text="${responseMessage}" />
+<div>
+    <!-- Create a button to go to the User Form creation -->
+    <p><a th:href="@{/users/createUser}" class="w3-button w3-green">Add a new user</a></p>
+</div>
+<!-- Show all Users -->
+<table class="w3-table-all w3-hoverable">
+    <!-- The first row is the table header-->
+    <tr>
+        <td>Board Game ID</td>
+        <td>Game Title</td>
+        <td>Min players</td>
+        <td>Max Players</td>
+        <td>Min Play time</td>
+        <td>Max Play Time</td>
+    </tr>
+
+    <!-- Now we loop over all the available users -->
+    <tr th:each="boardgames:${boardgamesFromController}">
+        <td th:text="${boardgame.gameID}"/>
+        <td th:text="${boardgame.gameTitle}"/>
+        <td th:text="${user.firstName}"/>
+        <td th:text="${user.lastName}"/>
+        <td th:text="${user.email}"/>
+        <!-- Create buttons to check, update or delete a User -->
+        <td> <a th:href="@{/users/id/{id}(id = ${user.userId})}" class="w3-button w3-green">Details</a> </td>
+        <td> <a th:href="@{/users/updateUser/{id}(id = ${user.userId})}" class="w3-button w3-green">Update</a> </td>
+        <td> <a th:href="@{/users/deleteUser/{id}(id = ${user.userId})}" class="w3-button w3-red">Delete</a> </td>
+    </tr>
+</table>
+<br>
+</body>
+</html>

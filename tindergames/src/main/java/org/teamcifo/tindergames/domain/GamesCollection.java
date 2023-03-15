@@ -2,6 +2,7 @@ package org.teamcifo.tindergames.domain;
 
 import lombok.Data;
 import lombok.Getter;
+import org.teamcifo.tindergames.boardGameEntity.BoardGame;
 import org.teamcifo.tindergames.utils.Helpers;
 
 import java.util.HashMap;

@@ -1,7 +1,7 @@
 package org.teamcifo.tindergames.logic;
 
 import lombok.Data;
-import org.teamcifo.tindergames.domain.BoardGame;
+import org.teamcifo.tindergames.boardGameEntity.BoardGame;
 import org.teamcifo.tindergames.storage.BoardGameDataBase;
 
 @Data
