@@ -24,17 +24,18 @@ public class User {
     private String firstName, lastName, password, email, username;
     @Id
     @GenericGenerator(name="system-uuid", strategy="uuid")
+    @Column(updatable = false, nullable = false)
     private String userId;
     // TODO: Create GamesCollection and GamePlay Entities and tables to re-enable these attributes
     //private GamesCollection userGameCollection;
-    //private List<GamePlay> gamePlays;
+    //private List<Gameplay> gameplays;
 
     public User() {
         // First initialize the user's games collection
         //this.userGameCollection = new GamesCollection();
         // Then use the collection ID as the user ID
         //this.userId = this.userGameCollection.getCollectionId();
-        //this.gamePlays = new ArrayList<>();
+        //this.gameplays = new ArrayList<>();
         // TODO: Create GamesCollection and GamePlay Entities and tables to re-enable these attributes
         this.userId = Helpers.generateUUID();
     }

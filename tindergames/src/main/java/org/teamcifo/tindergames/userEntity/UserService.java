@@ -30,9 +30,8 @@ public class UserService {
         if (userFromDB.isPresent()) {
             return userFromDB.get();
         }
-        else {
-            return null;
-        }
+
+        return null;
     }
 
     public User getUserByUsername(String username) {
@@ -50,13 +49,11 @@ public class UserService {
             userRepository.delete(user);
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public boolean updateUserInDB(User user) {
-        if (userRepository.findById(user.getUserId()).isPresent()) {
+        if (userRepository.existsById(user.getUserId())) {
             userRepository.save(user);
             return true;
         }
@@ -64,6 +61,4 @@ public class UserService {
             return false;
         }
     }
-
-
 }

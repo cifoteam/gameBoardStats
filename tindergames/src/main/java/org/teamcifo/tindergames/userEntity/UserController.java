@@ -20,7 +20,7 @@ public class UserController {
     // Index page
     /**
      * Users controller main page
-     * @param containerToView contains relevant data to correctly render thymeleaf view
+     * @param containerToView contains relevant data to correctly render Thymeleaf view
      * @return the main page HTML file
      */
     @RequestMapping({"/", ""})
@@ -113,7 +113,7 @@ public class UserController {
      * form for further modification.
      * @param id is the user-to-update ID
      * @param containerToView contains the User object that matches the given ID
-     * @param redirectAttributes contain the response message of the operation
+     * @param redirectAttributes contains the response message of the operation
      * @return the path to the User update form if the user exists, or a redirect to the User's main page otherwise
      */
     @GetMapping(value = "/updateUser/{id}")
@@ -137,7 +137,7 @@ public class UserController {
      * with the updated one
      * @param id is the ID of the user to update
      * @param updatedUser is the User object with the updated values
-     * @param redirectAttr contains the response message and the updated user object for further view rendering
+     * @param redirectAttr contains the response message
      * @return the path to the GET method
      */
     @PostMapping(value = "/updateUser/{id}")
