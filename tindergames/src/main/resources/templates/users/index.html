@@ -43,6 +43,7 @@
         <!-- Create buttons to check, update or delete a User -->
         <td> <a th:href="@{/users/id/{id}(id = ${user.userId})}" class="w3-button w3-green">Details</a> </td>
         <td> <a th:href="@{/users/updateUser/{id}(id = ${user.userId})}" class="w3-button w3-green">Update</a> </td>
+        <td> <a th:href="@{/users/resetPassword/{id}(id = ${user.userId})}" class="w3-button w3-green">Reset password</a> </td>
         <td> <a th:href="@{/users/deleteUser/{id}(id = ${user.userId})}" class="w3-button w3-red">Delete</a> </td>
     </tr>
 </table>

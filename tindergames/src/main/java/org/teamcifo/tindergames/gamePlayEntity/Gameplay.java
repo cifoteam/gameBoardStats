@@ -27,7 +27,6 @@ public class Gameplay {
     private long time;
     @ManyToOne
     @JoinColumn(name = "id")
-    @Column(name = "WINNER_ID")
     private User winner;
     //private List<User> players;
 }

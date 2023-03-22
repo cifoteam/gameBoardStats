@@ -3,10 +3,7 @@ package org.teamcifo.tindergames.userEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
@@ -181,5 +178,32 @@ public class UserController {
         }
         // Return to the users main page
         return "redirect:/users/";
+    }
+
+    // Other user operations
+    @GetMapping("resetPassword/{id}")
+    public String resetPassword(@PathVariable("id") String id, Model containerToView, RedirectAttributes redirectAttributes) {
+        // Retrieve the user based on the provided ID
+        User userFromDB = userService.getUserByID(id);
+        if (userFromDB != null) {
+            containerToView.addAttribute("userId", id);
+            containerToView.addAttribute("oldPassword", userFromDB.getPassword());
+            return "users/resetPassword";
+        } else {
+            redirectAttributes.addFlashAttribute("responseMessage", "User ID " + id + " not found!");
+            return "redirect:/users";
+        }
+    }
+
+    @PostMapping("resetPassword/{id}")
+    public String resetPassword(@PathVariable("id") String id, @RequestParam("newPassword") String newPassword, RedirectAttributes redirectAttributes) {
+        // Try to update the user's password
+        if (userService.updateUserPassword(id, newPassword)) {
+            redirectAttributes.addFlashAttribute("responseMessage", "Password for user ID " + id + " updated");
+            return "redirect:/users";
+        } else {
+            redirectAttributes.addFlashAttribute("responseMessage", "User ID " + id + " not found!");
+            return "redirect:/users";
+        }
     }
 }
