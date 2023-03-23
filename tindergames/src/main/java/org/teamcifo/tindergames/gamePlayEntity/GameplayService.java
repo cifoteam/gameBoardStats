@@ -32,6 +32,7 @@ public class GameplayService {
     }
 
     public boolean updateGameplayInDB(Gameplay gameplay) {
+        // TODO: Don't simply replace the gameplay entity. Retrieve the same entity from the DB and update its modified fields instead
         if (gameplayRepository.existsById(gameplay.getGameplayId())) {
             gameplayRepository.save(gameplay);
             return true;

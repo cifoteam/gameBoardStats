@@ -4,12 +4,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.teamcifo.tindergames.userEntity.User;
+import org.teamcifo.tindergames.userEntity.UserService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -17,6 +17,8 @@ import java.util.Optional;
 public class GameplayController {
     @Autowired
     GameplayService gameplayService;
+    @Autowired
+    UserService userService;
 
     // No index page for this controller
 
@@ -31,6 +33,7 @@ public class GameplayController {
     @GetMapping("/createGameplay")
     public String createGameplay(Model containerToView) {
         containerToView.addAttribute("gameplay", new Gameplay());
+        containerToView.addAttribute("availablePlayers", userService.getAllUsers());
         containerToView.addAttribute("operation", "createGameplay");
         return "gameplays/gameplayForm";
     }
@@ -43,13 +46,14 @@ public class GameplayController {
      * @return a redirect to the GET method
      */
     @PostMapping("/createGameplay/{id}")
-    public String createGameplay(@PathVariable("id") String id, Optional<Gameplay> newGameplay, RedirectAttributes redirectAttributes) {
+    public String createGameplay(@PathVariable("id") String id, Optional<Gameplay> newGameplay, @RequestParam("players") List<User> players, RedirectAttributes redirectAttributes) {
         // Check that the ID is not already used inside the DB
         if (gameplayService.getGameplayByID(id) != null) {
             redirectAttributes.addFlashAttribute("responseMessage", "GameplayID " + id + " already used! Try again");
         } else {
             // Check that path variable ID equals the ID of the new gameplay
             if (newGameplay.isPresent() && id.equals(newGameplay.get().getGameplayId())) {
+                // TODO: Update the players!!!
                 gameplayService.addGamePlayToDB(newGameplay.get());
                 redirectAttributes.addFlashAttribute("responseMessage", "Gameplay " + newGameplay.get().getGameplayId() + " saved");
             } else {
