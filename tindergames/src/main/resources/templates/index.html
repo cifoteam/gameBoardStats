@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
@@ -8,5 +8,8 @@
 </head>
 <body>
 <h1>Welcome to TinderGames!</h1>
+<div>
+<p><a th:href="@{/boardgames/index}">Board Games</a></p>
+</div>
 </body>
 </html>

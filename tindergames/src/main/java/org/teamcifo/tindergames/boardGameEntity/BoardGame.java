@@ -1,5 +1,6 @@
 package org.teamcifo.tindergames.boardGameEntity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,15 +11,13 @@ import org.teamcifo.tindergames.utils.Helpers;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="Boardgame")
-@Table(name="BOARDGAMES_TABLE")
+@Entity(name="BoardGame")
+@Table(name="BOARDGAME_TABLE")
 
 public class BoardGame {
-
     @Id
     @GenericGenerator(name="system-uuid", strategy="uuid")
-
-    @Column(name="GAME_ID")
+    @Column(name="GAME_ID", updatable=false)
     private String gameID;
     @Column(name="GAME_TITLE")
     private String gameTitle;
@@ -47,4 +46,17 @@ public class BoardGame {
         this.minPlayTime = minPlayTime;
         this.maxPlayTime = maxPlayTime;
     }
+
+    //TODO: empty constructor for JPA injection
+    /*
+    public User() {
+        // First initialize the user's games collection
+        //this.userGameCollection = new GamesCollection();
+        // Then use the collection ID as the user ID
+        //this.userId = this.userGameCollection.getCollectionId();
+        //this.gameplays = new ArrayList<>();
+        // TODO: Create GamesCollection and GamePlay Entities and tables to re-enable these attributes
+        this.userId = Helpers.generateUUID();
+    }
+     */
 }
