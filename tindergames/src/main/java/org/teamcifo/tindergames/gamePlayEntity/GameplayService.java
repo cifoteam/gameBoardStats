@@ -2,8 +2,10 @@ package org.teamcifo.tindergames.gamePlayEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.teamcifo.tindergames.userEntity.User;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class GameplayService {
@@ -11,12 +13,22 @@ public class GameplayService {
     GameplayRepository gameplayRepository;
 
     // CRUD operations
-    public boolean addGamePlayToDB(Gameplay gameplay) {
+    private boolean addGamePlayToDB(Gameplay gameplay) {
         // If the GamePlay ID already exists, don't do anything
         if (gameplayRepository.existsById(gameplay.getGameplayId())) {
             return false;
         }
         gameplayRepository.save(gameplay);
+        return true;
+    }
+
+    public boolean addGamePlayToDB(Gameplay gameplay, Set<User> players) {
+        // If the GamePlay ID already exists, don't do anything
+        if (gameplayRepository.existsById(gameplay.getGameplayId())) {
+            return false;
+        }
+        gameplay.setPlayers(players);
+        addGamePlayToDB(gameplay);
         return true;
     }
 

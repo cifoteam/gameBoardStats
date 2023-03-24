@@ -9,8 +9,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.teamcifo.tindergames.userEntity.User;
 import org.teamcifo.tindergames.userEntity.UserService;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/gameplays")
@@ -33,6 +33,7 @@ public class GameplayController {
     @GetMapping("/createGameplay")
     public String createGameplay(Model containerToView) {
         containerToView.addAttribute("gameplay", new Gameplay());
+        // TODO: Add available games to select from!
         containerToView.addAttribute("availablePlayers", userService.getAllUsers());
         containerToView.addAttribute("operation", "createGameplay");
         return "gameplays/gameplayForm";
@@ -46,15 +47,15 @@ public class GameplayController {
      * @return a redirect to the GET method
      */
     @PostMapping("/createGameplay/{id}")
-    public String createGameplay(@PathVariable("id") String id, Optional<Gameplay> newGameplay, @RequestParam("players") List<User> players, RedirectAttributes redirectAttributes) {
+    public String createGameplay(@PathVariable("id") String id, Optional<Gameplay> newGameplay, @RequestParam("players") Set<User> players, RedirectAttributes redirectAttributes) {
         // Check that the ID is not already used inside the DB
         if (gameplayService.getGameplayByID(id) != null) {
             redirectAttributes.addFlashAttribute("responseMessage", "GameplayID " + id + " already used! Try again");
         } else {
             // Check that path variable ID equals the ID of the new gameplay
             if (newGameplay.isPresent() && id.equals(newGameplay.get().getGameplayId())) {
-                // TODO: Update the players!!!
-                gameplayService.addGamePlayToDB(newGameplay.get());
+                // Add the gameplay along with the players to the DB
+                gameplayService.addGamePlayToDB(newGameplay.get(), players);
                 redirectAttributes.addFlashAttribute("responseMessage", "Gameplay " + newGameplay.get().getGameplayId() + " saved");
             } else {
                 redirectAttributes.addFlashAttribute("responseMessage", "Received object doesn't contain a gameplay or something wrong with the provided IDs!");
@@ -79,7 +80,7 @@ public class GameplayController {
         } else {
             containerToView.addAttribute("responseMessage", "Gameplay ID " + id + " not found!");
         }
-        return "gameplay/gameplayDetails";
+        return "gameplays/gameplayDetails";
     }
 
     // - Update an existing gameplay by ID
@@ -98,7 +99,7 @@ public class GameplayController {
         if (gameplayFromDB != null) {
             // Store the gameplay object and go to the update form
             containerToView.addAttribute("gameplay", gameplayFromDB);
-            containerToView.addAttribute("operation", "updateUser");
+            containerToView.addAttribute("operation", "updateGameplay");
             return "gameplays/gameplayForm";
         } else {
             // Redirect the user to the previous page

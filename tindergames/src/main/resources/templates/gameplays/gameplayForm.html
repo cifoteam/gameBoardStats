@@ -15,7 +15,7 @@
     </header>
     <!-- Print the response message -->
     <p th:if="${responseMessage != null}" th:text="${responseMessage}" />
-    <!-- Show a User form -->
+    <!-- Show a Gameplay form -->
     <div class="w3-container">
         <form th:action="@{/gameplays/{operation}/{id}(operation=${operation}, id=${gameplay.gameplayId})}" th:object="${gameplay}" method="post">
             <!-- User fields -->
@@ -29,23 +29,41 @@
                 <input th:field="*{boardGame}" type="text" name="boardGame" class="w3-input" id="boardGame" required />
             </p>
             -->
-            <p>
-                <label for="time">Time played</label>
-                <input th:field="*{time}" type="text" name="time" class="w3-input" id="time" required />
-            </p>
-            <p>
+            <p th:if="${operation == 'createGameplay'}">
                 <label>Players:</label>
                 <br>
                 <th:block th:each="player : ${availablePlayers}">
-                    <!-- Checked items to borrow will be stored in the 'pl' -->
-                    <input type="checkbox" name="players" th:value="${player.userId}" th:text="|${player.username}|" />
+                    <!-- Checked items to borrow will be stored in the 'players' -->
+                    <input type="checkbox" name="players" th:value="${player.userId}" th:text="${player.username}" />
                     <br>
                 </th:block>
             </p>
-            <p>
-                <label for="winner">Winner</label>
-                <input th:field="*{winner}" type="text" name="winner" class="w3-input" id="winner" />
+
+            <p th:if="${operation == 'updateGameplay'}">
+                <!-- Remember to resend the list of players on update!! -->
+                <input type="hidden" th:field="*{players}" th:value="*{players}" />
+                <p th:if="${gameplay.players} != null">
+                    <label>Players:</label>
+                    <ol>
+                        <li th:each="player: *{players}" th:text="${player.username}"/>
+                    </ol>
+                </p>
             </p>
+
+            <!-- Update form fields only! -->
+            <p th:if="${operation == 'updateGameplay'}">
+                <label for="time">Time played</label>
+                <input th:field="*{time}" type="text" name="time" class="w3-input" id="time" required />
+            </p>
+
+            <p th:if="${operation == 'updateGameplay'}">
+                <label for="winner">Winner</label>
+                <select name="winner" class="form-control" id="winner">
+                    <option selected value th:value="${gameplay.winner}" />
+                    <option th:each="player : ${gameplay.players}" th:value="${player.userId}" th:text="${player.username}" />
+                </select>
+            </p>
+
             <!-- Form buttons -->
             <p>
                 <input type="submit" value="Submit gameplay" />

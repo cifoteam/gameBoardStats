@@ -10,5 +10,4 @@ public class TindergamesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TindergamesApplication.class, args);
 	}
-
 }
