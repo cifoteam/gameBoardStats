@@ -20,7 +20,18 @@ public class GameplayController {
     @Autowired
     UserService userService;
 
-    // No index page for this controller
+    // Index page
+    /**
+     * Gameplay controller main page
+     * @param containerToView contains relevant data to correctly render Thymeleaf view
+     * @return the main page HTML file
+     */
+    @RequestMapping({"/", ""})
+    public String index(Model containerToView) {
+        // Retrieve all available users
+        containerToView.addAttribute("gameplaysFromController", gameplayService.getAllGameplays());
+        return "gameplays/index";
+    }
 
     // CRUD operations
     // - Create a new gameplay:
@@ -139,17 +150,16 @@ public class GameplayController {
      * Gameplay's deletion method based on its ID. If the ID exists, the gameplay is removed from the DB
      * @param id is the ID of the gameplay to delete
      * @param redirectAttributes
-     * @param request
      * @return
      */
     @GetMapping("/deleteGameplay/{id}")
-    public String deleteGameplay(@PathVariable("id") String id, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    public String deleteGameplay(@PathVariable("id") String id, RedirectAttributes redirectAttributes) {
         if (gameplayService.deleteGameplayByIDFromDB(id)) {
             redirectAttributes.addFlashAttribute("responseMessage", "Gameplay with ID " + id + " deleted");
         } else {
             redirectAttributes.addFlashAttribute("responseMessage", "Gameplay with ID " + id + " couldn't be deleted!");
         }
         // Return to the previous page
-        return "redirect:/" + request.getHeader("Referer");
+        return "redirect:/gameplays";
     }
 }

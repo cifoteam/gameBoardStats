@@ -17,6 +17,7 @@
 <div>
     <!-- Create a button to go to the User Form creation -->
     <p><a th:href="@{/users/createUser}" class="w3-button w3-green">Add a new user</a></p>
+    <p><a th:href="@{/}" class="w3-button w3-red">Return to main menu</a></p>
 </div>
 <!-- Create a User filter field -->
 <input type="text" id="usernameInput" onkeyup="filterRows(this.id, 'usersTable', 0)" placeholder="Search for username...">
