@@ -16,7 +16,7 @@
             <th>Min playtime</th>
             <th>Max playtime</th>
         </tr>
-    <tr th:each="boardgame: ${boardgames}">
+    <tr th:each="boardgame: ${boardGamesFromController}">
             <td th:text="${boardgame.gameID}"></td>
             <td th:text="${boardgame.gameTitle}"></td>
             <td th:text="${boardgame.minPlayers}"></td>
@@ -26,6 +26,6 @@
         </tr>
     </table>
     <br>
-    <p><a th:href="@{boardgames/createnewgame.html}">Create new Board Game</a></p>
+    <p><a th:href="@{/boardgames/creategame}">Create new Board Game</a></p>
 </body>
 </html>
