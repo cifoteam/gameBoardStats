@@ -5,7 +5,7 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.teamcifo.tindergames.domain.User;
+import org.teamcifo.tindergames.userEntity.User;
 import org.teamcifo.tindergames.logic.UserManager;
 
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public class UserManagerTest {
         String fakeId = faker.number().digits(10);
         user.setUserId(fakeId);
         user.setUsername(faker.funnyName().name());
-        user.setName(faker.name().firstName());
+        user.setFirstName(faker.name().firstName());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
         user.setPassword(faker.internet().password());
@@ -47,7 +47,7 @@ public class UserManagerTest {
         String fakeId = faker.number().digits(10);
         user.setUserId(fakeId);
         user.setUsername(faker.funnyName().name());
-        user.setName(faker.name().firstName());
+        user.setFirstName(faker.name().firstName());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
         String fakePassword = faker.internet().password();
@@ -78,7 +78,7 @@ public class UserManagerTest {
         for (int i = 0; i < 10; i++) {
             User user = new User();
             user.setUserId(faker.number().digits(10));
-            user.setName(faker.name().firstName());
+            user.setFirstName(faker.name().firstName());
             user.setUsername(faker.funnyName().name());
             user.setLastName(faker.name().lastName());
             user.setEmail(faker.internet().emailAddress());
@@ -106,7 +106,7 @@ public class UserManagerTest {
     void testAddUser() {
         User user = new User();
         user.setUserId(faker.number().digits(10));
-        user.setName(faker.name().firstName());
+        user.setFirstName(faker.name().firstName());
         user.setUsername(faker.funnyName().name());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
@@ -130,7 +130,7 @@ public class UserManagerTest {
     void testGetUser() {
         User user = new User();
         user.setUserId(faker.number().digits(10));
-        user.setName(faker.name().firstName());
+        user.setFirstName(faker.name().firstName());
         user.setUsername(faker.funnyName().name());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
@@ -148,7 +148,7 @@ public class UserManagerTest {
     void testUpdateUser() {
         User user = new User();
         user.setUserId(faker.number().digits(10));
-        user.setName(faker.name().firstName());
+        user.setFirstName(faker.name().firstName());
         user.setUsername(faker.funnyName().name());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());
@@ -159,7 +159,7 @@ public class UserManagerTest {
 
         User updatedUser = new User();
         updatedUser.setUserId(user.getUserId());
-        updatedUser.setName(faker.name().firstName());
+        updatedUser.setFirstName(faker.name().firstName());
         updatedUser.setUsername(faker.funnyName().name());
         updatedUser.setLastName(faker.name().lastName());
         updatedUser.setEmail(faker.internet().emailAddress());
@@ -176,7 +176,7 @@ public class UserManagerTest {
     void testDeleteUser() {
         User user = new User();
         user.setUserId(faker.number().digits(10));
-        user.setName(faker.name().firstName());
+        user.setFirstName(faker.name().firstName());
         user.setUsername(faker.funnyName().name());
         user.setLastName(faker.name().lastName());
         user.setEmail(faker.internet().emailAddress());

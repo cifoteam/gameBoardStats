@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styles.css" type="text/css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script type="text/javascript" src="/scripts/filterTables.js"></script>
+  <title>Gameplays main page</title>
+</head>
+<body>
+
+
+<!-- Available users -->
+<h2>Available gameplays</h2>
+<!-- Response message for any of the user operations -->
+<p th:if="${responseMessage != null}" th:text="${responseMessage}" />
+<div>
+  <!-- Create a button to go to the User Form creation -->
+  <p><a th:href="@{/gameplays/createGameplay}" class="w3-button w3-green">Add a new gameplay</a></p>
+  <p><a th:href="@{/}" class="w3-button w3-red">Return to main menu</a></p>
+</div>
+<!-- Create a Gameplay filter field -->
+<!--
+<input type="text" id="usernameInput" onkeyup="filterRows(this.id, 'usersTable', 0)" placeholder="Search for username...">
+<input type="text" id="userFirstNameInput" onkeyup="filterRows(this.id, 'usersTable', 1)" placeholder="Search for first name...">
+<input type="text" id="userLastNameInput" onkeyup="filterRows(this.id, 'usersTable', 2)" placeholder="Search for last name...">
+<input type="text" id="userMailInput" onkeyup="filterRows(this.id, 'usersTable', 3)" placeholder="Search for mail...">
+-->
+<!-- Show all Users -->
+<table id="gameplaysTable" class="w3-table-all w3-hoverable">
+  <!-- The first row is the table header-->
+  <tr class="header">
+    <td>Gameplay ID</td>
+    <td>Players</td>
+    <td>Time</td>
+    <td>Winner</td>
+  </tr>
+  <!-- Now we loop over all the available users -->
+  <tr th:each="gameplay:${gameplaysFromController}">
+    <td th:text="${gameplay.gameplayId}" />
+    <td>
+      <ul th:each="player:${gameplay.players}">
+        <li th:text="${player.username}" />
+      </ul>
+    </td>
+    <td th:text="${gameplay.time}"/>
+    <td th:text="${gameplay.winner != null ? gameplay.winner.username : 'None'}"/>
+    <!-- Create buttons to check, update or delete a User -->
+    <td> <a th:href="@{/gameplays/id/{id}(id = ${gameplay.gameplayId})}" class="w3-button w3-green">Details</a> </td>
+    <td> <a th:href="@{/gameplays/updateGameplay/{id}(id = ${gameplay.gameplayId})}" class="w3-button w3-green">Update</a> </td>
+    <td> <a th:href="@{/gameplays/deleteGameplay/{id}(id = ${gameplay.gameplayId})}" class="w3-button w3-red">Delete</a> </td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

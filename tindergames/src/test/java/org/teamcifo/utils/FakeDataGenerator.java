@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import org.teamcifo.tindergames.boardGameEntity.BoardGame;
 import org.teamcifo.tindergames.domain.GameStats;
 import org.teamcifo.tindergames.domain.GamesCollection;
-import org.teamcifo.tindergames.domain.User;
+import org.teamcifo.tindergames.userEntity.User;
 
 import java.util.ArrayList;
 import java.util.List;

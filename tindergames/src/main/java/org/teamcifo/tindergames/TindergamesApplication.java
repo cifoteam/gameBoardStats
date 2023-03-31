@@ -8,8 +8,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class TindergamesApplication {
 
 	public static void main(String[] args) {
+<<<<<<< HEAD
 
 		SpringApplication.run(TindergamesApplication.class, args);
 
+=======
+		SpringApplication.run(TindergamesApplication.class, args);
+>>>>>>> 1880c15127012c368922ffb1f835cce0c23dbcdd
 	}
 }
