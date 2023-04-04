@@ -44,11 +44,43 @@ public class BoardGameController {
         return "redirect:/boardgames/creategame";
     }
 
-    /*
-    @GetMapping(value ="boardgame/{boardgame}")
-    public String getBoardGameByTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView){
-    //TODO: will return the game searched my game tittle
-        return "boardgames/game";
+    @GetMapping(value = "/id/{id}")
+    public String getGameByID(@PathVariable("id") String id, Model containerToView) {
+        BoardGame gameFromDB = boardGameService.getGameByID(id);
+        containerToView.addAttribute("user", gameFromDB);
+        if (gameFromDB != null) {
+            containerToView.addAttribute("responseMessage", "User ID " + id + " found");
+        } else {
+            containerToView.addAttribute("responseMessage", "User ID " + id + " not found!");
+        }
+        return "boardgames/gameSheet";
     }
-    */
+    @GetMapping(value = "/boardgames/{game}")
+    public String getUserByUsername(@PathVariable("game") String gameTitle, Model containerToView) {
+        BoardGame game = boardGameService.getGameByTitle(gameTitle);
+        containerToView.addAttribute("user", game);
+        if (game != null) {
+            containerToView.addAttribute("responseMessage", "Username " + gameTitle + " found");
+        } else {
+            containerToView.addAttribute("responseMessage", "Username " + game + " not found!");
+        }
+        return "boardgames/gameSheet";
+    }
+
+    /*
+    @GetMapping(value= "/boardgames/{gametitle}")
+    public String getBoardGameByTitle(@PathVariable("gametitle") String gameTitle, Model containerToView){
+        BoardGame game = boardGameService.getGameByTitle(gameTitle);
+        containerToView.addAttribute("game", game);
+
+        return "boardgames/gameSheet";
+    }
+
+     */
+
+    //TODO: @GetMapping
+    //TODO: public String updateBoardGame();
+
+    //TODO: @PostMapping
+    //TODO: public String updateBoardGame();
 }
