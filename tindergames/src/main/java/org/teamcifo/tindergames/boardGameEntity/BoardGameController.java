@@ -34,7 +34,7 @@ public class BoardGameController {
 
     @PostMapping(value = "/creategame/{id}")
     public String createBoardGame(@PathVariable("id") String gameTitle, Optional<BoardGame> game, RedirectAttributes redirectAttributes){
-        if(boardGameService.getGameByTitle(gameTitle) != null){
+        if(boardGameService.getGameByGameTitle(gameTitle) != null){
             return "Already on DB";
         }
         if(game.isPresent()) {
@@ -46,7 +46,7 @@ public class BoardGameController {
 
     @GetMapping(value = "/id/{id}")
     public String getGameByID(@PathVariable("id") String id, Model containerToView) {
-        BoardGame gameFromDB = boardGameService.getGameByID(id);
+        BoardGame gameFromDB = boardGameService.getGameByGameID(id);
         containerToView.addAttribute("user", gameFromDB);
         if (gameFromDB != null) {
             containerToView.addAttribute("responseMessage", "User ID " + id + " found");
@@ -57,7 +57,7 @@ public class BoardGameController {
     }
     @GetMapping(value = "/boardgames/{game}")
     public String getUserByUsername(@PathVariable("game") String gameTitle, Model containerToView) {
-        BoardGame game = boardGameService.getGameByTitle(gameTitle);
+        BoardGame game = boardGameService.getGameByGameTitle(gameTitle);
         containerToView.addAttribute("user", game);
         if (game != null) {
             containerToView.addAttribute("responseMessage", "Username " + gameTitle + " found");
