@@ -44,54 +44,43 @@ public class BoardGameController {
         return "redirect:/boardgames/creategame";
     }
 
+    @GetMapping(value = "/id/{id}")
+    public String getGameByID(@PathVariable("id") String id, Model containerToView) {
+        BoardGame gameFromDB = boardGameService.getGameByID(id);
+        containerToView.addAttribute("user", gameFromDB);
+        if (gameFromDB != null) {
+            containerToView.addAttribute("responseMessage", "User ID " + id + " found");
+        } else {
+            containerToView.addAttribute("responseMessage", "User ID " + id + " not found!");
+        }
+        return "boardgames/gameSheet";
+    }
+    @GetMapping(value = "/boardgames/{game}")
+    public String getUserByUsername(@PathVariable("game") String gameTitle, Model containerToView) {
+        BoardGame game = boardGameService.getGameByTitle(gameTitle);
+        containerToView.addAttribute("user", game);
+        if (game != null) {
+            containerToView.addAttribute("responseMessage", "Username " + gameTitle + " found");
+        } else {
+            containerToView.addAttribute("responseMessage", "Username " + game + " not found!");
+        }
+        return "boardgames/gameSheet";
+    }
+
     /*
-    @GetMapping("/index")
-    public String boardGameIndex(Model model){
+    @GetMapping(value= "/boardgames/{gametitle}")
+    public String getBoardGameByTitle(@PathVariable("gametitle") String gameTitle, Model containerToView){
+        BoardGame game = boardGameService.getGameByTitle(gameTitle);
+        containerToView.addAttribute("game", game);
 
-        BoardGame catan = new BoardGame("Catan", 3, 4, 60, 120);
-        BoardGame sagrada = new BoardGame("Roll Player", 1, 4, 60, 90);
-        BoardGame arkham = new BoardGame("Arkham Horror", 1, 6, 120, 180);
-        BoardGame takenoko = new BoardGame("Takenoko", 2, 4, 45, 90);
-        BoardGame carcassone = new BoardGame("Carcassone",2, 4, 30, 90);
-        ArrayList<BoardGame> boardgames = new ArrayList<>();
-        boardgames.add(catan);
-        boardgames.add(sagrada);
-        boardgames.add(arkham);
-        boardgames.add(takenoko);
-        boardgames.add(carcassone);
-        boardGameService.addBoardGameToDB(catan);
-        boardGameService.addBoardGameToDB(sagrada);
-        boardGameService.addBoardGameToDB(arkham);
-        boardGameService.addBoardGameToDB(takenoko);
-        boardGameService.addBoardGameToDB(carcassone);
-        model.addAttribute("boardgames", boardgames);
-        return "boardgames/index.html";
-    }
-
-
-
-    @GetMapping(value = {"/createBoardGame", "/createBoardGame/"})
-    public String createBoardGame(Model containerToView) {
-        containerToView.addAttribute("boardGame", new BoardGame());
-        containerToView.addAttribute("operation", "createBoardGame");
-        return "boardgames/createboardgame.html";
-    }
-
-
-    @GetMapping(value ="boardgame/{boardgame}")
-    public String getBoardGameByTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView){
-    //TODO: will return the game searched my game tittle
-        return "boardgames/game";
-    }
-
-
-
-
-    @GetMapping("/createnewgame")
-        public String createGame(){
-
-        return "boardgames/createnewgame";
+        return "boardgames/gameSheet";
     }
 
      */
+
+    //TODO: @GetMapping
+    //TODO: public String updateBoardGame();
+
+    //TODO: @PostMapping
+    //TODO: public String updateBoardGame();
 }
