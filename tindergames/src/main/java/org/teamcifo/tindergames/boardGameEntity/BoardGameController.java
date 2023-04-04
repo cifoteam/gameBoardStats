@@ -45,53 +45,10 @@ public class BoardGameController {
     }
 
     /*
-    @GetMapping("/index")
-    public String boardGameIndex(Model model){
-
-        BoardGame catan = new BoardGame("Catan", 3, 4, 60, 120);
-        BoardGame sagrada = new BoardGame("Roll Player", 1, 4, 60, 90);
-        BoardGame arkham = new BoardGame("Arkham Horror", 1, 6, 120, 180);
-        BoardGame takenoko = new BoardGame("Takenoko", 2, 4, 45, 90);
-        BoardGame carcassone = new BoardGame("Carcassone",2, 4, 30, 90);
-        ArrayList<BoardGame> boardgames = new ArrayList<>();
-        boardgames.add(catan);
-        boardgames.add(sagrada);
-        boardgames.add(arkham);
-        boardgames.add(takenoko);
-        boardgames.add(carcassone);
-        boardGameService.addBoardGameToDB(catan);
-        boardGameService.addBoardGameToDB(sagrada);
-        boardGameService.addBoardGameToDB(arkham);
-        boardGameService.addBoardGameToDB(takenoko);
-        boardGameService.addBoardGameToDB(carcassone);
-        model.addAttribute("boardgames", boardgames);
-        return "boardgames/index.html";
-    }
-
-
-
-    @GetMapping(value = {"/createBoardGame", "/createBoardGame/"})
-    public String createBoardGame(Model containerToView) {
-        containerToView.addAttribute("boardGame", new BoardGame());
-        containerToView.addAttribute("operation", "createBoardGame");
-        return "boardgames/createboardgame.html";
-    }
-
-
     @GetMapping(value ="boardgame/{boardgame}")
     public String getBoardGameByTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView){
     //TODO: will return the game searched my game tittle
         return "boardgames/game";
     }
-
-
-
-
-    @GetMapping("/createnewgame")
-        public String createGame(){
-
-        return "boardgames/createnewgame";
-    }
-
-     */
+    */
 }
