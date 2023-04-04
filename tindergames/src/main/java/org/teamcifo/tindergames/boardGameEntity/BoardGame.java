@@ -1,20 +1,32 @@
-package org.teamcifo.tindergames.domain;
+package org.teamcifo.tindergames.boardGameEntity;
 
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.teamcifo.tindergames.utils.Helpers;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@Entity(name="BoardGame")
+@Table(name="BOARDGAME_TABLE")
 
 public class BoardGame {
+
+    @Id
+    @GenericGenerator(name="system-uuid", strategy="uuid")
+    @Column(name="gameID", updatable=false)
     private String gameID;
+    @Column(name="gameTitle")
     private String gameTitle;
+    @Column(name="minPlayers")
     private int minPlayers;
+    @Column(name="maxPlayers")
     private int maxPlayers;
+    @Column(name="minPlayTime")
     private int minPlayTime;
+    @Column(name="maxPlayTime")
     private int maxPlayTime;
 
     public BoardGame(String gameTitle){
@@ -32,5 +44,9 @@ public class BoardGame {
         this.maxPlayers = maxPlayers;
         this.minPlayTime = minPlayTime;
         this.maxPlayTime = maxPlayTime;
+    }
+
+    public BoardGame(){
+        this.gameID = Helpers.generateUUID();
     }
 }

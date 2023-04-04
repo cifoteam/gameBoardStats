@@ -2,7 +2,7 @@ package org.teamcifo.logic;
 
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
-import org.teamcifo.tindergames.domain.BoardGame;
+import org.teamcifo.tindergames.boardGameEntity.BoardGame;
 import org.teamcifo.tindergames.logic.BoardGameManager;
 import org.teamcifo.tindergames.storage.BoardGameDataBase;
 import org.teamcifo.utils.FakeDataGenerator;
