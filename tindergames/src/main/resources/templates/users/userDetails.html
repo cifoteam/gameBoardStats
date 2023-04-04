@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>User details</title>
+</head>
+<body>
+<h1>User details</h1>
+<div class="w3-card-40" style="width:50%">
+    <header class="w3-container w3-light-grey">
+        <p>User details</p>
+    </header>
+    <!-- Show a User form -->
+    <div class="w3-container" th:object="${user}">
+        <p>
+            <label th:text="'ID: ' + *{userId}"/>
+        </p>
+        <p>
+            <label th:text="'First name: ' + *{firstName}"/>
+        </p>
+        <p>
+            <label th:text="'Last name: ' + *{lastName}"/>
+        </p>
+        <p>
+            <label th:text="'Username: ' + *{username}"/>
+        </p>
+        <p>
+            <label th:text="'Email: ' + *{email}"/>
+        </p>
+        <a th:href="@{/users/updateUser/{id}(id = *{userId})}" class="w3-button w3-green">Update</a>
+        <a th:href="@{/users/deleteUser/{id}(id = *{userId})}" class="w3-button w3-red">Delete</a>
+    </div>
+    <!-- Create a button to go to the User management page -->
+    <p>
+        <a th:href="@{/users}" class="w3-button w3-red">Return to users management</a>
+    </p>
+    <br>
+</div>
+</body>
+</html>

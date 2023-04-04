@@ -1,6 +1,6 @@
 package org.teamcifo.tindergames.logic;
 
-import org.teamcifo.tindergames.domain.User;
+import org.teamcifo.tindergames.userEntity.User;
 import java.util.Scanner;
 
 public class LogIn {
@@ -55,7 +55,7 @@ public class LogIn {
             user.setUsername(username);
 
             System.out.print("Enter your first name: ");
-            user.setName(scanner.nextLine());
+            user.setFirstName(scanner.nextLine());
 
             System.out.print("Enter your last name: ");
             user.setLastName(scanner.nextLine());
@@ -97,7 +97,7 @@ public class LogIn {
 
     private static void viewGames(String username) {
         // Display the user's game collection
-        UserManager.getGamesCollectionByUsername(username);
+        //UserManager.getGamesCollectionByUsername(username);
 
     }
 

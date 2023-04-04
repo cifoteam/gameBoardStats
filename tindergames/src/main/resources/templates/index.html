@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
@@ -8,5 +8,10 @@
 </head>
 <body>
 <h1>Welcome to TinderGames!</h1>
+<div>
+    <!-- Create a button to go to the available main pages -->
+    <p><a th:href="@{/users/}" class="w3-button w3-green">Users Management</a></p>
+    <p><a th:href="@{/gameplays/}" class="w3-button w3-green">Gameplay Management</a></p>
+</div>
 </body>
 </html>
