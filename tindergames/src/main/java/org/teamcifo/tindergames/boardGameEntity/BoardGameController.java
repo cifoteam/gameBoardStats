@@ -35,7 +35,7 @@ public class BoardGameController {
 
     @PostMapping(value = "/creategame/{id}")
     public String createBoardGame(@PathVariable("id") String gameTitle, Optional<BoardGame> game, RedirectAttributes redirectAttributes){
-        if(boardGameService.getGameByTitle(gameTitle) != null){
+        if(boardGameService.getGameByGameTitle(gameTitle) != null){
             return "Already on DB";
         }
         if(game.isPresent()) {
