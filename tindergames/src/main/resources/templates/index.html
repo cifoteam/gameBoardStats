@@ -6,12 +6,16 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>TinderGames</title>
 </head>
-<body>
-<h1>Welcome to TinderGames!</h1>
-<div>
+<body class="body">
+<div class="logo">
+<h1><p class="title">Meeple Match</p></h1>
+<h2><p class="subtitle">Match & play together</p> </h2>
+</div>
+<div class="index">
     <!-- Create a button to go to the available main pages -->
-    <p><a th:href="@{/users/}" class="w3-button w3-green">Users Management</a></p>
-    <p><a th:href="@{/gameplays/}" class="w3-button w3-green">Gameplay Management</a></p>
+    <p><a th:href="@{/users/}" class="w3-button w3-green">Users Management</a></p> <p><a th:href="@{/gameplays/}" class="w3-button w3-green">Gameplay Management</a></p>
+    <p><a th:href="@{/users/createUser}" class="w3-button w3-green">Sign in</a></p> <p><a th:href="@{/users/id/{userId}}" class="w3-button w3-green">Your profile</a></p>
+    <p><a th:href="@{/users/id/{userId}}" class="w3-button w3-green">About us</a></p>
 </div>
 </body>
 </html>

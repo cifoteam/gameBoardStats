@@ -1,2 +1,44 @@
 /* Add here custom CSS styles
 */
+.index{
+display: inline-block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.title{
+text-align: center;
+color: #778899;
+font-size: 40px;
+font-weight: bold;
+font-style: sans-serif;
+margin-bottom: 0px;
+}
+
+.subtitle{
+text-align: center;
+color: #778899;
+font-size: 35px;
+font-weight: bold;
+font-style: sans-serif;
+margin-top: 0px;
+}
+
+.body{
+background-image: url(../imagenes/todoMuñecos.png);
+padding: 20px;
+}
+
+.bodyCreateUser{
+background-image: url(../imagenes/dosMuñecos.png);
+padding: 20px;
+}
+
+.logo{
+}
+
+.form{
+text align: right;
+margin-right: 20px;
+}
+
