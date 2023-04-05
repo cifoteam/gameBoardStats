@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.teamcifo.tindergames.userEntity.User;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -46,41 +47,49 @@ public class BoardGameController {
 
     @GetMapping(value = "/id/{id}")
     public String getGameByID(@PathVariable("id") String id, Model containerToView) {
-        BoardGame gameFromDB = boardGameService.getGameByGameID(id);
-        containerToView.addAttribute("user", gameFromDB);
+        BoardGame gameFromDB = boardGameService.getGameByID(id);
+        containerToView.addAttribute("boardgame", gameFromDB);
+        return "boardgames/gameDetails";
+    }
+    @GetMapping(value = "/{gameTitle}")
+    public String getByGameTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView) {
+        BoardGame gameFromDB = boardGameService.getGameByTitle(gameTitle);
+        containerToView.addAttribute("boardgame", gameFromDB);
+        return "boardgames/gameDetails";
+    }
+
+    @GetMapping("/deleteGame/{id}")
+    public String deleteGame(@PathVariable("id") String id) {
+        BoardGame toDelete = boardGameService.getGameByID(id);
+        boardGameService.deleteGameFromDB(toDelete);
+        return "redirect:/boardgames/";
+    }
+
+    @GetMapping(value = "/updategame/{id}")
+    public String updateBoardGame(@PathVariable("id") String id, Model containerToView) {
+        // Retrieve the user based on the provided ID
+        BoardGame gameFromDB = boardGameService.getGameByID(id);
         if (gameFromDB != null) {
-            containerToView.addAttribute("responseMessage", "User ID " + id + " found");
-        } else {
-            containerToView.addAttribute("responseMessage", "User ID " + id + " not found!");
+            // Store the user object and go to the update form
+            containerToView.addAttribute("game", gameFromDB);
+            containerToView.addAttribute("operation", "updategame");
+            return "boardgames/updategame";
         }
-        return "boardgames/gameSheet";
+            return "redirect:/boardgames/";
     }
-    @GetMapping(value = "/boardgames/{game}")
-    public String getUserByUsername(@PathVariable("game") String gameTitle, Model containerToView) {
-        BoardGame game = boardGameService.getGameByGameTitle(gameTitle);
-        containerToView.addAttribute("user", game);
-        if (game != null) {
-            containerToView.addAttribute("responseMessage", "Username " + gameTitle + " found");
-        } else {
-            containerToView.addAttribute("responseMessage", "Username " + game + " not found!");
-        }
-        return "boardgames/gameSheet";
-    }
-
-    /*
-    @GetMapping(value= "/boardgames/{gametitle}")
-    public String getBoardGameByTitle(@PathVariable("gametitle") String gameTitle, Model containerToView){
-        BoardGame game = boardGameService.getGameByTitle(gameTitle);
-        containerToView.addAttribute("game", game);
-
-        return "boardgames/gameSheet";
-    }
-
-     */
-
-    //TODO: @GetMapping
-    //TODO: public String updateBoardGame();
 
     //TODO: @PostMapping
     //TODO: public String updateBoardGame();
+    @PostMapping(value = "/updategame/{id}")
+    public String updateBoardGame(@PathVariable("id") String id, Optional<BoardGame> updatedGame) {
+
+        BoardGame gameToUpdate = boardGameService.getGameByID(id);
+        if (updatedGame.isPresent()) {
+            if (gameToUpdate != null && updatedGame.get().getGameID().equals(gameToUpdate.getGameID())) {
+                boardGameService.updateGameFromDB(updatedGame.get());
+            }
+        }
+        // Redirect to the GET method
+        return "redirect:/boardgames/updategame/";
+    }
 }

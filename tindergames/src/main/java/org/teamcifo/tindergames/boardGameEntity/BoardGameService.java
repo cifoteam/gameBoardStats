@@ -24,9 +24,9 @@ public class BoardGameService {
         boardGameRepository.save(game);
         return true;
     }
-
-    public BoardGame getGameByGameID(String gameID) {
-        Optional<BoardGame> gameFromDB = boardGameRepository.findById(gameID);
+    
+    public BoardGame getGameByID(String gameID) {
+        Optional<BoardGame> gameFromDB = boardGameRepository.findByGameID(gameID);
         if (gameFromDB.isPresent()) {
             return gameFromDB.get();
         }
