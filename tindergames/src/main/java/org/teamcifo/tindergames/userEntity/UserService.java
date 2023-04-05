@@ -121,4 +121,15 @@ public class UserService {
         }
         return false;
     }
+
+    public User logIn(String username, String password) {
+        // First retrieve the user by its username
+        Optional<User> loginUser = userRepository.findByUsername(username);
+        // If the user exists, check if the password is correct and return that user
+        if (loginUser.isPresent() && loginUser.get().checkPassword(password)) {
+            return loginUser.get();
+        }
+        // Return null if login fails
+        return null;
+    }
 }
