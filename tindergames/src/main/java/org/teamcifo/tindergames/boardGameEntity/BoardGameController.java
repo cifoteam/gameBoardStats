@@ -53,7 +53,7 @@ public class BoardGameController {
     }
     @GetMapping(value = "/{gameTitle}")
     public String getByGameTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView) {
-        BoardGame gameFromDB = boardGameService.getGameByTitle(gameTitle);
+        BoardGame gameFromDB = boardGameService.getGameByGameTitle(gameTitle);
         containerToView.addAttribute("boardgame", gameFromDB);
         return "boardgames/gameDetails";
     }
