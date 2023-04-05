@@ -26,7 +26,7 @@ public class BoardGameService {
     }
 
     public BoardGame getGameByID(String gameID) {
-        Optional<BoardGame> gameFromDB = boardGameRepository.findById(gameID);
+        Optional<BoardGame> gameFromDB = boardGameRepository.findByGameID(gameID);
         if (gameFromDB.isPresent()) {
             return gameFromDB.get();
         }

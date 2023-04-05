@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.teamcifo.tindergames.userEntity.User;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -47,37 +48,22 @@ public class BoardGameController {
     @GetMapping(value = "/id/{id}")
     public String getGameByID(@PathVariable("id") String id, Model containerToView) {
         BoardGame gameFromDB = boardGameService.getGameByID(id);
-        containerToView.addAttribute("user", gameFromDB);
-        if (gameFromDB != null) {
-            containerToView.addAttribute("responseMessage", "User ID " + id + " found");
-        } else {
-            containerToView.addAttribute("responseMessage", "User ID " + id + " not found!");
-        }
-        return "boardgames/gameSheet";
+        containerToView.addAttribute("boardgame", gameFromDB);
+        return "boardgames/gameDetails";
     }
-    @GetMapping(value = "/boardgames/{game}")
-    public String getUserByUsername(@PathVariable("game") String gameTitle, Model containerToView) {
+    @GetMapping(value = "/boardgames/{gameTitle}")
+    public String getByGameTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView) {
         BoardGame game = boardGameService.getGameByTitle(gameTitle);
-        containerToView.addAttribute("user", game);
-        if (game != null) {
-            containerToView.addAttribute("responseMessage", "Username " + gameTitle + " found");
-        } else {
-            containerToView.addAttribute("responseMessage", "Username " + game + " not found!");
-        }
-        return "boardgames/gameSheet";
+        containerToView.addAttribute("boardgame", game);
+        return "boardgames/gameDetails";
     }
 
-    /*
-    @GetMapping(value= "/boardgames/{gametitle}")
-    public String getBoardGameByTitle(@PathVariable("gametitle") String gameTitle, Model containerToView){
-        BoardGame game = boardGameService.getGameByTitle(gameTitle);
-        containerToView.addAttribute("game", game);
-
-        return "boardgames/gameSheet";
+    @GetMapping("/deleteGame/{id}")
+    public String deleteGame(@PathVariable("id") String id) {
+        BoardGame toDelete = boardGameService.getGameByID(id);
+        boardGameService.deleteGameFromDB(toDelete);
+        return "redirect:/boardgames/";
     }
-
-     */
-
     //TODO: @GetMapping
     //TODO: public String updateBoardGame();
 

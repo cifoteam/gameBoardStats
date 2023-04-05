@@ -23,10 +23,10 @@
             <td th:text="${boardgame.maxPlayers}"></td>
             <td th:text="${boardgame.minPlayTime}"></td>
             <td th:text="${boardgame.maxPlayTime}"></td>
-            <td> <a th:href="@{/boardgames/id/{id}(id = ${boardgame.gameID})}">Details</a> </td>
-            <td> <a th:href="@{/boardgames/{id}(id = ${boardgame.gameTitle})}">Details</a> </td>
+            <td> <a th:href="@{/boardgames/id/{id}(id = ${boardgame.gameID})}">Details by id reference</a> </td>
+            <td> <a th:href="@{/boardgames/{id}(id = ${boardgame.gameTitle})}">Details by title reference</a> </td>
             <td> <a th:href="@{/boardgames/{id}(id = ${boardgame.gameTitle})}">Update</a> </td>
-            <td> <a th:href="@{/boardgames/{id}(id = ${boardgame.gameTitle})}">Delete</a> </td>
+            <td> <a th:href="@{/boardgames/deleteGame/{id}(id = ${boardgame.gameID})}">Delete</a> </td>
         </tr>
     </table>
     <br>
