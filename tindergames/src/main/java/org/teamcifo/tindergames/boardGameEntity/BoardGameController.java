@@ -51,10 +51,10 @@ public class BoardGameController {
         containerToView.addAttribute("boardgame", gameFromDB);
         return "boardgames/gameDetails";
     }
-    @GetMapping(value = "/boardgames/{gameTitle}")
+    @GetMapping(value = "/{gameTitle}")
     public String getByGameTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView) {
-        BoardGame game = boardGameService.getGameByTitle(gameTitle);
-        containerToView.addAttribute("boardgame", game);
+        BoardGame gameFromDB = boardGameService.getGameByTitle(gameTitle);
+        containerToView.addAttribute("boardgame", gameFromDB);
         return "boardgames/gameDetails";
     }
 
@@ -64,9 +64,32 @@ public class BoardGameController {
         boardGameService.deleteGameFromDB(toDelete);
         return "redirect:/boardgames/";
     }
-    //TODO: @GetMapping
-    //TODO: public String updateBoardGame();
+
+    @GetMapping(value = "/updategame/{id}")
+    public String updateBoardGame(@PathVariable("id") String id, Model containerToView) {
+        // Retrieve the user based on the provided ID
+        BoardGame gameFromDB = boardGameService.getGameByID(id);
+        if (gameFromDB != null) {
+            // Store the user object and go to the update form
+            containerToView.addAttribute("game", gameFromDB);
+            containerToView.addAttribute("operation", "updategame");
+            return "boardgames/updategame";
+        }
+            return "redirect:/boardgames/";
+    }
 
     //TODO: @PostMapping
     //TODO: public String updateBoardGame();
+    @PostMapping(value = "/updategame/{id}")
+    public String updateBoardGame(@PathVariable("id") String id, Optional<BoardGame> updatedGame) {
+
+        BoardGame gameToUpdate = boardGameService.getGameByID(id);
+        if (updatedGame.isPresent()) {
+            if (gameToUpdate != null && updatedGame.get().getGameID().equals(gameToUpdate.getGameID())) {
+                boardGameService.updateGameFromDB(updatedGame.get());
+            }
+        }
+        // Redirect to the GET method
+        return "redirect:/boardgames/updategame/";
+    }
 }
