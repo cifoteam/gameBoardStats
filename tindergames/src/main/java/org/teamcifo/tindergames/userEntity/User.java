@@ -52,4 +52,8 @@ public class User {
         this.email = email;
         this.username = username;
     }
+
+    public boolean checkPassword(String password) {
+        return this.getPassword().equals(password);
+    }
 }
