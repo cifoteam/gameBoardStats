@@ -1,18 +1,26 @@
 package org.teamcifo.tindergames.userEntity;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
+    private String IS_LOGGED_IN = "isLoggedIn";
+    private static final String RESPONSE_MESSAGE = "responseMessage";
     @Autowired
     UserService userService;
+
+    private final Set<String> sessionIds = Collections.synchronizedSet(new HashSet<>());
 
     // Index page
     /**
@@ -178,6 +186,47 @@ public class UserController {
         }
         // Return to the users main page
         return "redirect:/users/";
+    }
+
+    // Log In endpoint
+    @GetMapping("login")
+    public String logIn(HttpSession session, Model containerToView) {
+        session.setAttribute(IS_LOGGED_IN, false);
+        return "users/userLogin";
+    }
+
+    @PostMapping("login")
+    public String logIn(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session, RedirectAttributes redirectAttributes) {
+        // Check if the username and passwords are correct
+        User loggedUser = userService.logIn(username, password);
+        if (loggedUser != null && !this.sessionIds.contains(session.getId())) {
+            // Add the HTTP session id to the sessions set
+            this.sessionIds.add(session.getId());
+            // Set the login value to true
+            session.setAttribute(IS_LOGGED_IN, true);
+            // Save useful user attributes in the HTTP session
+            session.setAttribute("userId", loggedUser.getUserId());
+            session.setAttribute("username", loggedUser.getUsername());
+            // Return to the index page
+            return "index";
+        } else {
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "Username or password incorrect");
+            // Redirect to the login page
+            return "redirect:/login";
+        }
+
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        // Restart the session attributes
+        session.removeAttribute(IS_LOGGED_IN);
+        session.removeAttribute("userId");
+        session.removeAttribute("username");
+        // Remove the current session from the sessions set
+        this.sessionIds.remove(session.getId());
+        // Return to the main page and force the login again
+        return "redirect:/";
     }
 
     // Other user operations
