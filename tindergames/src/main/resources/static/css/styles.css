@@ -30,6 +30,11 @@ padding: 20px;
 }
 
 .bodyCreateUser{
+background-image: url(../imagenes/cincoMuñecos.png);
+padding: 20px;
+}
+
+.bodyYourProfile{
 background-image: url(../imagenes/dosMuñecos.png);
 padding: 20px;
 }
@@ -38,7 +43,11 @@ padding: 20px;
 }
 
 .form{
-text align: right;
+align: right;
 margin-right: 20px;
+}
+
+.labelForm{
+opacity:40%;
 }
 
