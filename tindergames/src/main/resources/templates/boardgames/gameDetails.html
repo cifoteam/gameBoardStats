@@ -14,7 +14,7 @@
     <p><b>Min Play Time: </b><td th:text="${boardgame.minPlayTime}"></td></p>
     <p><b>max Play Time: </b><td th:text="${boardgame.maxPlayTime}"></td></p>
   </div>
-  <p><a th:href="@{/boardgames/updateboardgame}">Update Board Game</a></p>
+  <td> <a th:href="@{/boardgames/updategame/{id}(id = ${boardgame.gameID})}">Update</a> </td>
   <p><a th:href="@{/boardgames}" >Go back</a></p>
 
 </body>

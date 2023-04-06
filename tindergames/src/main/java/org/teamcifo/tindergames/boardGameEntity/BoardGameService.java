@@ -54,7 +54,7 @@ public class BoardGameService {
         if(boardGameRepository.existsById(game.getGameID())){
             BoardGame gameFromDB = boardGameRepository.findById(game.getGameID()).get();
 
-            if (!gameFromDB.getGameTitle().equals(game.getGameTitle())){
+            if (gameFromDB.getGameTitle() != game.getGameTitle()){
                 gameFromDB.setGameTitle(game.getGameTitle());
             }
             if (gameFromDB.getMinPlayers()!= game.getMinPlayers()){

@@ -34,7 +34,7 @@ public class BoardGameController {
     }
 
     @PostMapping(value = "/creategame/{id}")
-    public String createBoardGame(@PathVariable("id") String gameTitle, Optional<BoardGame> game, RedirectAttributes redirectAttributes){
+    public String createBoardGame(@PathVariable("id") String gameTitle, Optional<BoardGame> game){
         if(boardGameService.getGameByGameTitle(gameTitle) != null){
             return "Already on DB";
         }
@@ -68,28 +68,21 @@ public class BoardGameController {
     @GetMapping(value = "/updategame/{id}")
     public String updateBoardGame(@PathVariable("id") String id, Model containerToView) {
         // Retrieve the user based on the provided ID
-        BoardGame gameFromDB = boardGameService.getGameByID(id);
-        if (gameFromDB != null) {
-            // Store the user object and go to the update form
-            containerToView.addAttribute("game", gameFromDB);
-            containerToView.addAttribute("operation", "updategame");
+            BoardGame gameFromDB = boardGameService.getGameByID(id);
+            containerToView.addAttribute("boardgame", gameFromDB);
             return "boardgames/updategame";
         }
-            return "redirect:/boardgames/";
-    }
 
-    //TODO: @PostMapping
-    //TODO: public String updateBoardGame();
     @PostMapping(value = "/updategame/{id}")
     public String updateBoardGame(@PathVariable("id") String id, Optional<BoardGame> updatedGame) {
-
         BoardGame gameToUpdate = boardGameService.getGameByID(id);
+
         if (updatedGame.isPresent()) {
-            if (gameToUpdate != null && updatedGame.get().getGameID().equals(gameToUpdate.getGameID())) {
+            if (gameToUpdate != null  && updatedGame.get().getGameID().equals(gameToUpdate.getGameID())) {
                 boardGameService.updateGameFromDB(updatedGame.get());
             }
         }
         // Redirect to the GET method
-        return "redirect:/boardgames/updategame/";
+        return "redirect:/boardgames/updategame/" + id;
     }
 }
