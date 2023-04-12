@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.teamcifo.tindergames.userEntity.User;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -33,8 +34,8 @@ public class BoardGameController {
     }
 
     @PostMapping(value = "/creategame/{id}")
-    public String createBoardGame(@PathVariable("id") String gameTitle, Optional<BoardGame> game, RedirectAttributes redirectAttributes){
-        if(boardGameService.getGameByTitle(gameTitle) != null){
+    public String createBoardGame(@PathVariable("id") String gameTitle, Optional<BoardGame> game){
+        if(boardGameService.getGameByGameTitle(gameTitle) != null){
             return "Already on DB";
         }
         if(game.isPresent()) {
@@ -44,11 +45,44 @@ public class BoardGameController {
         return "redirect:/boardgames/creategame";
     }
 
-    /*
-    @GetMapping(value ="boardgame/{boardgame}")
-    public String getBoardGameByTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView){
-    //TODO: will return the game searched my game tittle
-        return "boardgames/game";
+    @GetMapping(value = "/id/{id}")
+    public String getGameByID(@PathVariable("id") String id, Model containerToView) {
+        BoardGame gameFromDB = boardGameService.getGameByID(id);
+        containerToView.addAttribute("boardgame", gameFromDB);
+        return "boardgames/gameDetails";
     }
-    */
+    @GetMapping(value = "/{gameTitle}")
+    public String getByGameTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView) {
+        BoardGame gameFromDB = boardGameService.getGameByGameTitle(gameTitle);
+        containerToView.addAttribute("boardgame", gameFromDB);
+        return "boardgames/gameDetails";
+    }
+
+    @GetMapping("/deleteGame/{id}")
+    public String deleteGame(@PathVariable("id") String id) {
+        BoardGame toDelete = boardGameService.getGameByID(id);
+        boardGameService.deleteGameFromDB(toDelete);
+        return "redirect:/boardgames/";
+    }
+
+    @GetMapping(value = "/updategame/{id}")
+    public String updateBoardGame(@PathVariable("id") String id, Model containerToView) {
+        // Retrieve the user based on the provided ID
+            BoardGame gameFromDB = boardGameService.getGameByID(id);
+            containerToView.addAttribute("boardgame", gameFromDB);
+            return "boardgames/updategame";
+        }
+
+    @PostMapping(value = "/updategame/{id}")
+    public String updateBoardGame(@PathVariable("id") String id, Optional<BoardGame> updatedGame) {
+        BoardGame gameToUpdate = boardGameService.getGameByID(id);
+
+        if (updatedGame.isPresent()) {
+            if (gameToUpdate != null  && updatedGame.get().getGameID().equals(gameToUpdate.getGameID())) {
+                boardGameService.updateGameFromDB(updatedGame.get());
+            }
+        }
+        // Redirect to the GET method
+        return "redirect:/boardgames/updategame/" + id;
+    }
 }

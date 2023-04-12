@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Update</title>
+</head>
+<body>
+<h1>Game parameters</h1>
+<div th:object="${boardgame}">
+  <p><b>Game ID: </b><td th:text="${boardgame.gameID}"></td></p>
+  <p><b>Game Title: </b><label  th:text="${boardgame.gameTitle}" /></td></p>
+  <p><b>Min Players: </b><td th:text="${boardgame.minPlayers}"></td></p>
+  <p><b>Max Players: </b><td th:text="${boardgame.maxPlayers}"></td></p>
+  <p><b>Min Play Time: </b><td th:text="${boardgame.minPlayTime}"></td></p>
+  <p><b>max Play Time: </b><td th:text="${boardgame.maxPlayTime}"></td></p>
+
+  <form th:action="@{/boardgames/updategame/{id}(operation=${operation}, id=${boardgame.gameID})}" th:object="${boardgame}" method="post">
+    <label for="gameID">Game ID:</label><br>
+    <input th:field="*{gameID}" type="text" name ="gameID" id="gameID" readonly><br>
+    <label for="gameTitle">Game Title:</label><br>
+    <input th:field="*{gameTitle}" type="text" name ="gameTitle" id="gameTitle"><br>
+    <label for="minPlayers">Min players:</label><br>
+    <input th:field="*{minPlayers}" type="text" name ="minPlayers" id="minPlayers"><br>
+    <label for="maxPlayers">Max players:</label><br>
+    <input th:field="*{maxPlayers}" type="text"  name ="maxPlayers" id="maxPlayers"><br>
+    <label for="minPlayTime">Min play time:</label><br>
+    <input th:field="*{minPlayTime}"type="text" name ="minPlayTime" id="minPlayTime"><br>
+    <label for="maxPlayTime">Max Play time:</label><br>
+    <input th:field="*{maxPlayTime}" type="text" name ="maxPlayTime" id="maxPlayTime"><br>
+    <input type="submit" value="Submit"/>
+    <input type="reset" value="Reset fields"/>
+  </form>
+
+</div>
+
+<p><a th:href="@{/boardgames/id/{id}(id = ${boardgame.gameID})}">Go Back</a></p>
+
+</body>
+</html>

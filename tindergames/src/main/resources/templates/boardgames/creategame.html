@@ -8,7 +8,7 @@
     <h1>Create new Board Game</h1>
 
     <form th:action="@{/boardgames/{operation}/{id}(operation=${operation}, id=${boardgame.gameID})}" th:object="${boardgame}" method="post">
-        <label for="gameTitle">Game Title:</label><br>
+        <label for="gameTitle">Game Title:</label>
         <input th:field="*{gameTitle}" type="text" name ="gameTitle" id="gameTitle"><br>
         <label for="minPlayers">Min players:</label><br>
         <input th:field="*{minPlayers}" type="text" name ="minPlayers" id="minPlayers"><br>
@@ -22,7 +22,7 @@
         <input type="reset" value="Reset fields"/>
     </form>
 
-    <p><a th:href="@{/boardgames}" class="w3-button w3-red">Go back</a></p>
+    <p><a th:href="@{/boardgames}">Go back</a></p>
 
 </body>
 </html>
