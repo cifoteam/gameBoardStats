@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Friends Form</title>
+</head>
+<body>
+<h1>Friends form</h1>
+<div class="w3-card-40" style="width:50%">
+    <header class="w3-container w3-light-grey">
+        <p text="Friend's form" />
+    </header>
+    <!-- Print the response message -->
+    <p th:if="${responseMessage != null}" th:text="${responseMessage}" />
+    <!-- Show a Friends form -->
+    <div class="w3-container">
+        <form th:action="@{/users/addFriends/{id}(id=${userId})}" method="post">
+            <!-- User fields -->
+            <p>
+                <input th:field="*{userId}" type="hidden" name="userId" class="w3-input" id="userId" readonly />
+            </p>
+
+            <!-- Current friends list -->
+            <p th:if="${currentFriends} != null">
+                <label>Current friends:</label>
+                <ol>
+                    <li th:each="player: ${currentFriends}" th:text="${player.username}"/>
+                </ol>
+            </p>
+
+            <p>
+                <label>Available Friends:</label>
+                <br>
+                <th:block th:each="player : ${availableFriends}">
+                    <!-- Checked items to borrow will be stored in the 'players' -->
+                    <input type="checkbox" name="friendsIds" th:value="${player.userId}" th:text="${player.username}" />
+                    <br>
+                </th:block>
+            </p>
+
+            <!-- Form buttons -->
+            <p>
+                <input type="submit" value="Submit friends" />
+                <input type="reset" value="Reset fields" />
+            </p>
+        </form>
+    </div>
+    <!-- Create a button to go to the User's profile page -->
+    <p>
+        <a th:href="@{/users/id/{userId}(userId=${userId})}" class="w3-button w3-red">Return to User profile</a>
+    </p>
+    <br>
+</div>
+</body>
+</html>
