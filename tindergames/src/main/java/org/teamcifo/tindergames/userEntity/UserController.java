@@ -212,7 +212,7 @@ public class UserController {
         } else {
             redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "Username or password incorrect");
             // Redirect to the login page
-            return "redirect:/login";
+            return "redirect:/users/login";
         }
 
     }
