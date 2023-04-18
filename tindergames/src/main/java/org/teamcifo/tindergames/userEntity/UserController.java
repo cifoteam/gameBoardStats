@@ -7,10 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/users")
@@ -60,15 +57,15 @@ public class UserController {
     public String createUser(@PathVariable("id") String id, Optional<User> newUser, RedirectAttributes redirectAttributes) {
         // Check that the ID is not already used inside the DB
         if (userService.getUserByID(id) != null) {
-            redirectAttributes.addFlashAttribute("responseMessage", "UserID " + id + " already used! Try again");
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "UserID " + id + " already used! Try again");
         }
         else {
             // Check that path variable ID equals the ID of the new user
             if (newUser.isPresent() && id.equals(newUser.get().getUserId())) {
                 userService.addUserToDB(newUser.get());
-                redirectAttributes.addFlashAttribute("responseMessage", "User " + newUser.get().getUsername() + " saved");
+                redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User " + newUser.get().getUsername() + " saved");
             } else {
-                redirectAttributes.addFlashAttribute("responseMessage", "Received object doesn't contain a user or something wrong with the provided IDs!");
+                redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "Received object doesn't contain a user or something wrong with the provided IDs!");
             }
         }
         return "redirect:/users/createUser";
@@ -86,9 +83,9 @@ public class UserController {
         User userFromDB = userService.getUserByID(id);
         containerToView.addAttribute("user", userFromDB);
         if (userFromDB != null) {
-            containerToView.addAttribute("responseMessage", "User ID " + id + " found");
+            containerToView.addAttribute(RESPONSE_MESSAGE, "User ID " + id + " found");
         } else {
-            containerToView.addAttribute("responseMessage", "User ID " + id + " not found!");
+            containerToView.addAttribute(RESPONSE_MESSAGE, "User ID " + id + " not found!");
         }
         return "users/userDetails";
     }
@@ -105,9 +102,9 @@ public class UserController {
         User userFromDB = userService.getUserByUsername(username);
         containerToView.addAttribute("user", userFromDB);
         if (userFromDB != null) {
-            containerToView.addAttribute("responseMessage", "Username " + username + " found");
+            containerToView.addAttribute(RESPONSE_MESSAGE, "Username " + username + " found");
         } else {
-            containerToView.addAttribute("responseMessage", "Username " + username + " not found!");
+            containerToView.addAttribute(RESPONSE_MESSAGE, "Username " + username + " not found!");
         }
         return "users/userDetails";
     }
@@ -132,7 +129,7 @@ public class UserController {
             return "users/userForm";
         } else {
             // Redirect the user to the main page
-            redirectAttributes.addFlashAttribute("responseMessage", "User ID " + id + " not found!");
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User ID " + id + " not found!");
             return "redirect:/users/";
         }
     }
@@ -155,14 +152,14 @@ public class UserController {
                 // Update the user
                 userService.updateUserInDB(updatedUser.get());
                 // Return response message
-                redirectAttr.addFlashAttribute("responseMessage", "User " + updatedUser.get().getUsername() + " updated");
+                redirectAttr.addFlashAttribute(RESPONSE_MESSAGE, "User " + updatedUser.get().getUsername() + " updated");
             } else {
                 // Something wrong with the ID or the Database
-                redirectAttr.addFlashAttribute("responseMessage", "UserID " + id + " not found or doesn't match the DB");
+                redirectAttr.addFlashAttribute(RESPONSE_MESSAGE, "UserID " + id + " not found or doesn't match the DB");
             }
         } else {
             // Something wrong with the updated object
-            redirectAttr.addFlashAttribute("responseMessage", "Received object doesn't contain a user!");
+            redirectAttr.addFlashAttribute(RESPONSE_MESSAGE, "Received object doesn't contain a user!");
         }
         // Redirect to the GET method
         return "redirect:/users/updateUser/" + id;
@@ -179,10 +176,10 @@ public class UserController {
         // Retrieve the user based on the provided ID
         User userToDelete = userService.getUserByID(id);
         if (userService.deleteUserFromDB(userToDelete)) {
-            redirectAttributes.addFlashAttribute("responseMessage", "User " + userToDelete.getUsername() + " deleted");
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User " + userToDelete.getUsername() + " deleted");
         }
         else {
-            redirectAttributes.addFlashAttribute("responseMessage", "User " + userToDelete.getUsername() + " couldn't be deleted!");
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User " + userToDelete.getUsername() + " couldn't be deleted!");
         }
         // Return to the users main page
         return "redirect:/users/";
@@ -212,7 +209,7 @@ public class UserController {
         } else {
             redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "Username or password incorrect");
             // Redirect to the login page
-            return "redirect:/login";
+            return "redirect:/users/login";
         }
 
     }
@@ -239,7 +236,7 @@ public class UserController {
             containerToView.addAttribute("oldPassword", userFromDB.getPassword());
             return "users/resetPassword";
         } else {
-            redirectAttributes.addFlashAttribute("responseMessage", "User ID " + id + " not found!");
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User ID " + id + " not found!");
             return "redirect:/users";
         }
     }
@@ -248,11 +245,46 @@ public class UserController {
     public String resetPassword(@PathVariable("id") String id, @RequestParam("newPassword") String newPassword, RedirectAttributes redirectAttributes) {
         // Try to update the user's password
         if (userService.updateUserPassword(id, newPassword)) {
-            redirectAttributes.addFlashAttribute("responseMessage", "Password for user ID " + id + " updated");
-            return "redirect:/users";
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "Password for user ID " + id + " updated");
         } else {
-            redirectAttributes.addFlashAttribute("responseMessage", "User ID " + id + " not found!");
-            return "redirect:/users";
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User ID " + id + " not found!");
         }
+        return "redirect:/users";
+    }
+
+    // Add friends to the User's profile
+    @GetMapping("addFriends/{id}")
+    public String addFriends(@PathVariable("id") String userId, HttpSession session, Model containerToView, RedirectAttributes redirectAttributes) {
+        if ((boolean) session.getAttribute(IS_LOGGED_IN) && userId.equals(session.getAttribute("userId"))) {
+            if (userService.getUserByID(userId) != null) {
+                // Include both the current friend's list, the user ID and the list of available users to the frontend
+                containerToView.addAttribute("currentFriends", userService.getUserFriends(userId));
+                containerToView.addAttribute("availableFriends", userService.getAllUsers());
+                // TODO: remove userId from Model as it should be already available in the HttpSession --> Modify frontend accordingly
+                containerToView.addAttribute("userId", userId);
+                containerToView.addAttribute(RESPONSE_MESSAGE, "User ID " + userId + " found");
+                return "users/friendsForm";
+            } else {
+                redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User not logged in! Cancelling friend's update");
+                return "redirect:/users/id" + userId;
+            }
+        }
+        redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User not logged in! Cancelling friend's update");
+        return "redirect:/users/id" + userId;
+    }
+
+    @PostMapping("addFriends/{id}")
+    public String addFriend(@PathVariable("id") String userId, @RequestParam("friendsIds") List<String> friendsIds, HttpSession session, RedirectAttributes redirectAttributes) {
+        // Only add friends if the user is logged in and the ID received is the same as the one from the current session
+        if ((boolean) session.getAttribute(IS_LOGGED_IN) && userId.equals(session.getAttribute("userId"))) {
+            if (userService.addFriends(userId, friendsIds)) {
+                redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "Friends added to user's profile!");
+            } else {
+                redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User not found in DB, friend's update cancelled");
+            }
+        } else {
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User not logged in, friend's update cancelled");
+        }
+        return "redirect:/users/id/" + userId;
     }
 }

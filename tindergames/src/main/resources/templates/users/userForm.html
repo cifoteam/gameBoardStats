@@ -36,6 +36,12 @@
                 <label for="username">Username</label>
                 <input th:field="*{username}" type="text" name="username" class="w3-input" id="username" required />
             </p>
+            <!-- Password fields -->
+            <!-- TODO: New password validation -->
+            <p th:if="${operation == 'createUser'}">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="w3-input" id="password" required />
+            </p>
             <p>
                 <label for="email">E-mail</label>
                 <input th:field="*{email}" type="email" name="email" class="w3-input" id="email" pattern=".+@[a-z]+\.[a-z]+" required />

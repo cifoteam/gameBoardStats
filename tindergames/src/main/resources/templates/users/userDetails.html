@@ -29,7 +29,15 @@
         <p>
             <label th:text="'Email: ' + *{email}"/>
         </p>
+        <!-- Current friends list -->
+        <p th:if="*{friends} != null">
+            <label>Current friends:</label>
+            <ol>
+                <li th:each="player: ${user.friends}" th:text="${player.username}"/>
+            </ol>
+        </p>
         <a th:href="@{/users/updateUser/{id}(id = *{userId})}" class="w3-button w3-green">Update</a>
+        <a th:href="@{/users/addFriends/{id}(id = *{userId})}" class="w3-button w3-blue">Add friends</a>
         <a th:href="@{/users/deleteUser/{id}(id = *{userId})}" class="w3-button w3-red">Delete</a>
     </div>
     <!-- Create a button to go to the home page -->

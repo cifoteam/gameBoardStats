@@ -34,12 +34,20 @@ public class User {
     )
     private Set<Gameplay> gameplays;
 
+    @ManyToMany
+    @JoinTable(name = "USER_FRIENDS",
+            joinColumns = @JoinColumn(name = "USER_FK"),
+            inverseJoinColumns = @JoinColumn(name = "FRIEND_FK")
+    )
+    private Set<User> friends;
+
     public User() {
         // First initialize the user's games collection
         //this.userGameCollection = new GamesCollection();
         // Then use the collection ID as the user ID
         //this.userId = this.userGameCollection.getCollectionId();
         this.gameplays = new HashSet<>();
+        this.friends = new HashSet<>();
         // TODO: Create GamesCollection and GamePlay Entities and tables to re-enable these attributes
         this.userId = Helpers.generateUUID();
     }
@@ -55,5 +63,9 @@ public class User {
 
     public boolean checkPassword(String password) {
         return this.getPassword().equals(password);
+    }
+
+    public void addFriend(User friend) {
+        this.friends.add(friend);
     }
 }
