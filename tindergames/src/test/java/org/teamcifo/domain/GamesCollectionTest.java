@@ -3,14 +3,15 @@ package org.teamcifo.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.teamcifo.tindergames.boardGameEntity.BoardGame;
-import org.teamcifo.tindergames.domain.GameStats;
-import org.teamcifo.tindergames.domain.GamesCollection;
+import org.teamcifo.tindergames.gamesCollectionEntity.GameStats;
+import org.teamcifo.tindergames.gamesCollectionEntity.GamesCollection;
 import org.teamcifo.utils.FakeDataGenerator;
 
 import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class GamesCollectionTest {
 
     // Initialize private attributes for testing

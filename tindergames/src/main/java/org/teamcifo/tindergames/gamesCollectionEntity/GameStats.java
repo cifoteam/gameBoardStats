@@ -1,19 +1,34 @@
-package org.teamcifo.tindergames.domain;
+package org.teamcifo.tindergames.gamesCollectionEntity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.teamcifo.tindergames.utils.Helpers;
 
-@Data
 @Getter
 @Setter
-@NoArgsConstructor
+// JPA annotations
+@Entity(name = "GameStats")
+@Table(name = "GAME_STATS")
 public class GameStats {
+    @Id
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(updatable = false, nullable = false)
+    private String gameStatsId;
     private double buyPrice;
     private int numTimesPlayed;
     private int numWins;
     private boolean owned;
+
+    public GameStats() {
+        this.gameStatsId = Helpers.generateUUID();
+    }
 
     @Override
     public String toString() {

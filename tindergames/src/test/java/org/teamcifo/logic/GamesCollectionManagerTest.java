@@ -3,7 +3,7 @@ package org.teamcifo.logic;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.teamcifo.tindergames.domain.GamesCollection;
+import org.teamcifo.tindergames.gamesCollectionEntity.GamesCollection;
 import org.teamcifo.tindergames.logic.GamesCollectionManager;
 import org.teamcifo.utils.FakeDataGenerator;
 import org.teamcifo.tindergames.utils.Helpers;

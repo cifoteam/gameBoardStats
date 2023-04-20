@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.teamcifo.tindergames.domain.GamesCollection;
+import org.teamcifo.tindergames.gamesCollectionEntity.GamesCollection;
 import org.teamcifo.tindergames.userEntity.User;
 
 @Data

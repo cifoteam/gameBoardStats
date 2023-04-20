@@ -1,56 +1,43 @@
-package org.teamcifo.tindergames.domain;
+package org.teamcifo.tindergames.gamesCollectionEntity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.teamcifo.tindergames.boardGameEntity.BoardGame;
+import org.teamcifo.tindergames.boardGameEntity.BoardGameService;
 import org.teamcifo.tindergames.utils.Helpers;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
+// Lombok annotations
 @Getter
+@Setter
+// JPA annotations
+@Entity(name="GamesCollection")
+@Table(name="GAMES_COLLECTION_TABLE")
 public class GamesCollection {
+    @Id
+    @GenericGenerator(name="system-uuid", strategy="uuid")
+    @Column(updatable = false, nullable = false)
     private String collectionId;
-    private Map<String, GameStats> gameStatuses; // Keys are gameIDs
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "game_statuses_mapping",
+        joinColumns = {@JoinColumn(name = "game_collection_id", referencedColumnName = "collectionId")},
+        inverseJoinColumns = {@JoinColumn(name = "game_stats_id", referencedColumnName = "game_stats_id")})
+    @MapKeyJoinColumn(name = "game_id")
+    private Map<BoardGame, GameStats> gameStatuses; // Keys are BoardGames
+
 
     public GamesCollection() {
         // The collection ID is generated on creation time
         this.collectionId = Helpers.generateUUID();
         this.gameStatuses = new HashMap<>();
     }
-
-    // Public methods
-    // - CRUD operations
-    public void addGameToCollection(String gameID) {
-        this.gameStatuses.putIfAbsent(gameID, new GameStats());
-    }
-
-    public void addGameToCollection(BoardGame boardGame) {
-        this.addGameToCollection(boardGame.getGameID());
-    }
-
-    public GameStats getGameStats(String gameID) {
-        return this.gameStatuses.getOrDefault(gameID, null);
-    }
-
-    public void updateGameStats(String gameID, GameStats newStats) {
-        this.gameStatuses.put(gameID, newStats);
-    }
-
-    public void deleteGameFromCollection(String gameID) {
-        // Only try to remove the BoardGame if its gameId exists
-        if (this.hasGame(gameID)) {
-            this.gameStatuses.remove(gameID);
-        } else {
-            System.out.println("Game " + gameID + " is not included in the collection, can't remove it!");
-        }
-    }
-
-    public void deleteGameFromCollection(BoardGame boardGame) {
-        this.deleteGameFromCollection(boardGame.getGameID());
-    }
-
 
     // - Check methods
     public int size() {
@@ -74,7 +61,7 @@ public class GamesCollection {
     }
 
     // - Manipulation between collections
-    public void copyFrom(Map<String, GameStats> gamesCollection) {
+    public void copyFrom(Map<BoardGame, GameStats> gamesCollection) {
         // TODO: If we copy an entire collection, we're also copying the GameStats of the previous user
         // TODO: Do we really need this method? Right now it is only used in tests
         this.gameStatuses.putAll(gamesCollection);
