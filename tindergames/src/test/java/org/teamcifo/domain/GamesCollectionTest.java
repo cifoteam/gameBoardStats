@@ -71,9 +71,9 @@ class GamesCollectionTest {
                 .forEach(boardGame -> this.collectionTest1.addGameToCollection((boardGame)));
         // Get a random game from the collection
         int randomInt = this.random.nextInt(0, 10);
-        String randomGameID = this.fakeBoardGames1.get(randomInt).getGameID();
+        BoardGame randomGame = this.fakeBoardGames1.get(randomInt);
         // Get random game's stats
-        GameStats randomStats = this.collectionTest1.getGameStats(randomGameID);
+        GameStats randomStats = this.collectionTest1.getGameStats(randomGame);
         // Assert that stats are correct - They are empty on creation
         assertEquals(randomStats, new GameStats());
     }
@@ -85,17 +85,17 @@ class GamesCollectionTest {
                 .forEach(boardGame -> this.collectionTest1.addGameToCollection((boardGame)));
         // Get a random game from the collection
         int randomInt = this.random.nextInt(0, 10);
-        String randomGameID = this.fakeBoardGames1.get(randomInt).getGameID();
+        BoardGame randomGame = this.fakeBoardGames1.get(randomInt);
         // Get old game's stats
-        GameStats oldStats = this.collectionTest1.getGameStats(randomGameID);
+        GameStats oldStats = this.collectionTest1.getGameStats(randomGame);
         // Create a random game stats
         GameStats randomStats = FakeDataGenerator.createFakeStats();
         // Check that old and random aren't equals
         assertNotEquals(oldStats, randomStats);
         // Update the stats
-        this.collectionTest1.updateGameStats(randomGameID, randomStats);
+        this.collectionTest1.updateGameStats(randomGame, randomStats);
         // Assert that stats are correctly updated
-        assertEquals(randomStats, this.collectionTest1.getGameStats(randomGameID));
+        assertEquals(randomStats, this.collectionTest1.getGameStats(randomGame));
     }
 
     @Test
@@ -109,20 +109,6 @@ class GamesCollectionTest {
         assertTrue(this.collectionTest1.hasGame(this.fakeBoardGames1.get(randomInt)));
         // Assert that a game from the second list doesn't exist
         assertFalse(this.collectionTest1.hasGame(this.fakeBoardGames2.get(randomInt)));
-    }
-
-    @Test
-    void copyFrom() {
-        // Create two GamesCollection with different collection of BoardGames
-        this.fakeBoardGames1
-                .forEach(boardGame -> this.collectionTest1.addGameToCollection((boardGame)));
-        this.fakeBoardGames2
-                .forEach(boardGame -> this.collectionTest2.addGameToCollection((boardGame)));
-        // Copy the second collection into the first collection
-        this.collectionTest1.copyFrom(this.collectionTest2.getGameStatuses());
-        // Check that the games from the second one are available within the first one
-        this.fakeBoardGames2
-                .forEach(boardGame -> assertTrue(this.collectionTest1.hasGame(boardGame)));
     }
 
     @Test

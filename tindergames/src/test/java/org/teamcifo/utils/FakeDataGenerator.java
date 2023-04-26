@@ -22,36 +22,6 @@ public class FakeDataGenerator {
         return boardGameList;
     }
 
-    public static List<GamesCollection> populateGamesCollection(int numCollections) {
-        // Create a random list of BoardGames
-        List<BoardGame> boardGameList = populateBoardGames(faker.number().numberBetween(1, 10));
-        List<GamesCollection> gamesCollectionsList = new ArrayList<>();
-        for (int i = 0; i < numCollections; i++) {
-            // Create an empty gamesCollections List
-            GamesCollection newGamesCollection = new GamesCollection();
-            // Get a random number of games to populate based on the ones available
-            int randomGames = faker.number().numberBetween(1, boardGameList.size());
-            for (int j = 0; j < randomGames; j++) {
-                // Select a random game
-                int randomGame = faker.number().numberBetween(0, boardGameList.size());
-                String randomGameID = boardGameList.get(randomGame).getGameID();
-                // Insert that game into the collection
-                newGamesCollection.addGameToCollection(randomGameID);
-                // Set random stats to the game
-                newGamesCollection.updateGameStats(randomGameID, createFakeStats());
-            }
-            // Add the collection to the collections list
-            gamesCollectionsList.add(newGamesCollection);
-        }
-        // Return the populated list
-        return gamesCollectionsList;
-    }
-
-    public static List<User> populateUsers(int numUsers) {
-        // TODO: Create a random number of users and return them
-        return new ArrayList<>();
-    }
-
     public static BoardGame createFakeGame() {
         Faker faker = new Faker();
         String gameTitle = faker.esports().game();

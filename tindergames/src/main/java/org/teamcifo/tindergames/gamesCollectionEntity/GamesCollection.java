@@ -28,7 +28,7 @@ public class GamesCollection {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "game_statuses_mapping",
         joinColumns = {@JoinColumn(name = "game_collection_id", referencedColumnName = "collectionId")},
-        inverseJoinColumns = {@JoinColumn(name = "game_stats_id", referencedColumnName = "game_stats_id")})
+        inverseJoinColumns = {@JoinColumn(name = "game_stats_id", referencedColumnName = "gameStatsId")})
     @MapKeyJoinColumn(name = "game_id")
     private Map<BoardGame, GameStats> gameStatuses; // Keys are BoardGames
 
@@ -39,6 +39,32 @@ public class GamesCollection {
         this.gameStatuses = new HashMap<>();
     }
 
+    // CRUD methods?
+    // Add game
+    public void addGameToCollection(BoardGame boardGame) {
+        if (!this.hasGame(boardGame)) {
+            this.gameStatuses.put(boardGame, new GameStats());
+        }
+    }
+
+    public void deleteGameFromCollection(BoardGame boardGame) {
+        if (this.hasGame(boardGame)) {
+            // TODO: remember to also delete the gamestats from the DB!
+            this.gameStatuses.remove(boardGame);
+        }
+    }
+
+    // Get game stats
+    public GameStats getGameStats(BoardGame boardGame) {
+        return this.gameStatuses.getOrDefault(boardGame, null);
+    }
+
+    public void updateGameStats(BoardGame boardGame, GameStats gameStats) {
+        if (this.hasGame(boardGame)) {
+            this.gameStatuses.put(boardGame, gameStats);
+        }
+    }
+
     // - Check methods
     public int size() {
         return this.gameStatuses.size();
@@ -46,25 +72,13 @@ public class GamesCollection {
 
     public boolean hasGame(BoardGame boardGame) {
         // Check that the collection has an entry with the same game ID
-        return this.hasGame(boardGame.getGameID());
-    }
-
-    public boolean hasGame(String gameID) {
-        // Check that the collection has an entry with the same game ID
-        return this.gameStatuses.containsKey(gameID);
+        return this.gameStatuses.containsKey(boardGame);
     }
 
     // - Print methods
     public void printGameStats(String gameID) {
         // Print the gameID stats
         System.out.println(this.gameStatuses.getOrDefault(gameID, null));
-    }
-
-    // - Manipulation between collections
-    public void copyFrom(Map<BoardGame, GameStats> gamesCollection) {
-        // TODO: If we copy an entire collection, we're also copying the GameStats of the previous user
-        // TODO: Do we really need this method? Right now it is only used in tests
-        this.gameStatuses.putAll(gamesCollection);
     }
 
     // Methods override
