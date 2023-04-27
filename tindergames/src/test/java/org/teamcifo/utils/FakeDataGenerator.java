@@ -7,7 +7,9 @@ import org.teamcifo.tindergames.gamesCollectionEntity.GamesCollection;
 import org.teamcifo.tindergames.userEntity.User;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FakeDataGenerator {
 
@@ -45,5 +47,31 @@ public class FakeDataGenerator {
         fakeStats.setOwned(owned);
 
         return fakeStats;
+    }
+
+    public static Set<User> populateUsers(int numUsers) {
+        // TODO: Create a random number of BoardGames and return them
+        Set<User> userSet = new HashSet<>();
+        for (int i = 0; i < numUsers; i++) {
+            userSet.add(createFakeUser());
+        }
+        return userSet;
+    }
+
+    public static User createFakeUser() {
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String password = faker.internet().password();
+        String email = faker.internet().emailAddress();
+        String username = faker.name().username();
+
+        User fakeUser = new User();
+        fakeUser.setFirstName(firstName);
+        fakeUser.setLastName(lastName);
+        fakeUser.setPassword(password);
+        fakeUser.setEmail(email);
+        fakeUser.setUsername(username);
+
+        return fakeUser;
     }
 }

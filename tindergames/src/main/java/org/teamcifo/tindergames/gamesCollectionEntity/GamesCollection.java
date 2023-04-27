@@ -1,13 +1,13 @@
 package org.teamcifo.tindergames.gamesCollectionEntity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.teamcifo.tindergames.boardGameEntity.BoardGame;
-import org.teamcifo.tindergames.boardGameEntity.BoardGameService;
+import org.teamcifo.tindergames.userEntity.User;
 import org.teamcifo.tindergames.utils.Helpers;
 
 import java.util.HashMap;
@@ -25,6 +25,11 @@ public class GamesCollection {
     @Column(updatable = false, nullable = false)
     private String collectionId;
 
+    @OneToOne
+    @JoinColumn(name="user_id", referencedColumnName = "userId")
+    @JsonBackReference
+    private User user;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "game_statuses_mapping",
         joinColumns = {@JoinColumn(name = "game_collection_id", referencedColumnName = "collectionId")},
@@ -37,6 +42,11 @@ public class GamesCollection {
         // The collection ID is generated on creation time
         this.collectionId = Helpers.generateUUID();
         this.gameStatuses = new HashMap<>();
+    }
+
+    public GamesCollection(User user) {
+        this();
+        this.user = user;
     }
 
     // CRUD methods?

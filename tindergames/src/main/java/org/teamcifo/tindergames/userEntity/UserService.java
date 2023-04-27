@@ -2,6 +2,7 @@ package org.teamcifo.tindergames.userEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.teamcifo.tindergames.gamesCollectionEntity.GamesCollectionService;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,8 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    GamesCollectionService gamesCollectionService;
 
     /**
      * Add a User entity to the database, only if its ID doesn't already exist
@@ -18,10 +21,12 @@ public class UserService {
      */
     public boolean addUserToDB(User user) {
         // If the User ID already exists, don't do anything
-        if (userRepository.findById(user.getUserId()).isPresent()) {
+        if (userRepository.existsById(user.getUserId())) {
             return false;
         }
 
+        // First of all, add the GamesCollection to the DB
+        gamesCollectionService.addGamesCollectionToDB(user.getUserGamesCollection());
         // Insert the user into the DB
         userRepository.save(user);
         return true;
@@ -100,6 +105,10 @@ public class UserService {
             if (!userFromDB.getUsername().equals(user.getUsername())) {
                 userFromDB.setUsername(user.getUsername());
             }
+            if (!userFromDB.getUserGamesCollection().equals(user.getUserGamesCollection())) {
+                userFromDB.setUserGamesCollection(user.getUserGamesCollection());
+            }
+
             // Save the updated user
             userRepository.save(userFromDB);
             return true;

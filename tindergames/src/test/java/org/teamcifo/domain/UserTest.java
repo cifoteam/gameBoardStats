@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.teamcifo.tindergames.userEntity.User;
+import org.teamcifo.utils.FakeDataGenerator;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserTest {
     private static User user, userNoArgs;
@@ -12,6 +16,7 @@ public class UserTest {
 
     //Faker variables
     private static String fakeId, fakeName, fakeLastName, fakeEmail, fakePassword;
+    private static Set<User> fakeFriends;
 
     @BeforeEach
     void setUp(){
@@ -26,15 +31,15 @@ public class UserTest {
         fakeLastName = faker.name().lastName();
         fakeEmail = faker.internet().emailAddress();
         fakePassword = faker.internet().password();
+        fakeFriends = FakeDataGenerator.populateUsers(faker.random().nextInt(0, 10));
 
         // Set the user object's properties with fake data
-        user.setUserId(fakeId);
         user.setFirstName(fakeName);
         user.setLastName(fakeLastName);
         user.setEmail(fakeEmail);
         user.setPassword(fakePassword);
-        //user.setUserGameCollection(new GamesCollection());
-        //user.setGamePlays(new ArrayList<GamePlay>());
+        user.setGameplays(new HashSet<>());
+        user.setFriends(fakeFriends);
 
     }
 
@@ -55,21 +60,20 @@ public class UserTest {
     @Test
     public void testGettersAndSetters() {
         // Assert that the user object's properties have been set with the correct fake data
+        assertNotEquals(user.getUserId(), null);
         assertEquals(user.getFirstName(), fakeName);
         assertEquals(user.getLastName(), fakeLastName);
         assertEquals(user.getEmail(), fakeEmail);
         assertEquals(user.getPassword(), fakePassword);
-        assertEquals(user.getUserId(), fakeId);
+        assertEquals(user.getFriends(), fakeFriends);
         //assertEquals(user.getUserGameCollection(), user.getUserGameCollection());
-        //assertEquals(user.getGamePlays(), user.getGamePlays());
-
+        assertEquals(user.getGameplays(), new HashSet<>());
     }
 
     @Test
     public void testToString() {
         // Test that the toString() method does not return null
         assertNotNull(user.toString());
-
     }
 
 }
