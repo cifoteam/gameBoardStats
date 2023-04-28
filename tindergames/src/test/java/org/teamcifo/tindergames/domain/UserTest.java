@@ -1,4 +1,4 @@
-package org.teamcifo.domain;
+package org.teamcifo.tindergames.domain;
 
 import com.github.javafaker.Faker;
 import static org.junit.jupiter.api.Assertions.*;

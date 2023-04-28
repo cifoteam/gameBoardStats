@@ -1,4 +1,4 @@
-package org.teamcifo.domain;
+package org.teamcifo.tindergames.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

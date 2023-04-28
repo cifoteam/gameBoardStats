@@ -22,7 +22,8 @@
             <!-- User fields -->
             <p>
                 <label for="userID">User ID</label>
-                <input th:field="*{userId}" type="text" name="userId" class="w3-input" id="userId" readonly />
+                <input th:if="${operation == 'updateUser'}" th:field="*{userId}" type="text" name="userId" class="w3-input" id="userId" readonly />
+                <p th:unless="${operation == 'updateUser'}" th:value="*{userId}"/>
             </p>
             <p>
                 <label for="firstName">First name</label>
@@ -46,10 +47,7 @@
                 <label for="email">E-mail</label>
                 <input th:field="*{email}" type="email" name="email" class="w3-input" id="email" pattern=".+@[a-z]+\.[a-z]+" required />
             </p>
-            <!-- Hidden fields
-            <p>
-                <input th:field="*{userGamesCollection}" type="hidden" name="userGamesCollection" class="w3-input" id="userGamesCollection" readonly />
-            </p> -->
+
             <!-- Form buttons -->
             <p>
                 <input type="submit" value="Submit user" />

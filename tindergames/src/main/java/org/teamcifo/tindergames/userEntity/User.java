@@ -28,9 +28,8 @@ public class User {
     @Column(updatable = false, nullable = false)
     private String userId;
 
-    @OneToOne
-    @JoinColumn(name="games_collection_id", referencedColumnName = "collectionId")
-    @JsonManagedReference
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @PrimaryKeyJoinColumn
     private GamesCollection userGamesCollection;
 
     @ManyToMany
@@ -49,9 +48,9 @@ public class User {
 
     public User() {
         this.userId = Helpers.generateUUID();
-        this.userGamesCollection = new GamesCollection(this);
         this.gameplays = new HashSet<>();
         this.friends = new HashSet<>();
+        this.userGamesCollection = new GamesCollection(this);
     }
 
     public User(String firstName, String lastName, String password, String email, String username) {

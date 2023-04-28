@@ -105,9 +105,11 @@ public class UserService {
             if (!userFromDB.getUsername().equals(user.getUsername())) {
                 userFromDB.setUsername(user.getUsername());
             }
+            /*
             if (!userFromDB.getUserGamesCollection().equals(user.getUserGamesCollection())) {
                 userFromDB.setUserGamesCollection(user.getUserGamesCollection());
             }
+            */
 
             // Save the updated user
             userRepository.save(userFromDB);

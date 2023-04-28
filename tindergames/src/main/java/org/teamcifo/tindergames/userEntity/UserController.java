@@ -56,17 +56,11 @@ public class UserController {
     @PostMapping(value = "/createUser/{id}")
     public String createUser(@PathVariable("id") String id, Optional<User> newUser, RedirectAttributes redirectAttributes) {
         // Check that the ID is not already used inside the DB
-        if (userService.getUserByID(id) != null) {
-            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "UserID " + id + " already used! Try again");
-        }
-        else {
-            // Check that path variable ID equals the ID of the new user
-            if (newUser.isPresent() && id.equals(newUser.get().getUserId())) {
-                userService.addUserToDB(newUser.get());
-                redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User " + newUser.get().getUsername() + " saved");
-            } else {
-                redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "Received object doesn't contain a user or something wrong with the provided IDs!");
-            }
+        if (newUser.isPresent() && userService.getUserByID(newUser.get().getUserId()) == null) {
+            userService.addUserToDB(newUser.get());
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "User " + newUser.get().getUsername() + " saved");
+        } else {
+            redirectAttributes.addFlashAttribute(RESPONSE_MESSAGE, "Received object doesn't contain a user or User ID " + newUser.get().getUserId() + " already in DB!");
         }
         return "redirect:/users/createUser";
     }

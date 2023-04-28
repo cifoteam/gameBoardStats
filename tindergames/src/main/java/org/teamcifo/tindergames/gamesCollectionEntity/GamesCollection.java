@@ -21,32 +21,35 @@ import java.util.Map;
 @Table(name="GAMES_COLLECTION_TABLE")
 public class GamesCollection {
     @Id
-    @GenericGenerator(name="system-uuid", strategy="uuid")
-    @Column(updatable = false, nullable = false)
+    //@GenericGenerator(name="system-uuid", strategy="uuid")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(updatable = false, nullable = false, name = "user_userId")
     private String collectionId;
 
-    @OneToOne
-    @JoinColumn(name="user_id", referencedColumnName = "userId")
-    @JsonBackReference
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @JoinColumn(name = "user_userId")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "game_statuses_mapping",
-        joinColumns = {@JoinColumn(name = "game_collection_id", referencedColumnName = "collectionId")},
+        joinColumns = {@JoinColumn(name = "game_collection_id", referencedColumnName = "user_userId")},
         inverseJoinColumns = {@JoinColumn(name = "game_stats_id", referencedColumnName = "gameStatsId")})
     @MapKeyJoinColumn(name = "game_id")
     private Map<BoardGame, GameStats> gameStatuses; // Keys are BoardGames
 
 
     public GamesCollection() {
-        // The collection ID is generated on creation time
-        this.collectionId = Helpers.generateUUID();
+        // TODO: The collection ID should be shared with the UserId, less indexes to maintain in memory
+        //this.collectionId = Helpers.generateUUID();
         this.gameStatuses = new HashMap<>();
     }
 
     public GamesCollection(User user) {
         this();
         this.user = user;
+        // TODO: see if JPA can assign for us the ID when saving the data in H2
+        this.collectionId = user.getUserId();
     }
 
     // CRUD methods?
