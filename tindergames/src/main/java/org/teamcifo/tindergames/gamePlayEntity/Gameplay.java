@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.teamcifo.tindergames.boardGameEntity.BoardGame;
 import org.teamcifo.tindergames.userEntity.User;
 import org.teamcifo.tindergames.utils.Helpers;
 
@@ -21,9 +22,9 @@ public class Gameplay {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(updatable = false, nullable = false)
     private String gameplayId;
-    //@ManyToOne
-    //@JoinColumn(name = "gameID")
-    //private BoardGame boardGame;
+    @ManyToOne
+    @JoinColumn(name = "gameID")
+    private BoardGame boardGame;
     @Column
     private Long time;
     @ManyToOne

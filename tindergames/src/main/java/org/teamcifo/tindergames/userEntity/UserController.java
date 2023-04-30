@@ -47,8 +47,8 @@ public class UserController {
     }
 
     /**
-     * User's creation POST method. Based on the given ID, if it doesn't exist, the newUser object is stored in the DB
-     * @param id is the ID of the new User
+     * User's creation POST method. If the newUser ID doesn't exist, the newUser object is stored in the DB
+     * @param id is the ID of the new User (obsolete)
      * @param newUser is the new User object
      * @param redirectAttributes contains the response message to be rendered in the GET method when finished
      * @return a redirect to the GET method

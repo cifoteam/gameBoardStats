@@ -21,12 +21,13 @@ import java.util.Map;
 @Table(name="GAMES_COLLECTION_TABLE")
 public class GamesCollection {
     @Id
-    //@GenericGenerator(name="system-uuid", strategy="uuid")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name="system-uuid", strategy="uuid")
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false, name = "user_userId")
     private String collectionId;
 
     @OneToOne(fetch = FetchType.LAZY)
+    //@OneToOne
     @MapsId
     @JoinColumn(name = "user_userId")
     private User user;

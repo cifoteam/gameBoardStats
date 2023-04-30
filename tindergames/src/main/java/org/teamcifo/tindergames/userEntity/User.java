@@ -2,20 +2,22 @@ package org.teamcifo.tindergames.userEntity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.AllArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.teamcifo.tindergames.boardGameEntity.BoardGame;
 import org.teamcifo.tindergames.gamePlayEntity.Gameplay;
 import org.teamcifo.tindergames.gamesCollectionEntity.GamesCollection;
 import org.teamcifo.tindergames.utils.Helpers;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 // JPA annotations
 @Entity(name="User")
 @Table(name="USER_TABLE")
@@ -68,5 +70,9 @@ public class User {
 
     public void addFriend(User friend) {
         this.friends.add(friend);
+    }
+
+    public void addGameToCollection(BoardGame boardGame) {
+        this.getUserGamesCollection().addGameToCollection(boardGame);
     }
 }
