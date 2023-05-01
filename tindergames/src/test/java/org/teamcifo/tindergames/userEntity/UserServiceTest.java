@@ -1,22 +1,24 @@
 package org.teamcifo.tindergames.userEntity;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.h2.tools.Server;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import org.teamcifo.tindergames.boardGameEntity.BoardGame;
 import org.teamcifo.tindergames.boardGameEntity.BoardGameService;
 import org.teamcifo.utils.FakeDataGenerator;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+// Initialize a Web environment to access H2 console
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UserServiceTest {
 
@@ -32,15 +34,25 @@ class UserServiceTest {
     private Random random;
 
     @BeforeAll
-    void setUp(){
+    void warmUp() {
         // Initialize a Random object
         this.random = new Random();
+        // Initialize a faje user
         this.fakeUser = FakeDataGenerator.createFakeUser();
-        // Add the fakeUser to the database
-        userService.addUserToDB(this.fakeUser);
+        // Initialize a fake list of BoardGames
         this.fakeBoardGames = FakeDataGenerator.populateBoardGames(this.random.nextInt(2, 10));
         // Add the fakeBoardGames to the database
         boardGameService.addBoardGamesToDB(this.fakeBoardGames);
+    }
+
+    @BeforeEach
+    void init() {
+        userService.addUserToDB(this.fakeUser);
+    }
+
+    @AfterEach
+    void cleanUp() {
+        userService.deleteUserFromDB(this.fakeUser);
     }
 
     @Test
@@ -60,6 +72,7 @@ class UserServiceTest {
 
     @Test
     @Transactional
+    @Commit
     void deleteUserByID() {
         // Create a fake user
         User userToDelete = FakeDataGenerator.createFakeUser();
@@ -73,6 +86,7 @@ class UserServiceTest {
 
     @Test
     @Transactional
+    @Commit
     void addGamesToCollection() {
         // Add a random number of games to the collection
         Integer numGames = this.random.nextInt(1, this.fakeBoardGames.size());
@@ -100,6 +114,7 @@ class UserServiceTest {
 
     @Test
     @Transactional
+    @Commit
     void deleteGamesFromCollection() {
         // Add a random number of games to the collection
         Integer numGames = this.random.nextInt(1, this.fakeBoardGames.size());
