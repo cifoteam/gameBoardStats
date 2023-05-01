@@ -75,4 +75,8 @@ public class User {
     public void addGameToCollection(BoardGame boardGame) {
         this.getUserGamesCollection().addGameToCollection(boardGame);
     }
+
+    public void deleteGameFromCollection(BoardGame boardGame) {
+        this.getUserGamesCollection().deleteGameFromCollection(boardGame);
+    }
 }

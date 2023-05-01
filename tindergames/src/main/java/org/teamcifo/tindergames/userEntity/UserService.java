@@ -1,6 +1,5 @@
 package org.teamcifo.tindergames.userEntity;
 
-import lombok.EqualsAndHashCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.teamcifo.tindergames.boardGameEntity.BoardGame;
@@ -205,6 +204,23 @@ public class UserService {
                         BoardGame boardGame = boardGameService.getGameByID(boardGameId);
                         if (boardGame != null) {
                             userFromDB.addGameToCollection(boardGame);
+                        }
+                    });
+            // Save the updated user
+            userRepository.save(userFromDB);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteGamesFromCollection(String userId, List<String> boardGameIds) {
+        User userFromDB = getUserByID(userId);
+        if (userFromDB != null) {
+            boardGameIds.stream()
+                    .forEach(boardGameId -> {
+                        BoardGame boardGame = boardGameService.getGameByID(boardGameId);
+                        if (boardGame != null) {
+                            userFromDB.deleteGameFromCollection(boardGame);
                         }
                     });
             // Save the updated user
