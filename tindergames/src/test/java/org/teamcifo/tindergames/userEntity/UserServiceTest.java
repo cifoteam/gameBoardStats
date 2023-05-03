@@ -37,7 +37,7 @@ class UserServiceTest {
     void warmUp() {
         // Initialize a Random object
         this.random = new Random();
-        // Initialize a faje user
+        // Initialize a fake user
         this.fakeUser = FakeDataGenerator.createFakeUser();
         // Initialize a fake list of BoardGames
         this.fakeBoardGames = FakeDataGenerator.populateBoardGames(this.random.nextInt(2, 10));
@@ -47,12 +47,8 @@ class UserServiceTest {
 
     @BeforeEach
     void init() {
-        userService.addUserToDB(this.fakeUser);
-    }
-
-    @AfterEach
-    void cleanUp() {
         userService.deleteUserFromDB(this.fakeUser);
+        userService.addUserToDB(this.fakeUser);
     }
 
     @Test
