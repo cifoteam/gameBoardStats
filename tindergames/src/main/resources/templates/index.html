@@ -8,6 +8,16 @@
 </head>
 <body>
 <h1>Welcome to TinderGames!</h1>
+<th:block th:if="${session.isLoggedIn == true}">
+    <h2 th:if="${session.username != null}" th:text="|Welcome, ${session.username}!|"/>
+    <p><a th:href="@{/users/id/{userId}(userId=${session.userId})}" class="w3-button w3-red">My profile</a></p>
+    <p><a th:href="@{/users/logout}" class="w3-button w3-red">Log Out</a></p>
+</th:block>
+<th:block th:unless="${session.isLoggedIn == true}">
+    <p><a th:href="@{/users/login}" class="w3-button w3-green">Log In</a></p>
+    <p><a th:href="@{/users/createUser}" class="w3-button w3-green">Sign In</a></p>
+</th:block>
+
 <div>
 
     <!-- Create a button to go to the available main pages -->
