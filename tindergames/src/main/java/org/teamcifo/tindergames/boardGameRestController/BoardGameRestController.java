@@ -27,8 +27,8 @@ public class BoardGameRestController {
         return gameService.getAllBoardGames();
     }
 
-    @GetMapping("/gameTitle/{gameTitle}")
-    public BoardGame getGameByTitle(@RequestParam(value = "gameTitle")  @PathVariable("gameTitle") String gameTitle){
+    @GetMapping("/title/{gameTitle}")
+    public BoardGame getGameByTitle(@PathVariable String gameTitle){
         Optional<BoardGame> game = Optional.ofNullable(gameService.getGameByGameTitle(gameTitle));
         if (game.isPresent()){
             return game.get();
@@ -36,9 +36,9 @@ public class BoardGameRestController {
         return null;
     }
 
-    @GetMapping("/gameByID/{gameID}")
-    public BoardGame getGameByID(@RequestParam(value = "gameID") String gameID){
-        Optional<BoardGame> game = Optional.ofNullable(gameService.getGameByGameTitle(gameID));
+    @GetMapping("/id/{gameID}")
+    public BoardGame getGameByID(@PathVariable String gameID){
+        Optional<BoardGame> game = Optional.ofNullable(gameService.getGameByID(gameID));
         if (game.isPresent()){
             return game.get();
         }
@@ -50,7 +50,7 @@ public class BoardGameRestController {
         return newGame;
     }
 
-    @DeleteMapping("/deleteGame/{gameID}")
+    @DeleteMapping("/deleteGame")
     public ResponseEntity<BoardGame> deleteGame(@RequestParam("gameID") String gameID){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "deleteGame");
@@ -66,18 +66,18 @@ public class BoardGameRestController {
         return ResponseEntity.accepted().body(null);
     }
 
-    @PutMapping("/updateGame/{gameID}")
-    public ResponseEntity<BoardGame> updateGame(@PathVariable String gameID, @RequestBody BoardGame game){
+    @PutMapping("/updateGame/")
+    public ResponseEntity<BoardGame> updateGame(@RequestBody BoardGame game){
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "updateGame");
         headers.add("version", "api 1.0");
-        Optional<BoardGame> gameFromDB= Optional.ofNullable(gameService.getGameByID(gameID));
+        Optional<BoardGame> gameFromDB= Optional.ofNullable(gameService.getGameByID(game.getGameID()));
 
         if (gameFromDB.isPresent()){
             gameService.updateGameFromDB(game);
             headers.add("operationStatus", "updated");
-            return  ResponseEntity.accepted().headers(headers).body(gameFromDB.get());
+            return  ResponseEntity.accepted().headers(headers).body(gameService.getGameByID(game.getGameID()));
         }
         return ResponseEntity.accepted().headers(headers).body(null);
     }
