@@ -46,10 +46,6 @@ public class User {
     @ToString.Exclude
     private Set<Gameplay> gameplays;
 
-    /*@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE},
-            targetEntity=User.class)
-
-     */
     @ManyToMany
     @JoinTable(name = "USER_FRIENDS",
             joinColumns = @JoinColumn(name = "USER_FK"),
