@@ -104,7 +104,7 @@ class UserServiceTest {
         // Assert that the user collection doesn't contain any of the storedGames
         storedGames.stream()
                 .forEach(gameId -> {
-                    assertTrue(userFromDB.getUserGamesCollection().hasGame(boardGameService.getGameByID(gameId)));
+                    assertTrue(userFromDB.hasGame(boardGameService.getGameByID(gameId)));
                 });
     }
 
@@ -134,7 +134,7 @@ class UserServiceTest {
         // Assert that the user collection doesn't contain any of the storedGames
         storedGames.stream()
                 .forEach(gameId -> {
-                    assertFalse(userFromDB.getUserGamesCollection().hasGame(boardGameService.getGameByID(gameId)));
+                    assertFalse(userFromDB.hasGame(boardGameService.getGameByID(gameId)));
                 });
     }
 }

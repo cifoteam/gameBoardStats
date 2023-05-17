@@ -176,6 +176,7 @@ public class UserService {
         User userFromDB = getUserByID(userId);
         if (userFromDB != null) {
             friendIds.stream()
+                    .filter(friendId -> !(friendId.equals(userId)))
                     .forEach(friendId -> {
                         // Retrieve the friend from the DB
                         User friend = getUserByID(friendId);
