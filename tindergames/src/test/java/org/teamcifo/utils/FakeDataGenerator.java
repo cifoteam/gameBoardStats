@@ -2,12 +2,13 @@ package org.teamcifo.utils;
 
 import com.github.javafaker.Faker;
 import org.teamcifo.tindergames.boardGameEntity.BoardGame;
-import org.teamcifo.tindergames.domain.GameStats;
-import org.teamcifo.tindergames.domain.GamesCollection;
+import org.teamcifo.tindergames.gamesCollectionEntity.GameStats;
 import org.teamcifo.tindergames.userEntity.User;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FakeDataGenerator {
 
@@ -20,36 +21,6 @@ public class FakeDataGenerator {
             boardGameList.add(createFakeGame());
         }
         return boardGameList;
-    }
-
-    public static List<GamesCollection> populateGamesCollection(int numCollections) {
-        // Create a random list of BoardGames
-        List<BoardGame> boardGameList = populateBoardGames(faker.number().numberBetween(1, 10));
-        List<GamesCollection> gamesCollectionsList = new ArrayList<>();
-        for (int i = 0; i < numCollections; i++) {
-            // Create an empty gamesCollections List
-            GamesCollection newGamesCollection = new GamesCollection();
-            // Get a random number of games to populate based on the ones available
-            int randomGames = faker.number().numberBetween(1, boardGameList.size());
-            for (int j = 0; j < randomGames; j++) {
-                // Select a random game
-                int randomGame = faker.number().numberBetween(0, boardGameList.size());
-                String randomGameID = boardGameList.get(randomGame).getGameID();
-                // Insert that game into the collection
-                newGamesCollection.addGameToCollection(randomGameID);
-                // Set random stats to the game
-                newGamesCollection.updateGameStats(randomGameID, createFakeStats());
-            }
-            // Add the collection to the collections list
-            gamesCollectionsList.add(newGamesCollection);
-        }
-        // Return the populated list
-        return gamesCollectionsList;
-    }
-
-    public static List<User> populateUsers(int numUsers) {
-        // TODO: Create a random number of users and return them
-        return new ArrayList<>();
     }
 
     public static BoardGame createFakeGame() {
@@ -75,5 +46,31 @@ public class FakeDataGenerator {
         fakeStats.setOwned(owned);
 
         return fakeStats;
+    }
+
+    public static Set<User> populateUsers(int numUsers) {
+        // TODO: Create a random number of BoardGames and return them
+        Set<User> userSet = new HashSet<>();
+        for (int i = 0; i < numUsers; i++) {
+            userSet.add(createFakeUser());
+        }
+        return userSet;
+    }
+
+    public static User createFakeUser() {
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String password = faker.internet().password();
+        String email = faker.internet().emailAddress();
+        String username = faker.name().username();
+
+        User fakeUser = new User();
+        fakeUser.setFirstName(firstName);
+        fakeUser.setLastName(lastName);
+        fakeUser.setPassword(password);
+        fakeUser.setEmail(email);
+        fakeUser.setUsername(username);
+
+        return fakeUser;
     }
 }

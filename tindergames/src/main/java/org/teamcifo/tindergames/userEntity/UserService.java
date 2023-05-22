@@ -2,6 +2,8 @@ package org.teamcifo.tindergames.userEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.teamcifo.tindergames.boardGameEntity.BoardGame;
+import org.teamcifo.tindergames.boardGameEntity.BoardGameService;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +12,8 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    BoardGameService boardGameService;
 
     /**
      * Add a User entity to the database, only if its ID doesn't already exist
@@ -18,10 +22,12 @@ public class UserService {
      */
     public boolean addUserToDB(User user) {
         // If the User ID already exists, don't do anything
-        if (userRepository.findById(user.getUserId()).isPresent()) {
+        if (userRepository.existsById(user.getUserId())) {
             return false;
         }
 
+        // First of all, add the GamesCollection to the DB
+        //gamesCollectionService.addGamesCollectionToDB(user.getUserGamesCollection());
         // Insert the user into the DB
         userRepository.save(user);
         return true;
@@ -100,6 +106,12 @@ public class UserService {
             if (!userFromDB.getUsername().equals(user.getUsername())) {
                 userFromDB.setUsername(user.getUsername());
             }
+            /*
+            if (!userFromDB.getUserGamesCollection().equals(user.getUserGamesCollection())) {
+                userFromDB.setUserGamesCollection(user.getUserGamesCollection());
+            }
+            */
+
             // Save the updated user
             userRepository.save(userFromDB);
             return true;
@@ -156,7 +168,7 @@ public class UserService {
     /**
      * Update the list of friendIds of a user
      * @param userId is the ID of the user to update
-     * @param friendIds is a list of User objects
+     * @param friendIds is a list of User IDs
      * @return true if the user to update exists, false otherwise
      */
     public boolean addFriends(String userId, List<String> friendIds) {
@@ -164,11 +176,52 @@ public class UserService {
         User userFromDB = getUserByID(userId);
         if (userFromDB != null) {
             friendIds.stream()
+                    .filter(friendId -> !(friendId.equals(userId)))
                     .forEach(friendId -> {
                         // Retrieve the friend from the DB
                         User friend = getUserByID(friendId);
                         if (friend != null) {
                             userFromDB.addFriend(friend);
+                        }
+                    });
+            // Save the updated user
+            userRepository.save(userFromDB);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Update the GamesCollection of a user
+     * @param userId is the ID of the user to update
+     * @param boardGameIds is a list of BoardGame IDs
+     * @return true if the user to update exists, false otherwise
+     */
+    public boolean addGamesToCollection(String userId, List<String> boardGameIds) {
+        User userFromDB = getUserByID(userId);
+        if (userFromDB != null) {
+            boardGameIds.stream()
+                    .forEach(boardGameId -> {
+                        BoardGame boardGame = boardGameService.getGameByID(boardGameId);
+                        if (boardGame != null) {
+                            userFromDB.addGameToCollection(boardGame);
+                        }
+                    });
+            // Save the updated user
+            userRepository.save(userFromDB);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteGamesFromCollection(String userId, List<String> boardGameIds) {
+        User userFromDB = getUserByID(userId);
+        if (userFromDB != null) {
+            boardGameIds.stream()
+                    .forEach(boardGameId -> {
+                        BoardGame boardGame = boardGameService.getGameByID(boardGameId);
+                        if (boardGame != null) {
+                            userFromDB.deleteGameFromCollection(boardGame);
                         }
                     });
             // Save the updated user
