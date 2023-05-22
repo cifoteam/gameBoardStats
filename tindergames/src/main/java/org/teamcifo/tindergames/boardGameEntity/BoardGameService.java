@@ -3,6 +3,7 @@ package org.teamcifo.tindergames.boardGameEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,7 +30,14 @@ public class BoardGameService {
         boardGameRepository.save(game);
         return true;
     }
-    
+
+    public void addBoardGamesToDB(List<BoardGame> gameList) {
+        gameList.stream()
+                .forEach(boardGame -> {
+                   addBoardGameToDB(boardGame);
+                });
+    }
+
     public BoardGame getGameByID(String gameID) {
         Optional<BoardGame> gameFromDB = boardGameRepository.findByGameID(gameID);
         if (gameFromDB.isPresent()) {
