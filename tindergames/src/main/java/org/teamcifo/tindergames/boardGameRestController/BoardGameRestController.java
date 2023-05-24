@@ -57,8 +57,7 @@ public class BoardGameRestController {
         headers.add("version", "api 1.0");
 
         Optional<BoardGame> gameFound = Optional.ofNullable(gameService.getGameByID(gameID));
-        boolean game = gameFound.isPresent();
-        if (game){
+        if (gameFound.isPresent()){
             gameService.deleteGameFromDB(gameFound.get());
             headers.add("operationStatus", "deleted");
             return ResponseEntity.accepted().headers(headers).body(gameFound.get());
