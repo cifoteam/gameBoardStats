@@ -1,5 +1,7 @@
 package org.teamcifo.tindergames.userEntity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +23,11 @@ import java.util.*;
 // JPA annotations
 @Entity(name="User")
 @Table(name="USER_TABLE")
+// annotation that filters recursive on the friends bidirectional relationship
+// link to documentation: https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion#bd-json-identity-info
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "userId")
 public class User {
 
     @Column
