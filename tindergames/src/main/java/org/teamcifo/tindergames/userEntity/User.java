@@ -25,6 +25,7 @@ import java.util.*;
 @Table(name="USER_TABLE")
 // annotation that filters recursive on the friends bidirectional relationship
 // link to documentation: https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion#bd-json-identity-info
+
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "userId")
@@ -61,10 +62,20 @@ public class User {
     @ToString.Exclude
     private Set<User> friends;
 
+    @ManyToMany
+    @JoinTable(name = "USER_FRIENDS",
+            joinColumns = @JoinColumn(name = "FRIEND_FK"),
+            inverseJoinColumns = @JoinColumn(name = "USER_FK")
+    )
+    @ToString.Exclude
+    private Set<User> friendOf;
+
+
     public User() {
         this.userId = Helpers.generateUUID();
         this.gameplays = new HashSet<>();
         this.friends = new HashSet<>();
+        this.friendOf = new HashSet<>();
         this.userGamesCollection = new HashMap<>();
     }
 

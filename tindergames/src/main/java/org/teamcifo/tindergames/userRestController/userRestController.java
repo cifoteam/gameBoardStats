@@ -66,7 +66,8 @@ public class userRestController {
     }
 
     @DeleteMapping("/deleteUser")
-    public ResponseEntity<User> deleteUser(@RequestParam("userID") String userID){
+    // TODO: change the return to a boolean statement
+    public ResponseEntity<Boolean> deleteUser(@RequestParam("userID") String userID){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "deleteUser");
         headers.add("version", "api 1.0");
@@ -75,8 +76,9 @@ public class userRestController {
         if (userFound.isPresent()){
             userService.deleteUserFromDB(userFound.get());
             headers.add("operationStatus", "user deleted");
-            return ResponseEntity.accepted().headers(headers).body(userFound.get());
+            return ResponseEntity.accepted().headers(headers).body(true);
         }
-        return ResponseEntity.accepted().body(null);
+        return ResponseEntity.accepted().headers(headers).body(false);
     }
 }
+// https://stackoverflow.com/questions/34946237/how-delete-object-in-one-side-at-bidirectional-relation
