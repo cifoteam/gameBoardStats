@@ -66,7 +66,6 @@ public class userRestController {
     }
 
     @DeleteMapping("/deleteUser")
-    // TODO: change the return to a boolean statement
     public ResponseEntity<Boolean> deleteUser(@RequestParam("userID") String userID){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "deleteUser");
@@ -77,6 +76,21 @@ public class userRestController {
             userService.deleteUserFromDB(userFound.get());
             headers.add("operationStatus", "user deleted");
             return ResponseEntity.accepted().headers(headers).body(true);
+        }
+        return ResponseEntity.accepted().headers(headers).body(false);
+    }
+
+    @DeleteMapping("/deleteFriend")
+    public ResponseEntity<Boolean> deleteFriend(@RequestParam("userID") String userID, @RequestParam("friendID") String friendID){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("operation", "deleteFriend");
+        headers.add("version", "api 1.0");
+
+        Optional<User> userFound = Optional.ofNullable(userService.getUserByID(userID));
+        if (userFound.isPresent()){
+            userService.deleteFriend(userID, friendID, userFound.get().getFriends());
+            return ResponseEntity.accepted().headers(headers).body(true);
+
         }
         return ResponseEntity.accepted().headers(headers).body(false);
     }

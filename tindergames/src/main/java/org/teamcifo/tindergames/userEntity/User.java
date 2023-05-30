@@ -96,6 +96,10 @@ public class User {
         this.friends.add(friend);
     }
 
+    public void deleteFriend(User friend){
+        this.friends.remove(friend);
+    }
+
     public void addGameToCollection(BoardGame boardGame) {
         this.userGamesCollection.putIfAbsent(boardGame, new GameStats());
     }
@@ -108,6 +112,10 @@ public class User {
 
     public boolean hasGame(BoardGame boardGame) {
         return this.userGamesCollection.containsKey(boardGame);
+    }
+
+    public Set<User> getFriends(){
+        return this.friends;
     }
 
     @Override

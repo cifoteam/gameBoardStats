@@ -7,6 +7,7 @@ import org.teamcifo.tindergames.boardGameEntity.BoardGameService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -182,6 +183,25 @@ public class UserService {
                         User friend = getUserByID(friendId);
                         if (friend != null) {
                             userFromDB.addFriend(friend);
+                        }
+                    });
+            // Save the updated user
+            userRepository.save(userFromDB);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteFriend(String userId, String friendIdToRemove, Set<User> friends){
+        User userFromDB= getUserByID(userId);
+        if (userFromDB != null) {
+            friends.stream()
+                    .filter(friendId -> !(friendId.equals(userId)))
+                    .forEach(friendId -> {
+                        // Retrieve the friend from the DB
+                        User friendToRemove = getUserByID(friendIdToRemove);
+                        if (friendToRemove != null) {
+                            userFromDB.deleteFriend(friendToRemove);
                         }
                     });
             // Save the updated user
