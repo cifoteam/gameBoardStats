@@ -8,6 +8,7 @@ import org.teamcifo.tindergames.boardGameEntity.BoardGame;
 import org.teamcifo.tindergames.userEntity.User;
 import org.teamcifo.tindergames.userEntity.UserService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -93,6 +94,20 @@ public class userRestController {
 
         }
         return ResponseEntity.accepted().headers(headers).body(false);
+    }
+
+    @PutMapping("/addFriends")
+    public ResponseEntity<User> addFriend(@RequestParam("userID") String userID, @RequestParam("friendsIds") List<String> friendsIds){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("operation", "addFriend");
+        headers.add("version", "api 1.0");
+
+        Optional<User> userFormDB = Optional.ofNullable(userService.getUserByID(userID));
+        if(userFormDB.isPresent()){
+            userService.addFriends(userFormDB.get().getUserId(), friendsIds);
+            return ResponseEntity.accepted().headers(headers).body(userFormDB.get());
+        }
+        return ResponseEntity.accepted().headers(headers).body(null);
     }
 }
 // https://stackoverflow.com/questions/34946237/how-delete-object-in-one-side-at-bidirectional-relation
