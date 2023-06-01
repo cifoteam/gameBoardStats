@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.teamcifo.tindergames.boardGameEntity.BoardGame;
+import org.teamcifo.tindergames.boardGameEntity.BoardGameService;
 import org.teamcifo.tindergames.userEntity.User;
 import org.teamcifo.tindergames.userEntity.UserService;
 
@@ -17,6 +18,8 @@ public class userRestController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    BoardGameService boardGameService;
 
     @GetMapping("/users/")
     public Iterable<User> getAllUsers(){
@@ -106,6 +109,38 @@ public class userRestController {
         if(userFormDB.isPresent()){
             userService.addFriends(userFormDB.get().getUserId(), friendsIds);
             return ResponseEntity.accepted().headers(headers).body(userFormDB.get());
+        }
+        return ResponseEntity.accepted().headers(headers).body(null);
+    }
+
+    @PutMapping("/addGameToCollection")
+    public ResponseEntity<User> addGameToCollection(@RequestParam("userID") String userID, @RequestParam("gameID") String gameID){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("operation", "addGameToUserCollection");
+        headers.add("version", "api 1.0");
+
+        Optional<User> userFromDB = Optional.ofNullable(userService.getUserByID(userID));
+        Optional<BoardGame> gameFromDB = Optional.ofNullable(boardGameService.getGameByID(gameID));
+        if (userFromDB.isPresent() && gameFromDB.isPresent()){
+            userFromDB.get().addGameToCollection(gameFromDB.get());
+            updateUser(userFromDB.get());
+            return ResponseEntity.accepted().headers(headers).body(userFromDB.get());
+        }
+        return ResponseEntity.accepted().headers(headers).body(null);
+    }
+
+    @PutMapping("/deleteGameFromCollection")
+    public ResponseEntity<User> deleteGameFromCollection(@RequestParam("userID") String userID, @RequestParam("gameID") String gameID){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("operation", "deleteGameFromCollection");
+        headers.add("version", "api 1.0");
+
+        Optional<User> userFromDB = Optional.ofNullable(userService.getUserByID(userID));
+        Optional<BoardGame> gameFromDB = Optional.ofNullable(boardGameService.getGameByID(gameID));
+        if (userFromDB.isPresent() && gameFromDB.isPresent()){
+            userFromDB.get().deleteGameFromCollection(gameFromDB.get());
+            updateUser(userFromDB.get());
+            return ResponseEntity.accepted().headers(headers).body(userFromDB.get());
         }
         return ResponseEntity.accepted().headers(headers).body(null);
     }
