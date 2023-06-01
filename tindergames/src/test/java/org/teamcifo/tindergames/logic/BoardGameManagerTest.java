@@ -98,7 +98,7 @@ class BoardGameManagerTest {
     public void updateMinPlayTimeTest(){
         Faker fake = new Faker();
         BoardGame game = FakeDataGenerator.createFakeGame();
-        int initialMinPlayTime = game.getMaxPlayers();
+        int initialMinPlayTime = game.getMinPlayTime();
         int newMinPlayTime = fake.number().numberBetween(1, 6);
         BoardGameManager.updateMinPlayTime(game, newMinPlayTime);
         assertNotEquals(initialMinPlayTime, game.getMinPlayTime());
@@ -107,7 +107,7 @@ class BoardGameManagerTest {
     public void updateMaxPlayTimeTest(){
         Faker fake = new Faker();
         BoardGame game = FakeDataGenerator.createFakeGame();
-        int initialMaxPlayTime = game.getMaxPlayers();
+        int initialMaxPlayTime = game.getMaxPlayTime();
         int newMaxPlayTime = fake.number().numberBetween(1, 6);
         BoardGameManager.updateMaxPlayTime(game, newMaxPlayTime);
         assertNotEquals(initialMaxPlayTime, game.getMaxPlayTime());
