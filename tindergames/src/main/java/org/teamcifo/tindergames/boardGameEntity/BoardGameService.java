@@ -16,6 +16,11 @@ public class BoardGameService {
         return boardGameRepository.findAll();
     }
 
+    public BoardGame createGame(BoardGame game){
+        BoardGame newGame = boardGameRepository.save(game);
+        return newGame;
+    }
+
 
     public boolean addBoardGameToDB(BoardGame game){
 

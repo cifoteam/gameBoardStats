@@ -1,6 +1,8 @@
 package org.teamcifo.tindergames.boardGameEntity;
 
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +13,7 @@ import org.teamcifo.tindergames.utils.Helpers;
 @AllArgsConstructor
 @Entity(name="BoardGame")
 @Table(name="BOARDGAME_TABLE")
-
+@JsonSerialize
 public class BoardGame {
 
     @Id
@@ -50,5 +52,9 @@ public class BoardGame {
         this.gameID = Helpers.generateUUID();
     }
 
-
+    @Override
+    @JsonValue
+    public String toString() {
+        return this.getGameTitle();
+    }
 }

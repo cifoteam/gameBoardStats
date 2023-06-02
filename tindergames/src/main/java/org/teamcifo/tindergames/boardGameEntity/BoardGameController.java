@@ -51,7 +51,7 @@ public class BoardGameController {
         containerToView.addAttribute("boardgame", gameFromDB);
         return "boardgames/gameDetails";
     }
-    @GetMapping(value = "/{gameTitle}")
+    @GetMapping(value = "game/{gameTitle}")
     public String getByGameTitle(@PathVariable("gameTitle") String gameTitle, Model containerToView) {
         BoardGame gameFromDB = boardGameService.getGameByGameTitle(gameTitle);
         containerToView.addAttribute("boardgame", gameFromDB);
