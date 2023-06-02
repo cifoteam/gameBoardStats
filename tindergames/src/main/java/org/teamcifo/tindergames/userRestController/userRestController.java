@@ -145,7 +145,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(null);
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public ResponseEntity<User> login(@RequestParam("username")String username, @RequestParam("password")String password){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "login");
