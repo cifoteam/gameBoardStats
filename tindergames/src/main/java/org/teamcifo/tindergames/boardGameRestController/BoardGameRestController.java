@@ -17,11 +17,6 @@ public class BoardGameRestController {
     @Autowired
     BoardGameService gameService;
 
-    @GetMapping("")
-    public String index(){
-        return "Welcome to Meeple Match API!";
-    }
-
     @GetMapping({"/", ""})
     public Iterable<BoardGame> getAllGames(){
         return gameService.getAllBoardGames();
