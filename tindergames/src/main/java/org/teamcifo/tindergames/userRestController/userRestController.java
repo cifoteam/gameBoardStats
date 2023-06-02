@@ -144,5 +144,19 @@ public class userRestController {
         }
         return ResponseEntity.accepted().headers(headers).body(null);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestParam("username")String username, @RequestParam("password")String password){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("operation", "login");
+        headers.add("version", "api 1.0");
+
+        Optional<User> loginUser = Optional.ofNullable(userService.logIn(username, password));
+        if(loginUser.isPresent()){
+            return ResponseEntity.accepted().headers(headers).body(loginUser.get());
+        }
+
+        return ResponseEntity.accepted().headers(headers).body(null);
+    }
 }
 // https://stackoverflow.com/questions/34946237/how-delete-object-in-one-side-at-bidirectional-relation
