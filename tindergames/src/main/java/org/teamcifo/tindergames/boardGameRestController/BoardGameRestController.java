@@ -11,23 +11,18 @@ import org.teamcifo.tindergames.boardGameEntity.BoardGameService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/boardgames")
 public class BoardGameRestController {
 
     @Autowired
     BoardGameService gameService;
 
-    @GetMapping("")
-    public String index(){
-        return "Welcome to Meeple Match API!";
-    }
-
-    @GetMapping("/boardgames/")
+    @GetMapping({"/", ""})
     public Iterable<BoardGame> getAllGames(){
         return gameService.getAllBoardGames();
     }
 
-    @GetMapping("/title/{gameTitle}")
+    @GetMapping("title/{gameTitle}")
     public BoardGame getGameByTitle(@PathVariable String gameTitle){
         Optional<BoardGame> game = Optional.ofNullable(gameService.getGameByGameTitle(gameTitle));
         if (game.isPresent()){
@@ -36,7 +31,7 @@ public class BoardGameRestController {
         return null;
     }
 
-    @GetMapping("/id/{gameID}")
+    @GetMapping("id/{gameID}")
     public BoardGame getGameByID(@PathVariable String gameID){
         Optional<BoardGame> game = Optional.ofNullable(gameService.getGameByID(gameID));
         if (game.isPresent()){
@@ -50,7 +45,7 @@ public class BoardGameRestController {
         return newGame;
     }
 
-    @DeleteMapping("/deleteGame")
+    @DeleteMapping("deleteGame")
     public ResponseEntity<BoardGame> deleteGame(@RequestParam("gameID") String gameID){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "deleteGame");
@@ -65,7 +60,7 @@ public class BoardGameRestController {
         return ResponseEntity.accepted().body(null);
     }
 
-    @PutMapping("/updateGame/")
+    @PutMapping("updateGame")
     public ResponseEntity<BoardGame> updateGame(@RequestBody BoardGame game){
 
         HttpHeaders headers = new HttpHeaders();

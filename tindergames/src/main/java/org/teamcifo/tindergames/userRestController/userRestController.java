@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class userRestController {
 
     @Autowired
@@ -21,12 +21,12 @@ public class userRestController {
     @Autowired
     BoardGameService boardGameService;
 
-    @GetMapping("/users/")
+    @GetMapping({"/", ""})
     public Iterable<User> getAllUsers(){
         return userService.getAllUsers();
     }
 
-    @GetMapping("/username/{username}")
+    @GetMapping("username/{username}")
     public User getUserByUsername(@PathVariable String username){
         Optional<User> user = Optional.ofNullable(userService.getUserByUsername(username));
         if (user.isPresent()){
@@ -35,7 +35,7 @@ public class userRestController {
         return null;
     }
 
-    @GetMapping("/userID/{userID}")
+    @GetMapping("userID/{userID}")
     public User getUserByUserID(@PathVariable String userID){
         Optional<User> user = Optional.ofNullable(userService.getUserByID(userID));
         if (user.isPresent()){
@@ -53,7 +53,7 @@ public class userRestController {
         return false;
     }
 
-    @PutMapping("/updateUser/")
+    @PutMapping("updateUser")
     public ResponseEntity<User> updateUser(@RequestBody User user){
 
         HttpHeaders headers = new HttpHeaders();
@@ -69,7 +69,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(null);
     }
 
-    @DeleteMapping("/deleteUser")
+    @DeleteMapping("deleteUser")
     public ResponseEntity<Boolean> deleteUser(@RequestParam("userID") String userID){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "deleteUser");
@@ -84,7 +84,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(false);
     }
 
-    @DeleteMapping("/deleteFriend")
+    @DeleteMapping("deleteFriend")
     public ResponseEntity<Boolean> deleteFriend(@RequestParam("userID") String userID, @RequestParam("friendID") String friendID){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "deleteFriend");
@@ -99,7 +99,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(false);
     }
 
-    @PutMapping("/addFriends")
+    @PutMapping("addFriends")
     public ResponseEntity<User> addFriend(@RequestParam("userID") String userID, @RequestParam("friendsIds") List<String> friendsIds){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "addFriend");
@@ -113,7 +113,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(null);
     }
 
-    @PutMapping("/addGameToCollection")
+    @PutMapping("addGameToCollection")
     public ResponseEntity<User> addGameToCollection(@RequestParam("userID") String userID, @RequestParam("gameID") String gameID){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "addGameToUserCollection");
@@ -129,7 +129,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(null);
     }
 
-    @PutMapping("/deleteGameFromCollection")
+    @PutMapping("deleteGameFromCollection")
     public ResponseEntity<User> deleteGameFromCollection(@RequestParam("userID") String userID, @RequestParam("gameID") String gameID){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "deleteGameFromCollection");
@@ -145,7 +145,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(null);
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public ResponseEntity<User> login(@RequestParam("username")String username, @RequestParam("password")String password){
         HttpHeaders headers = new HttpHeaders();
         headers.add("operation", "login");
