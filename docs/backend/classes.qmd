@@ -1,0 +1,34 @@
+---
+title: "Entities"
+categories: [Java, SpringBoot, features, design, Backend, JPA, Entities]
+author: Marc Palacín Marfil
+date: 2023/06/06
+from: markdown+emoji
+description: Implementing the required entities
+---
+
+# Introduction
+
+:::{.callout-warning}
+## TODO: Write an introduction to this entry
+:::
+
+## User
+
+```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/userEntity/User.java}
+```
+
+## BoardGame
+
+```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/boardGameEntity/BoardGame.java}
+```
+
+## GameStats
+
+```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/gamesCollectionEntity/GameStats.java}
+```
+
+## Gameplay
+
+```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/gamePlayEntity/Gameplay.java}
+```
