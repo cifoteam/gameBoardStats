@@ -21,11 +21,13 @@ public class userRestController {
     @Autowired
     BoardGameService boardGameService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping({"/", ""})
     public Iterable<User> getAllUsers(){
         return userService.getAllUsers();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("username/{username}")
     public User getUserByUsername(@PathVariable String username){
         Optional<User> user = Optional.ofNullable(userService.getUserByUsername(username));
@@ -35,6 +37,7 @@ public class userRestController {
         return null;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("userID/{userID}")
     public User getUserByUserID(@PathVariable String userID){
         Optional<User> user = Optional.ofNullable(userService.getUserByID(userID));
@@ -44,6 +47,7 @@ public class userRestController {
         return null;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="createUser", consumes = "application/JSON")
     public Boolean createUser(@RequestBody User user){
         if(userService.addUserToDB(user)){
@@ -53,6 +57,7 @@ public class userRestController {
         return false;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("updateUser")
     public ResponseEntity<User> updateUser(@RequestBody User user){
 
@@ -69,6 +74,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(null);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("deleteUser")
     public ResponseEntity<Boolean> deleteUser(@RequestParam("userID") String userID){
         HttpHeaders headers = new HttpHeaders();
@@ -84,6 +90,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(false);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("deleteFriend")
     public ResponseEntity<Boolean> deleteFriend(@RequestParam("userID") String userID, @RequestParam("friendID") String friendID){
         HttpHeaders headers = new HttpHeaders();
@@ -99,6 +106,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(false);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("addFriends")
     public ResponseEntity<User> addFriend(@RequestParam("userID") String userID, @RequestParam("friendsIds") List<String> friendsIds){
         HttpHeaders headers = new HttpHeaders();
@@ -113,6 +121,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(null);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("addGameToCollection")
     public ResponseEntity<User> addGameToCollection(@RequestParam("userID") String userID, @RequestParam("gameID") String gameID){
         HttpHeaders headers = new HttpHeaders();
@@ -129,6 +138,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(null);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("deleteGameFromCollection")
     public ResponseEntity<User> deleteGameFromCollection(@RequestParam("userID") String userID, @RequestParam("gameID") String gameID){
         HttpHeaders headers = new HttpHeaders();
@@ -145,6 +155,7 @@ public class userRestController {
         return ResponseEntity.accepted().headers(headers).body(null);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("login")
     public ResponseEntity<User> login(@RequestParam("username")String username, @RequestParam("password")String password){
         HttpHeaders headers = new HttpHeaders();

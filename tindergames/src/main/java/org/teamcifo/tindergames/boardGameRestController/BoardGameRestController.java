@@ -17,11 +17,13 @@ public class BoardGameRestController {
     @Autowired
     BoardGameService gameService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping({"/", ""})
     public Iterable<BoardGame> getAllGames(){
         return gameService.getAllBoardGames();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("title/{gameTitle}")
     public BoardGame getGameByTitle(@PathVariable String gameTitle){
         Optional<BoardGame> game = Optional.ofNullable(gameService.getGameByGameTitle(gameTitle));
@@ -31,6 +33,7 @@ public class BoardGameRestController {
         return null;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("id/{gameID}")
     public BoardGame getGameByID(@PathVariable String gameID){
         Optional<BoardGame> game = Optional.ofNullable(gameService.getGameByID(gameID));
@@ -39,12 +42,15 @@ public class BoardGameRestController {
         }
         return null;
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="createGame", consumes = "application/JSON")
     public BoardGame createGame(@RequestBody BoardGame game){
         BoardGame newGame = gameService.createGame(game);
         return newGame;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("deleteGame")
     public ResponseEntity<BoardGame> deleteGame(@RequestParam("gameID") String gameID){
         HttpHeaders headers = new HttpHeaders();
@@ -60,6 +66,7 @@ public class BoardGameRestController {
         return ResponseEntity.accepted().body(null);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("updateGame")
     public ResponseEntity<BoardGame> updateGame(@RequestBody BoardGame game){
 
