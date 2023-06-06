@@ -1,6 +1,9 @@
 project:
   type: website
 
+filters:
+  - include-code-files
+
 editor:
   render-on-save: true
 
@@ -13,12 +16,13 @@ website:
   repo-url: https://github.com/cifoteam/gameBoardStats
   repo-subdir: docs
   repo-actions: [edit, issue]
+
   navbar:
     left:
       - sidebar:design
       - sidebar:backend
       - sidebar:frontend
-      - text: About us
+      - text: "About us"
         file: about.qmd
     # Right side
     right:
@@ -44,6 +48,11 @@ website:
       style: docked
       contents: frontend/**
 
+  # Search options
+  search:
+    location: navbar
+    type: overlay
+
   # Page Footer
   page-footer:
     center:
@@ -60,9 +69,7 @@ format:
     # Theme options
     theme:
       light: cosmo
-      #light: [cosmo, theme.scss]
       dark: superhero
-      #dark: [cosmo, theme-dark.scss]
     css: styles.css
     # Table of Contents options
     toc: true
