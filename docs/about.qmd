@@ -1,0 +1,9 @@
+---
+title: "About us"
+---
+
+We're a group of students of the CIFO Web applications course with very diverse backgrounds:
+
+- Víctor Calbareda:
+- David Maqueda:
+- Marc Palacín: Industrial engineer with a passion for computer science, I've been a software engineer for more than 6 years and now I'm gearing towards the DevOps world
