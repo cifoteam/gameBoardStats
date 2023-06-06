@@ -5,8 +5,6 @@ author: Marc Palacín Marfil
 date: 2023/06/06
 from: markdown+emoji
 description: Conceptualizing our requirements into relationships
-filters:
-  - include-code-files
 ---
 
 # Introduction
