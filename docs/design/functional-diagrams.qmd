@@ -5,6 +5,8 @@ author: Marc Palacín Marfil
 date: 2023/06/06
 from: markdown+emoji
 description: Defining the required features of our application
+filters:
+  - include-code-files
 ---
 
 # Introduction
