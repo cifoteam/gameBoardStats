@@ -1,0 +1,23 @@
+---
+title: "REST API controllers"
+categories: [Java, SpringBoot, Backend, REST, API]
+author: Marc Palacín Marfil
+date: 2023/06/06
+from: markdown+emoji
+description: Implementing the REST API controllers
+---
+# Introduction
+
+:::{.callout-warning}
+## TODO: write an introduction to this entry
+:::
+
+## userRestController
+
+```{.java filename="userRestController.java" include=../../tindergames/src/main/java/org/teamcifo/tindergames/userRestController/userRestController.java}
+```
+
+## BoardGameRestController
+
+```{.java filename="BoardGameRestController.java" include=../../tindergames/src/main/java/org/teamcifo/tindergames/boardGameRestController/BoardGameRestController.java}
+```
