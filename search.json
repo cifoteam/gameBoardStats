@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TinderGames",
+    "section": "",
+    "text": "Welcome to the documentation web for our school project on “Matching Table Games between Users and a Library of Table Games.\nThis platform will have a comprehensive library of table games, with information on each game’s rules, objectives, and recommended number of players. Users can browse through the library, learn about new games, and even suggest new games to be added.\nOur user, will can register his games and see stadistic of his plays, in order to check his collection games and his playings of this games. Also, this site will provide a tool to create appointments between users to play together with this games. – Aqui link de los avances practicos de la web. –\nOur team will follow the SCRUM methodology to create this project. So, our team is committed to delivering a high-quality product that meets the needs of our users. We believe with its focus on collaboration, adaptability, and continuous improvement, is the ideal methodology to help us achieve this goal. – Aqui link de la estructura SCRUM. –\nThis documentation web .qmd is designed to keep everyone informed about the project’s progress and to ensure that everyone is on the same page. It will include information on our sprints, user stories, and any important updates or changes to the project. – Aqui link de sprints, user stories, etc.–\nThank you for taking the time to read this introduction, and we look forward to sharing our progress with you."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About us",
+    "section": "",
+    "text": "We’re a group of students of the CIFO Web applications course with very diverse backgrounds:\n\nVíctor Calbareda:\nDavid Maqueda:\nMarc Palacín: Industrial engineer with a passion for computer science, I’ve been a software engineer for more than 6 years and now I’m gearing towards the DevOps world"
+  }
+]

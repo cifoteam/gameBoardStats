@@ -1,8 +1,0 @@
----
-title: "Functional diagrams"
-categories: [DDD, features, design]
-author: Marc Palacín Marfil
-date: 2023/06/06
-from: markdown+emoji
-description: Defining the required features of our application
----

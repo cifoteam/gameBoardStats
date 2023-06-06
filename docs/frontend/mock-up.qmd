@@ -1,8 +1,0 @@
----
-title: "Mock-up"
-categories: [Frontend, mock-up, design, UI]
-author: David Maqueda
-date: 2023/06/06
-from: markdown+emoji
-description: Prototyping our web app user interface
----
