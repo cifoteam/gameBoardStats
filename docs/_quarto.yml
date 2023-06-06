@@ -2,7 +2,7 @@ project:
   type: website
 
 filters:
-  - include-code-files
+  - quarto-ext/include-code-files
 
 editor:
   render-on-save: true
