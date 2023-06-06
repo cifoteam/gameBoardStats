@@ -1,0 +1,71 @@
+project:
+  type: website
+
+editor:
+  render-on-save: true
+
+website:
+  # Website info
+  title: "TinderGames"
+  site-url: https://cifoteam.github.io/gameBoardStats
+
+  # Repository info
+  repo-url: https://github.com/cifoteam/gameBoardStats
+  repo-subdir: docs
+  repo-actions: [edit, issue]
+  navbar:
+    left:
+      - sidebar:design
+      - sidebar:backend
+      - sidebar:frontend
+      - text: About us
+        file: about.qmd
+    # Right side
+    right:
+      - icon: github
+        href: https://github.com/cifoteam
+        aria-label: GitHub
+
+  # Sidebars
+  sidebar:
+    # Categories
+    - id: design
+      title: Design
+      style: docked
+      contents: design/**
+    
+    - id: backend
+      title: Backend
+      style: docked
+      contents: backend/**
+
+    - id: frontend
+      title: Frontend
+      style: docked
+      contents: frontend/**
+
+  # Page Footer
+  page-footer:
+    center:
+      - text: "About"
+        file: about.qmd
+
+  # Look and feel options
+  reader-mode: true
+  page-navigation: true
+
+
+format:
+  html:
+    # Theme options
+    theme:
+      light: cosmo
+      #light: [cosmo, theme.scss]
+      dark: superhero
+      #dark: [cosmo, theme-dark.scss]
+    css: styles.css
+    # Table of Contents options
+    toc: true
+    # Code snippets options
+    code-line-numbers: true
+    code-overflow: scroll

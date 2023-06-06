@@ -1,5 +1,9 @@
 ---
-title: "gameBoardStats"
+title: "TinderGames"
+author: David Maqueda
+date: 2023/06/06
+from: markdown+emoji
+description: Landing page of our project
 ---
 
 Welcome to the documentation web for our school project on "Matching Table Games between Users and a Library of Table Games.
