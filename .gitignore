@@ -14,3 +14,5 @@
 
 # H2
 **/*.db
+
+/.luarc.json
