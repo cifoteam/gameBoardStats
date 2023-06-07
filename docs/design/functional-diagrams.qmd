@@ -9,6 +9,59 @@ description: Defining the required features of our application
 
 # Introduction
 
+This diagrams shows the workflow of our app based on what the user can do based on the use-cases of our service.
+
+---
+
+## User registration
+
+This is the use-case diagram when a user wants to register for the service
+
 :::{.callout-warning}
-## TODO: Pending to populate this entry
+## Creating a new user
+![UML-V1](../img/user-creation-marc.png)
+:::
+
+---
+
+## User login
+
+Diagram for user's login use-case
+
+:::{.callout-warning}
+## User login
+![UML-V1](../img/user-login-marc.png)
+:::
+
+---
+
+## Creating Board Games
+
+This use-case is only for administration tasks. Only Admin can register new boardgames to the data base.
+
+:::{.callout-warning}
+## Creating a Board Game
+![UML-V1](../img/board-gamecreation-marc.png)
+:::
+
+---
+
+## Searching a BoardGame
+
+Use-case diagram for searching a Board Game from the data base
+
+:::{.callout-warning}
+## Searching a Board Game 
+![UML-V1](../img/board-game-search-marc.png)
+:::
+
+---
+
+## Creating a game session
+
+This use-case is based on the steps a user should take to publish a game to be played with friends.
+
+:::{.callout-warning}
+## Creating a Board Game Session
+![UML-V1](../img/game-sesion-creation-marc.png)
 :::

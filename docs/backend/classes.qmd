@@ -9,26 +9,44 @@ description: Implementing the required entities
 
 # Introduction
 
+After the first UML desing, the developement of our java application started. 
+
 :::{.callout-warning}
 ## TODO: Write an introduction to this entry
 :::
 
 ## User
 
+User class has been built using lombok annotations. Has been given a Entity annotation. Also, all the annotations needed to store the object in a SQL DB has been used.
+
+During the developement we have encountered a problem with the JSON serialization and deserialization with the friend parameter. That's why we have found a simple solution to keep building our application. At this point, we are filtering that only returns the friends list with one level of depth.
+
 ```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/userEntity/User.java}
+
 ```
 
 ## BoardGame
 
+BoardGame class with Lombok, JPA an JSON annotations used.
+
 ```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/boardGameEntity/BoardGame.java}
+
 ```
 
 ## GameStats
 
+This class will be used to record statistics from the games played by the user. More features and developement will be done
+
 ```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/gamesCollectionEntity/GameStats.java}
+
 ```
 
 ## Gameplay
 
+Gameplay is the class that will manage the plays that user's can publish and record in our service. 
+
+Still under developement
+
 ```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/gamePlayEntity/Gameplay.java}
+
 ```
