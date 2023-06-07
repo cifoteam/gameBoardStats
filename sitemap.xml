@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cifoteam.github.io/gameBoardStats/backend/uml.html</loc>
-    <lastmod>2023-06-07T16:55:02.278Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cifoteam.github.io/gameBoardStats/backend/controllers.html</loc>
-    <lastmod>2023-06-07T16:55:03.734Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cifoteam.github.io/gameBoardStats/backend/rest-api-controllers.html</loc>
-    <lastmod>2023-06-07T16:55:04.314Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cifoteam.github.io/gameBoardStats/backend/classes.html</loc>
-    <lastmod>2023-06-07T16:55:04.906Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cifoteam.github.io/gameBoardStats/design/functional-diagrams.html</loc>
-    <lastmod>2023-06-07T16:55:05.358Z</lastmod>
-  </url>
-  <url>
     <loc>https://cifoteam.github.io/gameBoardStats/index.html</loc>
-    <lastmod>2023-06-07T16:55:05.754Z</lastmod>
+    <lastmod>2023-06-07T21:22:27.465Z</lastmod>
   </url>
   <url>
     <loc>https://cifoteam.github.io/gameBoardStats/about.html</loc>
-    <lastmod>2023-06-07T16:55:06.134Z</lastmod>
+    <lastmod>2023-06-07T21:22:29.481Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cifoteam.github.io/gameBoardStats/design/functional-diagrams.html</loc>
+    <lastmod>2023-06-07T21:22:29.921Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cifoteam.github.io/gameBoardStats/backend/controllers.html</loc>
+    <lastmod>2023-06-07T21:22:30.577Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cifoteam.github.io/gameBoardStats/backend/rest-api-controllers.html</loc>
+    <lastmod>2023-06-07T21:22:31.141Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cifoteam.github.io/gameBoardStats/backend/uml.html</loc>
+    <lastmod>2023-06-07T21:22:31.537Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cifoteam.github.io/gameBoardStats/backend/classes.html</loc>
+    <lastmod>2023-06-07T21:22:32.061Z</lastmod>
   </url>
   <url>
     <loc>https://cifoteam.github.io/gameBoardStats/frontend/mock-up.html</loc>
-    <lastmod>2023-06-07T16:55:06.514Z</lastmod>
+    <lastmod>2023-06-07T21:22:32.417Z</lastmod>
   </url>
 </urlset>
