@@ -22,125 +22,7 @@ User class has been built using lombok annotations. Has been given a Entity anno
 During the developement we have encountered a problem with the JSON serialization and deserialization with the friend parameter. That's why we have found a simple solution to keep building our application. At this point, we are filtering that only returns the friends list with one level of depth.
 
 ```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/userEntity/User.java}
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
-// JPA annotations
-@Entity(name="User")
-@Table(name="USER_TABLE")
-// annotation that filters recursive on the friends bidirectional relationship
-// link to documentation: https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion#bd-json-identity-info
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "userId")
-public class User {
-
-    @Column
-    private String firstName, lastName, email, username;
-    @Column
-    //@JsonIgnore
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
-    @Id
-    @GenericGenerator(name="system-uuid", strategy="uuid")
-    @Column(updatable = false, nullable = false)
-    private String userId;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "game_statuses_mapping",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "userId")},
-            inverseJoinColumns = {@JoinColumn(name = "game_stats_id", referencedColumnName = "gameStatsId")})
-    @MapKeyJoinColumn(name = "game_id")
-    @ToString.Exclude
-    private Map<BoardGame, GameStats> userGamesCollection; // Keys are BoardGames
-
-    @ManyToMany
-    @JoinTable(name = "USER_GAMEPLAY",
-            joinColumns = @JoinColumn(name = "USER_FK"),
-            inverseJoinColumns = @JoinColumn(name = "GAMEPLAY_FK")
-    )
-    @ToString.Exclude
-    private Set<Gameplay> gameplays;
-
-    @ManyToMany
-    @JoinTable(name = "USER_FRIENDS",
-            joinColumns = @JoinColumn(name = "USER_FK"),
-            inverseJoinColumns = @JoinColumn(name = "FRIEND_FK")
-    )
-    @ToString.Exclude
-    private Set<User> friends;
-
-    @ManyToMany
-    @JoinTable(name = "USER_FRIENDS",
-            joinColumns = @JoinColumn(name = "FRIEND_FK"),
-            inverseJoinColumns = @JoinColumn(name = "USER_FK")
-    )
-    @ToString.Exclude
-    private Set<User> friendOf;
-
-
-    public User() {
-        this.userId = Helpers.generateUUID();
-        this.gameplays = new HashSet<>();
-        this.friends = new HashSet<>();
-        this.friendOf = new HashSet<>();
-        this.userGamesCollection = new HashMap<>();
-    }
-
-    public User(String firstName, String lastName, String password, String email, String username) {
-        this();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.email = email;
-        this.username = username;
-    }
-
-    public boolean checkPassword(String password) {
-        return this.getPassword().equals(password);
-    }
-
-    public void addFriend(User friend) {
-        this.friends.add(friend);
-    }
-
-    public void deleteFriend(User friend){
-        this.friends.remove(friend);
-    }
-
-    public void addGameToCollection(BoardGame boardGame) {
-        this.userGamesCollection.putIfAbsent(boardGame, new GameStats());
-    }
-
-    public void deleteGameFromCollection(BoardGame boardGame) {
-        if (this.hasGame(boardGame)) {
-            this.userGamesCollection.remove(boardGame);
-        }
-    }
-
-    public boolean hasGame(BoardGame boardGame) {
-        return this.userGamesCollection.containsKey(boardGame);
-    }
-
-    public Set<User> getFriends(){
-        return this.friends;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-        return getUserId() != null && Objects.equals(getUserId(), user.getUserId());
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
-}
 ```
 
 ## BoardGame
@@ -148,55 +30,7 @@ public class User {
 BoardGame class with Lombok, JPA an JSON annotations used.
 
 ```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/boardGameEntity/BoardGame.java}
-@Data
-@AllArgsConstructor
-@Entity(name="BoardGame")
-@Table(name="BOARDGAME_TABLE")
-@JsonSerialize
-public class BoardGame {
 
-    @Id
-    @GenericGenerator(name="system-uuid", strategy="uuid")
-    @Column(name="gameID", updatable=false)
-    private String gameID;
-    @Column(name="gameTitle")
-    private String gameTitle;
-    @Column(name="minPlayers")
-    private int minPlayers;
-    @Column(name="maxPlayers")
-    private int maxPlayers;
-    @Column(name="minPlayTime")
-    private int minPlayTime;
-    @Column(name="maxPlayTime")
-    private int maxPlayTime;
-
-    public BoardGame(String gameTitle){
-        this.gameID = Helpers.generateUUID();
-        this.gameTitle = gameTitle;
-        this.minPlayers = 0;
-        this.maxPlayers = 0;
-        this.minPlayTime = 0;
-        this.maxPlayTime = 0;
-    }
-    public BoardGame(String gameTitle, int minPlayers, int maxPlayers, int minPlayTime, int maxPlayTime){
-        this.gameID = Helpers.generateUUID();
-        this.gameTitle = gameTitle;
-        this.minPlayers = minPlayers;
-        this.maxPlayers = maxPlayers;
-        this.minPlayTime = minPlayTime;
-        this.maxPlayTime = maxPlayTime;
-    }
-
-    public BoardGame(){
-        this.gameID = Helpers.generateUUID();
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-        return this.getGameTitle();
-    }
-}
 ```
 
 ## GameStats
@@ -204,58 +38,6 @@ public class BoardGame {
 This class will be used to record statistics from the games played by the user. More features and developement will be done
 
 ```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/gamesCollectionEntity/GameStats.java}
-
-@Getter
-@Setter
-// JPA annotations
-@Entity(name = "GameStats")
-@Table(name = "GAME_STATS")
-public class GameStats {
-    @Id
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(updatable = false, nullable = false)
-    private String gameStatsId;
-    private double buyPrice;
-    private int numTimesPlayed;
-    private int numWins;
-    private boolean owned;
-
-    public GameStats() {
-        this.gameStatsId = Helpers.generateUUID();
-        this.buyPrice = 0.0;
-        this.numTimesPlayed = 0;
-        this.numWins = 0;
-        this.owned = false;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stats = new StringBuilder();
-
-        stats.append("Price when bought:\t").append(this.getBuyPrice());
-        stats.append(System.getProperty("line.separator"));
-        stats.append("Number of times played:\t").append(this.getNumTimesPlayed());
-        stats.append(System.getProperty("line.separator"));
-        stats.append("Number of wins:\t").append(this.getNumWins());
-        stats.append(System.getProperty("line.separator"));
-        stats.append("Game owned:\t").append(this.isOwned());
-        stats.append(System.getProperty("line.separator"));
-
-        return stats.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof GameStats gameStats)) return false;
-        return Double.compare(gameStats.buyPrice, buyPrice) == 0 && numTimesPlayed == gameStats.numTimesPlayed && numWins == gameStats.numWins && owned == gameStats.owned;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(buyPrice, numTimesPlayed, numWins, owned);
-    }
-}
 
 ```
 
@@ -267,35 +49,4 @@ Still under developement
 
 ```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/gamePlayEntity/Gameplay.java}
 
-// Lombok annotations
-@Getter
-@Setter
-// JPA annotations
-@Entity(name="GamePlay")
-@Table(name="GAMEPLAY_TABLE")
-public class Gameplay {
-    @Id
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(updatable = false, nullable = false)
-    private String gameplayId;
-    @ManyToOne
-    @JoinColumn(name = "gameID")
-    private BoardGame boardGame;
-    @Column
-    private Long time;
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private User winner;
-
-    @ManyToMany
-    @JoinTable(name = "USER_GAMEPLAY",
-            joinColumns = @JoinColumn(name = "GAMEPLAY_FK"),
-            inverseJoinColumns = @JoinColumn(name = "USER_FK")
-    )
-    private Set<User> players;
-
-    public Gameplay() {
-        this.gameplayId = Helpers.generateUUID();
-    }
-}
 ```
