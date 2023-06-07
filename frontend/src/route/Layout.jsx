@@ -9,7 +9,9 @@ function Layout() {
             <nav>
                 <Link to="/">Home</Link>
                 <span> | </span>
-                <Link to="/sign-in">Sign in</Link>
+                <Link to="/profile">Profile</Link>
+                <span> | </span>
+                <Link to="/boardgames">Board Games</Link>
                 <span> | </span>
                 <Link to="/contact">Contact</Link>
             </nav>

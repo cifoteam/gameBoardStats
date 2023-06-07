@@ -5,7 +5,7 @@
     - A state manager: the UserProvider component is responsible for managing the state of the User item using the useState hook
 */
 
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import UserService from "./UserService";
 
 // Initialize a User context
@@ -31,9 +31,9 @@ const UserProvider = ({ children }) => {
             console.error("[UserContext - fetchUsers] Error fetchin users:", error);
         }
     };
-    // Define a function to fetch a single user by ID
+    // Define a function to get a single user by ID
     // --> async function, as we don't want to block the execution of the parent thread
-    const fetchUserByID = async (userID) => {
+    const getUserByID = async (userID) => {
         try {
             const receivedUser = await UserService.getUserByID(userID);
             // Set the 'user' state to the received one
@@ -43,9 +43,9 @@ const UserProvider = ({ children }) => {
             console.error("[UserContext - fetchUserByID] Error fetchin user:", error);
         }
     };
-    // Define a function to fetch a single user by username
+    // Define a function to get a single user by username
     // --> async function, as we don't want to block the execution of the parent thread
-    const fetchUserByUsername = async (username) => {
+    const getUserByUsername = async (username) => {
         try {
             const receivedUser = await UserService.getUserByUsername(username);
             // Set the 'user' state to the received one
@@ -70,7 +70,7 @@ const UserProvider = ({ children }) => {
     // Define a function to update an existing user
     const updateUser = async (updatedUser) => {
         try {
-            const uupdateResponse = await UserService.updateUser(updatedUser);
+            const updateResponse = await UserService.updateUser(updatedUser);
             setUsers((prevUsers) => {
                 const updatedUsers = [ ...prevUsers ];
                 const userIndex = updatedUsers.findIndex((user) => user.id === updatedUser.id);
@@ -91,4 +91,29 @@ const UserProvider = ({ children }) => {
             console.error("[UserContext - deleteUser] Error deleting user:", error);
         }
     };
-}
+    // Define a function to login user
+    const loginUser = async (credentials) => {
+        try {
+            const loggedUser = await UserService.loginUser(credentials);
+            console.log("[UserContext - loginUser] Response:", loggedUser);
+            setUser(loggedUser);
+        } catch (error) {
+            console.error("[UserContext - loginUser] Error logging user:", error);
+        }
+    };
+
+    const logoutUser = () => {
+        // Just reset the user state to null
+        setUser(null);
+    };
+
+    // Don't forget the return of the Provider!
+    return (
+        <UserContext.Provider value = {{ user, users, fetchUsers, getUserByID, getUserByUsername, createUser, updateUser, deleteUser, loginUser, logoutUser }}>
+            {children}
+        </UserContext.Provider>
+    );
+};
+
+// Export Context and Provider
+export { UserContext, UserProvider };

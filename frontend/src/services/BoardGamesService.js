@@ -97,4 +97,4 @@ const BoardGamesService = {
 };
 
 // Don't forget to define the default function to export!
-export default BoardGameService;
+export default BoardGamesService;
