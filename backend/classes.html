@@ -67,7 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../backend/rest-api-controllers.html" rel="next">
+<link href="../backend/controllers.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -142,6 +142,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Entities</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../backend/controllers.html" rel="" target="">
+ <span class="dropdown-text">Controller</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../backend/rest-api-controllers.html" rel="" target="">
  <span class="dropdown-text">REST API controllers</span></a>
   </li>  
@@ -206,6 +210,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../backend/classes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Entities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../backend/controllers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Controller</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -288,6 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
+<p>After the first UML desing, the developement of our java application started.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -303,6 +314,8 @@ TODO: Write an introduction to this entry
 </div>
 <section id="user" class="level2">
 <h2 class="anchored" data-anchor-id="user">User</h2>
+<p>User class has been built using lombok annotations. Has been given a Entity annotation. Also, all the annotations needed to store the object in a SQL DB has been used.</p>
+<p>During the developement we have encountered a problem with the JSON serialization and deserialization with the friend parameter. That’s why we have found a simple solution to keep building our application. At this point, we are filtering that only returns the friends list with one level of depth.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">package</span><span class="im"> org</span><span class="op">.</span><span class="im">teamcifo</span><span class="op">.</span><span class="im">tindergames</span><span class="op">.</span><span class="im">userEntity</span><span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="kw">import</span> <span class="im">com</span><span class="op">.</span><span class="im">fasterxml</span><span class="op">.</span><span class="im">jackson</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">JsonIdentityInfo</span><span class="op">;</span></span>
@@ -445,6 +458,7 @@ TODO: Write an introduction to this entry
 </section>
 <section id="boardgame" class="level2">
 <h2 class="anchored" data-anchor-id="boardgame">BoardGame</h2>
+<p>BoardGame class with Lombok, JPA an JSON annotations used.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">package</span><span class="im"> org</span><span class="op">.</span><span class="im">teamcifo</span><span class="op">.</span><span class="im">tindergames</span><span class="op">.</span><span class="im">boardGameEntity</span><span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
@@ -508,6 +522,7 @@ TODO: Write an introduction to this entry
 </section>
 <section id="gamestats" class="level2">
 <h2 class="anchored" data-anchor-id="gamestats">GameStats</h2>
+<p>This class will be used to record statistics from the games played by the user. More features and developement will be done</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">package</span><span class="im"> org</span><span class="op">.</span><span class="im">teamcifo</span><span class="op">.</span><span class="im">tindergames</span><span class="op">.</span><span class="im">gamesCollectionEntity</span><span class="op">;</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="kw">import</span> <span class="im">jakarta</span><span class="op">.</span><span class="im">persistence</span><span class="op">.</span><span class="im">Column</span><span class="op">;</span></span>
@@ -575,6 +590,8 @@ TODO: Write an introduction to this entry
 </section>
 <section id="gameplay" class="level2">
 <h2 class="anchored" data-anchor-id="gameplay">Gameplay</h2>
+<p>Gameplay is the class that will manage the plays that user’s can publish and record in our service.</p>
+<p>Still under developement</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">package</span><span class="im"> org</span><span class="op">.</span><span class="im">teamcifo</span><span class="op">.</span><span class="im">tindergames</span><span class="op">.</span><span class="im">gamePlayEntity</span><span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
@@ -977,8 +994,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../backend/rest-api-controllers.html" class="pagination-link">
-        <span class="nav-page-text">REST API controllers</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../backend/controllers.html" class="pagination-link">
+        <span class="nav-page-text">Controller</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

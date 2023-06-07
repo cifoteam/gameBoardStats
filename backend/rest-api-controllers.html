@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../backend/uml.html" rel="next">
-<link href="../backend/classes.html" rel="prev">
+<link href="../backend/controllers.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -143,6 +143,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Entities</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../backend/controllers.html" rel="" target="">
+ <span class="dropdown-text">Controller</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../backend/rest-api-controllers.html" rel="" target="">
  <span class="dropdown-text">REST API controllers</span></a>
   </li>  
@@ -211,6 +215,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../backend/controllers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Controller</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../backend/rest-api-controllers.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">REST API controllers</span></a>
   </div>
@@ -234,7 +244,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
   <li><a href="#userrestcontroller" id="toc-userrestcontroller" class="nav-link" data-scroll-target="#userrestcontroller">userRestController</a></li>
-  <li><a href="#boardgamerestcontroller" id="toc-boardgamerestcontroller" class="nav-link" data-scroll-target="#boardgamerestcontroller">BoardGameRestController</a></li>
+  <li><a href="#boardgamerestcontroller" id="toc-boardgamerestcontroller" class="nav-link" data-scroll-target="#boardgamerestcontroller">BoardGameRestController</a>
+  <ul class="collapse">
+  <li><a href="#board-games-end-points" id="toc-board-games-end-points" class="nav-link" data-scroll-target="#board-games-end-points">Board Games End-Points</a></li>
+  <li><a href="#user-end-points" id="toc-user-end-points" class="nav-link" data-scroll-target="#user-end-points">User End-Points</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/cifoteam/gameBoardStats/edit/main/docs/backend/rest-api-controllers.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/cifoteam/gameBoardStats/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -571,8 +585,35 @@ TODO: write an introduction to this entry
 <span id="cb2-84"><a href="#cb2-84"></a>    <span class="op">}</span></span>
 <span id="cb2-85"><a href="#cb2-85"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="board-games-end-points" class="level3">
+<h3 class="anchored" data-anchor-id="board-games-end-points">Board Games End-Points</h3>
+<ul>
+<li>GET <code>api/boardgames</code> - fetch all boardgames</li>
+<li>GET <code>api/boardgames/title/{gameTitle}</code> - fetch a board game by title</li>
+<li>GET <code>api/boardgames/id/{gameID}</code> - fetch by gameID</li>
+<li>POST <code>api/boardgames/createGame{BoardGame}</code></li>
+<li>DELETE <code>api/boardgames/deleteGame{gameID}</code></li>
+<li>PUT <code>api/boardgames/updateGame{BoardGame}</code></li>
+</ul>
+</section>
+<section id="user-end-points" class="level3">
+<h3 class="anchored" data-anchor-id="user-end-points">User End-Points</h3>
+<ul>
+<li>GET <code>user/users/</code> - fetch all users</li>
+<li>GET <code>user/users/userID/{userID}</code> - fetch user by userID</li>
+<li>GET <code>user/users/username/{username}</code> - fetch user by username</li>
+<li>POST <code>user/users/createUser{User}</code></li>
+<li>PUT <code>user/users/updateUser{User}</code></li>
+<li>DELETE <code>api/boardgames/deleteUser/{userID}</code></li>
+<li>DELETE <code>api/boardgames/deleteFriend{userID}{friendID}</code> - deletes a friend from user’s friend’s list</li>
+<li>PUT <code>api/boardgames/addFriends{userID}{friendsIds}</code> - recieves a userID and a list of friendId’s</li>
+<li>PUT <code>api/boardgames/addGameToCollection{userID}{gameID}</code></li>
+<li>PUT <code>api/boardgames/deleteGameFromCollection{userID}{gameID}</code></li>
+<li>POST <code>api/boardgames/login{username}{password}</code></li>
+</ul>
 
 
+</section>
 </section>
 </section>
 
@@ -927,8 +968,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../backend/classes.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Entities</span>
+      <a href="../backend/controllers.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Controller</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
