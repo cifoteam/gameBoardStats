@@ -28,6 +28,20 @@ description: Implementing the REST API controllers
 * GET `api/boardgames` - fetch all boardgames
 * GET `api/boardgames/title/{gameTitle}` - fetch a board game by title
 * GET `api/boardgames/id/{gameID}` - fetch by gameID
-* POST `api/boardgames/createGame`
-* DELETE `api/boardgames/deleteGame`
-* PUT `api/boardgames/updateGame`
+* POST `api/boardgames/createGame{BoardGame}`
+* DELETE `api/boardgames/deleteGame{gameID}`
+* PUT `api/boardgames/updateGame{BoardGame}`
+
+### User  End-Points
+
+* GET `user/users/` - fetch all users
+* GET `user/users/userID/{userID}` - fetch user by userID
+* GET `user/users/username/{username}` - fetch user by username
+* POST `user/users/createUser{User}`
+* PUT `user/users/updateUser{User}`
+* DELETE `api/boardgames/deleteUser/{userID}`
+* DELETE `api/boardgames/deleteFriend{userID}{friendID}` - deletes a friend from user's friend's list
+* PUT `api/boardgames/addFriends{userID}{friendsIds}` - recieves a userID and a list of friendId's
+* PUT `api/boardgames/addGameToCollection{userID}{gameID}`
+* PUT `api/boardgames/deleteGameFromCollection{userID}{gameID}`
+* POST `api/boardgames/login{username}{password}` 
