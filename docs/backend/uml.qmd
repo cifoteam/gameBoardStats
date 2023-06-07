@@ -7,8 +7,36 @@ from: markdown+emoji
 description: Conceptualizing our requirements into relationships
 ---
 
-# Introduction
+# Introduction 
+
+With in the first stages of the project we came to defince wiche ones where our core classes to start working on. On later stages, the original uml extended based on vertical slicing design to provide more classes taking care of busines logic of our service.
+
+
+## UML-V1
+
+User, BoardGame, GamePlays and GameCollection had been defined as our core model classes and stablished the most basic relationship between them. Also, at this stage a simple vocabulary is set so all the team knows what is been discussed.
 
 :::{.callout-warning}
-## TODO: Pending to populate this entry
+## uml-v1
+![UML-V1](../img/uml-1-victor.png)
+:::
+
+---
+
+## UML-V2
+
+After the core model is defined, the second stage of the desing consists on applying vertical business logic. With that vertical slicing it's easier to see the relatonships between our classes and the scoops of concern for each entity.
+
+:::{.callout-warning}
+## uml-v2
+![UML-V1](../img/uml-2-marc.png)
+:::
+
+## UML-V3
+
+UML-V2 helped to build a program that is being used as a console mockup. On V3 the developement of the web application started. All managers has been removed and replaced with Service (for business logic), Controller (managing HTTP request for administration tasks), Rest controllers (creating all the endpoints to have a working website)
+and a Repository (a SQL DB)
+:::{.callout-warning}
+## uml-v3
+![UML-V1](../img/uml-3-marc.png)
 :::

@@ -1,0 +1,49 @@
+---
+title: "Controller"
+categories: [ SpringBoot, features, design, Backend, Thymeleaf]
+author: Víctor Calvache
+date: 2023/06/06
+from: markdown+emoji
+description: Controller classes and server operations
+---
+
+
+# Introduction
+
+This section covers all the controllers developed for performing CRUD operations of our service from the server side. This tasks will be performed only by Administrators, not users.
+
+## User
+
+User Controller and server endpoints implementation.
+
+User has a login sesion implementation.
+
+```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/userEntity/UserController.java}
+
+```
+
+Link to HMTL template with Thymeleaf to perform CRUD operations to the server [User templates](https://github.com/cifoteam/gameBoardStats/tree/main/tindergames/src/main/resources/templates/users)
+
+## BoardGame
+
+BoardGame Controller and server endpoints implementation
+
+```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/boardGameEntity/BoardGameController.java}
+
+```
+
+Link to HMTL template with Thymeleaf to perform CRUD operations to the server [BoardGame templates](https://github.com/cifoteam/gameBoardStats/tree/main/tindergames/src/main/resources/templates/boardgames)
+
+## Gameplay
+
+Gameplay is the class that will manage the plays that user's can publish and record in our service. 
+
+Gameplays Controller and server endpoints implementation
+
+Still under developement
+
+```{.java include=../../tindergames/src/main/java/org/teamcifo/tindergames/gamePlayEntity/GameplayController.java}
+
+```
+
+Link to HMTL template with Thymeleaf to perform CRUD operations to the server [Gameplays templates](https://github.com/cifoteam/gameBoardStats/tree/main/tindergames/src/main/resources/templates/boardgames)
