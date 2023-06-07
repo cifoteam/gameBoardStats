@@ -5,13 +5,13 @@ on:
       - main
     paths:
       - docs/**
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
-    paths:
-      - docs/**    
+  #pull_request:
+  #  types:
+  #    - closed
+  #  branches:
+  #    - main
+  #  paths:
+  #    - docs/**    
 
 name: Quarto Render and Publish
 
