@@ -13,7 +13,7 @@ import org.teamcifo.tindergames.utils.Helpers;
 @AllArgsConstructor
 @Entity(name="BoardGame")
 @Table(name="BOARDGAME_TABLE")
-@JsonSerialize
+//@JsonSerialize
 public class BoardGame {
 
     @Id
@@ -53,7 +53,7 @@ public class BoardGame {
     }
 
     @Override
-    @JsonValue
+    //@JsonValue
     public String toString() {
         return this.getGameTitle();
     }
