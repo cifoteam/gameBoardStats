@@ -22,3 +22,12 @@ description: Implementing the REST API controllers
 
 ```{.java filename="BoardGameRestController.java" include=../../tindergames/src/main/java/org/teamcifo/tindergames/boardGameRestController/BoardGameRestController.java}
 ```
+
+### Board Games End-Points
+
+* GET `api/boardgames` - fetch all boardgames
+* GET `api/boardgames/title/{gameTitle}` - fetch a board game by title
+* GET `api/boardgames/id/{gameID}` - fetch by gameID
+* POST `api/boardgames/createGame`
+* DELETE `api/boardgames/deleteGame`
+* PUT `api/boardgames/updateGame`
