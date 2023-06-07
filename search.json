@@ -1,31 +1,59 @@
 [
   {
-    "objectID": "backend/uml.html",
-    "href": "backend/uml.html",
-    "title": "UML",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TinderGames",
     "section": "",
-    "text": "With in the first stages of the project we came to defince wiche ones where our core classes to start working on. On later stages, the original uml extended based on vertical slicing design to provide more classes taking care of busines logic of our service.\n\n\nUser, BoardGame, GamePlays and GameCollection had been defined as our core model classes and stablished the most basic relationship between them. Also, at this stage a simple vocabulary is set so all the team knows what is been discussed.\n\n\n\n\n\n\numl-v1\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nAfter the core model is defined, the second stage of the desing consists on applying vertical business logic. With that vertical slicing it’s easier to see the relatonships between our classes and the scoops of concern for each entity.\n\n\n\n\n\n\numl-v2\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\nUML-V2 helped to build a program that is being used as a console mockup. On V3 the developement of the web application started. All managers has been removed and replaced with Service (for business logic), Controller (managing HTTP request for administration tasks), Rest controllers (creating all the endpoints to have a working website) and a Repository (a SQL DB) :::{.callout-warning} ## uml-v3  :::"
+    "text": "Welcome to the documentation web for our school project on “Matching Table Games between Users and a Library of Table Games.\nThis platform will have a comprehensive library of table games, with information on each game’s rules, objectives, and recommended number of players. Users can browse through the library, learn about new games, and even suggest new games to be added.\nOur user, can register his owned games and see stadistic of his plays, in order to check his collection games and his playings of this games. Also, this site will provide a tool to create appointments between users to play together with their games. – Aqui link de los avances practicos de la web. –\nOur team will follow the SCRUM methodology to create this project. So, our team is committed to delivering a high-quality product that meets the needs of our users. We believe with its focus on collaboration, adaptability, and continuous improvement, is the ideal methodology to help us achieve this goal. – Aqui link de la estructura SCRUM. –\nThis documentation web .qmd is designed to keep everyone informed about the project’s progress and to ensure that everyone is on the same page. It will include information on our sprints, user stories, and any important updates or changes to the project. – Aqui link de sprints, user stories, etc.–\nThank you for taking the time to read this introduction, and we look forward to sharing our progress with you."
   },
   {
-    "objectID": "backend/uml.html#uml-v1",
-    "href": "backend/uml.html#uml-v1",
-    "title": "UML",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About us",
     "section": "",
-    "text": "User, BoardGame, GamePlays and GameCollection had been defined as our core model classes and stablished the most basic relationship between them. Also, at this stage a simple vocabulary is set so all the team knows what is been discussed.\n\n\n\n\n\n\numl-v1\n\n\n\n\n\n\nUML-V1"
+    "text": "We’re a group of students of the CIFO Web applications course with very diverse backgrounds:\n\nVíctor Calvache:\nDavid Maqueda:\nMarc Palacín: Industrial engineer with a passion for computer science, I’ve been a software engineer for more than 6 years and now I’m gearing towards the DevOps world"
   },
   {
-    "objectID": "backend/uml.html#uml-v2",
-    "href": "backend/uml.html#uml-v2",
-    "title": "UML",
+    "objectID": "design/functional-diagrams.html",
+    "href": "design/functional-diagrams.html",
+    "title": "Functional diagrams",
     "section": "",
-    "text": "After the core model is defined, the second stage of the desing consists on applying vertical business logic. With that vertical slicing it’s easier to see the relatonships between our classes and the scoops of concern for each entity.\n\n\n\n\n\n\numl-v2\n\n\n\n\n\n\nUML-V1"
+    "text": "This diagrams shows the workflow of our app based on what the user can do based on the use-cases of our service.\n\n\n\nThis is the use-case diagram when a user wants to register for the service\n\n\n\n\n\n\nCreating a new user\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nDiagram for user’s login use-case\n\n\n\n\n\n\nUser login\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nThis use-case is only for administration tasks. Only Admin can register new boardgames to the data base.\n\n\n\n\n\n\nCreating a Board Game\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nUse-case diagram for searching a Board Game from the data base\n\n\n\n\n\n\nSearching a Board Game\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nThis use-case is based on the steps a user should take to publish a game to be played with friends.\n\n\n\n\n\n\nCreating a Board Game Session\n\n\n\n\n\n\nUML-V1"
   },
   {
-    "objectID": "backend/uml.html#uml-v3",
-    "href": "backend/uml.html#uml-v3",
-    "title": "UML",
+    "objectID": "design/functional-diagrams.html#user-registration",
+    "href": "design/functional-diagrams.html#user-registration",
+    "title": "Functional diagrams",
     "section": "",
-    "text": "UML-V2 helped to build a program that is being used as a console mockup. On V3 the developement of the web application started. All managers has been removed and replaced with Service (for business logic), Controller (managing HTTP request for administration tasks), Rest controllers (creating all the endpoints to have a working website) and a Repository (a SQL DB) :::{.callout-warning} ## uml-v3  :::"
+    "text": "This is the use-case diagram when a user wants to register for the service\n\n\n\n\n\n\nCreating a new user\n\n\n\n\n\n\nUML-V1"
+  },
+  {
+    "objectID": "design/functional-diagrams.html#user-login",
+    "href": "design/functional-diagrams.html#user-login",
+    "title": "Functional diagrams",
+    "section": "",
+    "text": "Diagram for user’s login use-case\n\n\n\n\n\n\nUser login\n\n\n\n\n\n\nUML-V1"
+  },
+  {
+    "objectID": "design/functional-diagrams.html#creating-board-games",
+    "href": "design/functional-diagrams.html#creating-board-games",
+    "title": "Functional diagrams",
+    "section": "",
+    "text": "This use-case is only for administration tasks. Only Admin can register new boardgames to the data base.\n\n\n\n\n\n\nCreating a Board Game\n\n\n\n\n\n\nUML-V1"
+  },
+  {
+    "objectID": "design/functional-diagrams.html#searching-a-boardgame",
+    "href": "design/functional-diagrams.html#searching-a-boardgame",
+    "title": "Functional diagrams",
+    "section": "",
+    "text": "Use-case diagram for searching a Board Game from the data base\n\n\n\n\n\n\nSearching a Board Game\n\n\n\n\n\n\nUML-V1"
+  },
+  {
+    "objectID": "design/functional-diagrams.html#creating-a-game-session",
+    "href": "design/functional-diagrams.html#creating-a-game-session",
+    "title": "Functional diagrams",
+    "section": "",
+    "text": "This use-case is based on the steps a user should take to publish a game to be played with friends.\n\n\n\n\n\n\nCreating a Board Game Session\n\n\n\n\n\n\nUML-V1"
   },
   {
     "objectID": "backend/controllers.html",
@@ -77,6 +105,34 @@
     "text": "BoardGameRestController.java\n\npackage org.teamcifo.tindergames.boardGameRestController;\n\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.http.HttpHeaders;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.*;\nimport org.teamcifo.tindergames.boardGameEntity.BoardGame;\nimport org.teamcifo.tindergames.boardGameEntity.BoardGameController;\nimport org.teamcifo.tindergames.boardGameEntity.BoardGameService;\n\nimport java.util.Optional;\n\n@RestController\n@RequestMapping(\"/api/boardgames\")\npublic class BoardGameRestController {\n\n    @Autowired\n    BoardGameService gameService;\n\n    @CrossOrigin(origins = \"http://localhost:3000\")\n    @GetMapping({\"/\", \"\"})\n    public Iterable&lt;BoardGame&gt; getAllGames(){\n        return gameService.getAllBoardGames();\n    }\n\n    @CrossOrigin(origins = \"http://localhost:3000\")\n    @GetMapping(\"title/{gameTitle}\")\n    public BoardGame getGameByTitle(@PathVariable String gameTitle){\n        Optional&lt;BoardGame&gt; game = Optional.ofNullable(gameService.getGameByGameTitle(gameTitle));\n        if (game.isPresent()){\n            return game.get();\n        }\n        return null;\n    }\n\n    @CrossOrigin(origins = \"http://localhost:3000\")\n    @GetMapping(\"id/{gameID}\")\n    public BoardGame getGameByID(@PathVariable String gameID){\n        Optional&lt;BoardGame&gt; game = Optional.ofNullable(gameService.getGameByID(gameID));\n        if (game.isPresent()){\n            return game.get();\n        }\n        return null;\n    }\n\n    @CrossOrigin(origins = \"http://localhost:3000\")\n    @PostMapping(path=\"createGame\", consumes = \"application/JSON\")\n    public BoardGame createGame(@RequestBody BoardGame game){\n        BoardGame newGame = gameService.createGame(game);\n        return newGame;\n    }\n\n    @CrossOrigin(origins = \"http://localhost:3000\")\n    @DeleteMapping(\"deleteGame\")\n    public ResponseEntity&lt;BoardGame&gt; deleteGame(@RequestParam(\"gameID\") String gameID){\n        HttpHeaders headers = new HttpHeaders();\n        headers.add(\"operation\", \"deleteGame\");\n        headers.add(\"version\", \"api 1.0\");\n\n        Optional&lt;BoardGame&gt; gameFound = Optional.ofNullable(gameService.getGameByID(gameID));\n        if (gameFound.isPresent()){\n            gameService.deleteGameFromDB(gameFound.get());\n            headers.add(\"operationStatus\", \"deleted\");\n            return ResponseEntity.accepted().headers(headers).body(gameFound.get());\n        }\n        return ResponseEntity.accepted().body(null);\n    }\n\n    @CrossOrigin(origins = \"http://localhost:3000\")\n    @PutMapping(\"updateGame\")\n    public ResponseEntity&lt;BoardGame&gt; updateGame(@RequestBody BoardGame game){\n\n        HttpHeaders headers = new HttpHeaders();\n        headers.add(\"operation\", \"updateGame\");\n        headers.add(\"version\", \"api 1.0\");\n        Optional&lt;BoardGame&gt; gameFromDB= Optional.ofNullable(gameService.getGameByID(game.getGameID()));\n\n        if (gameFromDB.isPresent()){\n            gameService.updateGameFromDB(game);\n            headers.add(\"operationStatus\", \"updated\");\n            return  ResponseEntity.accepted().headers(headers).body(gameService.getGameByID(game.getGameID()));\n        }\n        return ResponseEntity.accepted().headers(headers).body(null);\n    }\n}\n\n\n\n\nGET api/boardgames - fetch all boardgames\nGET api/boardgames/title/{gameTitle} - fetch a board game by title\nGET api/boardgames/id/{gameID} - fetch by gameID\nPOST api/boardgames/createGame{BoardGame}\nDELETE api/boardgames/deleteGame{gameID}\nPUT api/boardgames/updateGame{BoardGame}\n\n\n\n\n\nGET user/users/ - fetch all users\nGET user/users/userID/{userID} - fetch user by userID\nGET user/users/username/{username} - fetch user by username\nPOST user/users/createUser{User}\nPUT user/users/updateUser{User}\nDELETE api/boardgames/deleteUser/{userID}\nDELETE api/boardgames/deleteFriend{userID}{friendID} - deletes a friend from user’s friend’s list\nPUT api/boardgames/addFriends{userID}{friendsIds} - recieves a userID and a list of friendId’s\nPUT api/boardgames/addGameToCollection{userID}{gameID}\nPUT api/boardgames/deleteGameFromCollection{userID}{gameID}\nPOST api/boardgames/login{username}{password}"
   },
   {
+    "objectID": "backend/uml.html",
+    "href": "backend/uml.html",
+    "title": "UML",
+    "section": "",
+    "text": "With in the first stages of the project we came to defince wiche ones where our core classes to start working on. On later stages, the original uml extended based on vertical slicing design to provide more classes taking care of busines logic of our service.\n\n\nUser, BoardGame, GamePlays and GameCollection had been defined as our core model classes and stablished the most basic relationship between them. Also, at this stage a simple vocabulary is set so all the team knows what is been discussed.\n\n\n\n\n\n\numl-v1\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nAfter the core model is defined, the second stage of the desing consists on applying vertical business logic. With that vertical slicing it’s easier to see the relatonships between our classes and the scoops of concern for each entity.\n\n\n\n\n\n\numl-v2\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\nUML-V2 helped to build a program that is being used as a console mockup. On V3 the developement of the web application started. All managers has been removed and replaced with Service (for business logic), Controller (managing HTTP request for administration tasks), Rest controllers (creating all the endpoints to have a working website) and a Repository (a SQL DB) :::{.callout-warning} ## uml-v3  :::"
+  },
+  {
+    "objectID": "backend/uml.html#uml-v1",
+    "href": "backend/uml.html#uml-v1",
+    "title": "UML",
+    "section": "",
+    "text": "User, BoardGame, GamePlays and GameCollection had been defined as our core model classes and stablished the most basic relationship between them. Also, at this stage a simple vocabulary is set so all the team knows what is been discussed.\n\n\n\n\n\n\numl-v1\n\n\n\n\n\n\nUML-V1"
+  },
+  {
+    "objectID": "backend/uml.html#uml-v2",
+    "href": "backend/uml.html#uml-v2",
+    "title": "UML",
+    "section": "",
+    "text": "After the core model is defined, the second stage of the desing consists on applying vertical business logic. With that vertical slicing it’s easier to see the relatonships between our classes and the scoops of concern for each entity.\n\n\n\n\n\n\numl-v2\n\n\n\n\n\n\nUML-V1"
+  },
+  {
+    "objectID": "backend/uml.html#uml-v3",
+    "href": "backend/uml.html#uml-v3",
+    "title": "UML",
+    "section": "",
+    "text": "UML-V2 helped to build a program that is being used as a console mockup. On V3 the developement of the web application started. All managers has been removed and replaced with Service (for business logic), Controller (managing HTTP request for administration tasks), Rest controllers (creating all the endpoints to have a working website) and a Repository (a SQL DB) :::{.callout-warning} ## uml-v3  :::"
+  },
+  {
     "objectID": "backend/classes.html",
     "href": "backend/classes.html",
     "title": "Entities",
@@ -110,62 +166,6 @@
     "title": "Entities",
     "section": "",
     "text": "Gameplay is the class that will manage the plays that user’s can publish and record in our service.\nStill under developement\npackage org.teamcifo.tindergames.gamePlayEntity;\n\n\nimport jakarta.persistence.*;\nimport lombok.Getter;\nimport lombok.Setter;\nimport org.hibernate.annotations.GenericGenerator;\nimport org.teamcifo.tindergames.boardGameEntity.BoardGame;\nimport org.teamcifo.tindergames.userEntity.User;\nimport org.teamcifo.tindergames.utils.Helpers;\n\nimport java.util.Set;\n\n// Lombok annotations\n@Getter\n@Setter\n// JPA annotations\n@Entity(name=\"GamePlay\")\n@Table(name=\"GAMEPLAY_TABLE\")\npublic class Gameplay {\n    @Id\n    @GenericGenerator(name = \"system-uuid\", strategy = \"uuid\")\n    @Column(updatable = false, nullable = false)\n    private String gameplayId;\n    @ManyToOne\n    @JoinColumn(name = \"gameID\")\n    private BoardGame boardGame;\n    @Column\n    private Long time;\n    @ManyToOne\n    @JoinColumn(name = \"id\")\n    private User winner;\n\n    @ManyToMany\n    @JoinTable(name = \"USER_GAMEPLAY\",\n            joinColumns = @JoinColumn(name = \"GAMEPLAY_FK\"),\n            inverseJoinColumns = @JoinColumn(name = \"USER_FK\")\n    )\n    private Set&lt;User&gt; players;\n\n    public Gameplay() {\n        this.gameplayId = Helpers.generateUUID();\n    }\n}"
-  },
-  {
-    "objectID": "design/functional-diagrams.html",
-    "href": "design/functional-diagrams.html",
-    "title": "Functional diagrams",
-    "section": "",
-    "text": "This diagrams shows the workflow of our app based on what the user can do based on the use-cases of our service.\n\n\n\nThis is the use-case diagram when a user wants to register for the service\n\n\n\n\n\n\nCreating a new user\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nDiagram for user’s login use-case\n\n\n\n\n\n\nUser login\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nThis use-case is only for administration tasks. Only Admin can register new boardgames to the data base.\n\n\n\n\n\n\nCreating a Board Game\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nUse-case diagram for searching a Board Game from the data base\n\n\n\n\n\n\nSearching a Board Game\n\n\n\n\n\n\nUML-V1\n\n\n\n\n\n\n\n\nThis use-case is based on the steps a user should take to publish a game to be played with friends.\n\n\n\n\n\n\nCreating a Board Game Session\n\n\n\n\n\n\nUML-V1"
-  },
-  {
-    "objectID": "design/functional-diagrams.html#user-registration",
-    "href": "design/functional-diagrams.html#user-registration",
-    "title": "Functional diagrams",
-    "section": "",
-    "text": "This is the use-case diagram when a user wants to register for the service\n\n\n\n\n\n\nCreating a new user\n\n\n\n\n\n\nUML-V1"
-  },
-  {
-    "objectID": "design/functional-diagrams.html#user-login",
-    "href": "design/functional-diagrams.html#user-login",
-    "title": "Functional diagrams",
-    "section": "",
-    "text": "Diagram for user’s login use-case\n\n\n\n\n\n\nUser login\n\n\n\n\n\n\nUML-V1"
-  },
-  {
-    "objectID": "design/functional-diagrams.html#creating-board-games",
-    "href": "design/functional-diagrams.html#creating-board-games",
-    "title": "Functional diagrams",
-    "section": "",
-    "text": "This use-case is only for administration tasks. Only Admin can register new boardgames to the data base.\n\n\n\n\n\n\nCreating a Board Game\n\n\n\n\n\n\nUML-V1"
-  },
-  {
-    "objectID": "design/functional-diagrams.html#searching-a-boardgame",
-    "href": "design/functional-diagrams.html#searching-a-boardgame",
-    "title": "Functional diagrams",
-    "section": "",
-    "text": "Use-case diagram for searching a Board Game from the data base\n\n\n\n\n\n\nSearching a Board Game\n\n\n\n\n\n\nUML-V1"
-  },
-  {
-    "objectID": "design/functional-diagrams.html#creating-a-game-session",
-    "href": "design/functional-diagrams.html#creating-a-game-session",
-    "title": "Functional diagrams",
-    "section": "",
-    "text": "This use-case is based on the steps a user should take to publish a game to be played with friends.\n\n\n\n\n\n\nCreating a Board Game Session\n\n\n\n\n\n\nUML-V1"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TinderGames",
-    "section": "",
-    "text": "Welcome to the documentation web for our school project on “Matching Table Games between Users and a Library of Table Games.\nThis platform will have a comprehensive library of table games, with information on each game’s rules, objectives, and recommended number of players. Users can browse through the library, learn about new games, and even suggest new games to be added.\nOur user, can register his owned games and see stadistic of his plays, in order to check his collection games and his playings of this games. Also, this site will provide a tool to create appointments between users to play together with their games. – Aqui link de los avances practicos de la web. –\nOur team will follow the SCRUM methodology to create this project. So, our team is committed to delivering a high-quality product that meets the needs of our users. We believe with its focus on collaboration, adaptability, and continuous improvement, is the ideal methodology to help us achieve this goal. – Aqui link de la estructura SCRUM. –\nThis documentation web .qmd is designed to keep everyone informed about the project’s progress and to ensure that everyone is on the same page. It will include information on our sprints, user stories, and any important updates or changes to the project. – Aqui link de sprints, user stories, etc.–\nThank you for taking the time to read this introduction, and we look forward to sharing our progress with you."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About us",
-    "section": "",
-    "text": "We’re a group of students of the CIFO Web applications course with very diverse backgrounds:\n\nVíctor Calvache:\nDavid Maqueda:\nMarc Palacín: Industrial engineer with a passion for computer science, I’ve been a software engineer for more than 6 years and now I’m gearing towards the DevOps world"
   },
   {
     "objectID": "frontend/mock-up.html",
