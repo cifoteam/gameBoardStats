@@ -1,7 +1,7 @@
 ---
 title: "Functional diagrams"
 categories: [DDD, features, design]
-author: Marc Palacín Marfil
+author: [Marc Palacín Marfil, Víctor Calbache]
 date: 2023/06/06
 from: markdown+emoji
 description: Defining the required features of our application
@@ -9,7 +9,7 @@ description: Defining the required features of our application
 
 # Introduction
 
-This diagrams shows the workflow of our app based on what the user can do based on the use-cases of our service.
+These diagrams show the workflow of our app based on what the user can do based on the use-cases of our service.
 
 ---
 
@@ -41,7 +41,7 @@ This use-case is only for administration tasks. Only Admin can register new boar
 
 :::{.callout-warning}
 ## Creating a Board Game
-![UML-V1](../img/board-gamecreation-marc.png)
+![UML-V1](../img/board-game-creation-marc.png)
 :::
 
 ---
