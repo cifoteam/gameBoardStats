@@ -1,7 +1,7 @@
 ---
 title: "Entities"
 categories: [Java, SpringBoot, features, design, Backend, JPA, Entities]
-author: Marc Palacín Marfil
+author: [Marc Palacín Marfil, Victor Calbache]
 date: 2023/06/06
 from: markdown+emoji
 description: Implementing the required entities

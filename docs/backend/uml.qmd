@@ -1,7 +1,7 @@
 ---
 title: "UML"
 categories: [Pseudo-code, SpringBoot, features, design, Backend]
-author: Marc Palacín Marfil
+author: [Marc Palacín Marfil, Víctor Calbache]
 date: 2023/06/06
 from: markdown+emoji
 description: Conceptualizing our requirements into relationships
@@ -9,7 +9,7 @@ description: Conceptualizing our requirements into relationships
 
 # Introduction 
 
-With in the first stages of the project we came to defince wiche ones where our core classes to start working on. On later stages, the original uml extended based on vertical slicing design to provide more classes taking care of busines logic of our service.
+Within the first stages of the project we came to define which ones were our core classes to start working on. On later stages, the original uml was extended, based on vertical slicing design to provide more classes taking care of busines logic of our service.
 
 
 ## UML-V1
@@ -36,6 +36,7 @@ After the core model is defined, the second stage of the desing consists on appl
 
 UML-V2 helped to build a program that is being used as a console mockup. On V3 the developement of the web application started. All managers has been removed and replaced with Service (for business logic), Controller (managing HTTP request for administration tasks), Rest controllers (creating all the endpoints to have a working website)
 and a Repository (a SQL DB)
+
 :::{.callout-warning}
 ## uml-v3
 ![UML-V1](../img/uml-3-marc.png)
