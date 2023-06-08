@@ -2,8 +2,8 @@
  * UserProfile
  * It shows either the User profile or the LogIn information
  */
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext, UserProvider } from "../../services/UserContext";
+import React, { useContext } from "react";
+import { UserContext } from "../../services/UserContext";
 import UserSignIn from "../UserSignIn";
 import UserCard from "../UserCard";
 import { Button } from "semantic-ui-react";
@@ -19,28 +19,17 @@ const UserLogOut = () => {
 const UserProfile = () => {
     // Distructure the content of the UserContext
     const { user } = useContext(UserContext);
-    const [ isLoggedIn, setLoggedIn ] = useState(false);
-
-    // Define a useEffect to re-render the component if the 'user' state changes
-    useEffect(() => {
-        if (user === null) {
-            setLoggedIn(false);
-        } else {
-            setLoggedIn(true);
-        }
-    }, [user]);
 
     return (
         <React.Fragment>
-            { isLoggedIn ?
+            { user ?
                 <React.Fragment>
-                    <UserCard user={user} />
+                    <UserCard key={user.userId} user={user} />
                     <UserLogOut />
                 </React.Fragment> :
-                <UserProvider>
+                <React.Fragment>
                     <UserSignIn />
-                    <UserLogOut />
-                </UserProvider>
+                </React.Fragment>
              }
         </React.Fragment>
     );
